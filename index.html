@@ -1,3 +1,388 @@
-<h1>
-hi
-</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" href="/assets/favicon.ico" />
+    <link rel="apple-touch-icon" href="/assets/favicon.ico" />
+    <title>The Chroma Swift media</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        color: #404040;
+        font-family: "HelveticaNeue-Thin", Helvetica, Arial, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      .container {
+        max-width: 800px;
+        margin: 80px auto;
+        width: 90%;
+        padding: 20px;
+        text-align: center;
+        flex-grow: 1;
+      }
+      .divider {
+        border-bottom: 2px solid #cccccc;
+        margin: 20px auto;
+        width: 80%;
+      }
+      h1, h2, h3 {
+        margin: 0 0 0.5em 0;
+        font-weight: normal;
+      }
+      h1 {
+        color: #1a1a1f;
+        font-size: 2.5em;
+      }
+      h2 {
+        color: #444444;
+        font-size: 1.8em;
+      }
+      h3 {
+        color: #444444;
+        font-size: 1.1em;
+        line-height: 1.6;
+        margin-bottom: 2em;
+      }
+
+      .menu-bar {
+        width: 100%;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 20px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+      }
+      .menu-logo {
+        height: 40px;
+        width: auto;
+      }
+      .menu-links {
+        display: flex;
+        gap: 20px;
+      }
+      .menu-links a {
+        text-decoration: none;
+        color: #404040;
+        font-weight: 500;
+      }
+
+      .apps-container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .app-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        padding: 40px 20px;
+        border-top: 1px solid #ccc;
+      }
+      .app-info {
+        flex: 1 1 300px;
+        margin: 10px;
+      }
+      .app-info p {
+        margin-bottom: 1em;
+      }
+      .store-badges {
+        margin-bottom: 1em;
+      }
+      .badge {
+        display: inline-block;
+        text-decoration: none;
+        background: #333;
+        color: #fff;
+        padding: 10px 15px;
+        border-radius: 5px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      .app-store-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .badge-icon {
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
+      }
+      .badge:hover {
+        background: #555;
+      }
+
+      .app-image {
+        flex: 1 1 300px;
+        margin: 10px;
+        text-align: center;
+      }
+      .app-image img {
+        max-width: 100%;
+        height: auto;
+        display: inline-block;
+      }
+
+      .swift-section {
+        position: relative;
+        background: 
+          linear-gradient(
+            217deg,
+            rgba(0,0,0,0.8),
+            rgba(0,0,0,0) 70.71%
+          ),
+          linear-gradient(
+            127deg,
+            rgba(0,0,0,0.8),
+            rgba(79,147,188,0.67) 70.71%
+          ),
+          linear-gradient(
+            336deg,
+            rgb(10,255,103),
+            rgb(6,6,213) 70.71%
+          );
+        background-size: 300% 300%;
+        background-position: 0% 50%;
+        animation: gradientShift 4s ease-in-out infinite;
+        color: #fff;
+        width: 100%;
+        margin-top: 0;
+        min-height: 40vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5vh 20px;
+        padding-top: calc(60px + 5vh);
+        overflow: hidden;
+        text-align: center;
+      }
+
+      /*  gradient keyframes*/
+      @keyframes gradientShift {
+        0%   { background-position: 0% 50%; }
+        50%  { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+      /* noise image overlay */
+      .swift-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("noise.png");
+        background-size: cover;
+        background-repeat: repeat;
+        mix-blend-mode: overlay;
+        opacity: 0.3;
+        pointer-events: none;
+      }
+
+      /* Wrap content  */
+      .swift-content {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        width: 100%;
+      }
+      .swift-left {
+        flex: 1 1 300px;
+        margin: 10px;
+      }
+      .swift-right {
+        flex: 1 1 300px;
+        margin: 10px;
+        display: flex;
+        justify-content: center;
+      }
+      .hero-icon {
+        max-width: 80%;
+        height: auto;
+        filter: drop-shadow(0 0 10px rgba(146, 228, 209, 0.6));
+      }
+      .secondary-swift {
+        padding: 20px;
+      }
+      .gradient-text {
+        font-size: clamp(1.5rem, 4vw, 2.5em);
+        font-weight: bold;
+        display: inline-block;
+        background: url("/assets/background.png") center center / cover no-repeat;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        line-height: 1.4;
+      }
+      .secondary-swift h2 {
+        color: #abc4cb;
+        font-size: clamp(1rem, 2vw, 1.2em);
+        margin-bottom: 0.5em;
+      }
+      .chroma-icon {
+        width: 42px;
+        height: auto;
+        margin-right: 4px;
+        vertical-align: middle;
+      }
+
+/* side footer */
+      .site-footer {
+        background: #f2f2f2;
+        text-align: center;
+        padding: 20px;
+        margin-top: auto;
+      }
+      .site-footer p {
+        margin: 5px 0;
+      }
+      .site-footer a {
+        text-decoration: none;
+        color: #404040;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          width: 95%;
+          padding: 10px;
+        }
+        h1 {
+          font-size: 2em;
+        }
+        h2 {
+          font-size: 1.5em;
+        }
+        h3 {
+          font-size: 1em;
+        }
+        .app-row {
+          flex-direction: column;
+          text-align: center;
+        }
+        .app-info, .app-image {
+          flex: unset;
+          margin: 10px 0;
+        }
+        .swift-section {
+          min-height: 35vh;
+        }
+        .swift-content {
+          flex-direction: column;
+        }
+        .swift-right {
+          margin-top: 20px;
+        }
+      }
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 1.8em;
+        }
+        .app-row {
+          padding: 20px 10px;
+        }
+        .badge {
+          font-size: 0.8rem;
+          padding: 8px 12px;
+        }
+      }
+    </style>
+
+    <link rel="stylesheet" href="main.css" />
+  </head>
+
+  <body>
+    <div class="menu-bar">
+      <a href="/">
+        <img src="/assets/file.png" alt="Logo" class="menu-logo">
+      </a>
+      <div class="menu-links menu-links-center">
+        <a href="/Privacy">Privacy Policy</a>
+      </div>
+    </div>
+
+    <div class="swift-section">
+      <div class="swift-content">
+        <div class="secondary-swift swift-left">
+          <h1 class="gradient-text">
+            Welcome to The Chroma Swift media! <br>
+          </h1>
+          <h2>These are some of our brilliant apps</h2>
+        </div>
+
+        <div class="swift-right">
+          <img src="/assets/icon.png" alt="Big icon" class="hero-icon">
+        </div>
+      </div>
+    </div>
+
+    <div class="apps-container">
+      <div class="app-row">
+        <div class="app-info">
+          <h2>
+            <img 
+              src="/assets/chroma.png" 
+              alt="Chroma Icon" 
+              class="chroma-icon"
+            >
+            Chroma - All In One Color Tool
+          </h2>
+          <p>
+            Chroma is your go-to app for creating, and learning more about colors for iOS development. From being able to create palette-like designs and use tools such as converters, color RNG, Gradient Maker, and more, Chroma offers a creative workflow all in one place.
+
+          </p>
+          <div class="store-badges">
+            <a
+              href="https://apps.apple.com/us/app/chroma-all-in-one-color-tool/id6738114281"
+              class="badge app-store-badge"
+            >
+              <img src="/assets/apple.png" class="badge-icon">
+              Download on the App Store
+            </a>
+          </div>
+        </div>
+        <div class="app-image">
+          <img
+            src="/assets/chroma_preview.png"          >
+        </div>
+      </div>
+
+      <div class="app-row">
+        <div class="app-info">
+          <h2>Stay Tuned!</h2>
+          <p>
+            We hope to make new innovative apps in the future!
+          </p>
+        </div>
+        <div class="app-image">
+          <img
+            src="/assets/stay_tuned.png"
+          >
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <p>&copy; 2025 The Chroma Swift media. All rights reserved.</p>
+      <p>
+        <a href="/Privacy">Privacy</a>
+      </p>
+    </footer>
+  </body>
+</html>
