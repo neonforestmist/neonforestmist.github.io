@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" href="/assets/favicon.ico" />
+    <link rel="apple-touch-icon" href="/assets/favicon.ico" />
+    <title>The Chroma Swift media</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        color: #404040;
+        font-family: "HelveticaNeue-Thin", Helvetica, Arial, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      .container {
+        max-width: 800px;
+        margin: 80px auto;
+        width: 90%;
+        padding: 20px;
+        text-align: center;
+        flex-grow: 1;
+      }
+      .divider {
+        border-bottom: 2px solid #cccccc;
+        margin: 20px auto;
+        width: 80%;
+      }
+      h1, h2, h3 {
+        margin: 0 0 0.5em 0;
+        font-weight: normal;
+      }
+      h1 {
+        color: #1a1a1f;
+        font-size: 2.5em;
+      }
+      h2 {
+        color: #444444;
+        font-size: 1.8em;
+      }
+      h3 {
+        color: #444444;
+        font-size: 1.1em;
+        line-height: 1.6;
+        margin-bottom: 2em;
+      }
+
+      .apps-container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .app-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        padding: 40px 20px;
+        border-top: 1px solid #ccc;
+      }
+      .app-info {
+        flex: 1 1 300px;
+        margin: 10px;
+      }
+      .app-info p {
+        margin-bottom: 1em;
+      }
+      .store-badges {
+        margin-bottom: 1em;
+      }
+      .badge {
+        display: inline-block;
+        text-decoration: none;
+        background: #333;
+        color: #fff;
+        padding: 10px 15px;
+        border-radius: 5px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      .app-store-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .badge-icon {
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
+      }
+      .badge:hover {
+        background: #555;
+      }
+
+      .app-image {
+        flex: 1 1 300px;
+        margin: 10px;
+        text-align: center;
+      }
+      .app-image img {
+        max-width: 100%;
+        height: auto;
+        display: inline-block;
+      }
+
+      .swift-section {
+        position: relative;
+        width: 100%;
+        margin-top: 0;
+        min-height: clamp(420px, 62vh, 680px);
+        font-family: "Avenir Next", "SF Pro Display", "Helvetica Neue", Helvetica, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: clamp(76px, 9vh, 112px) clamp(18px, 4vw, 42px) clamp(42px, 7vh, 68px);
+        padding-top: calc(64px + clamp(34px, 6vh, 56px));
+        overflow: hidden;
+        color: #f5f8ff;
+        text-align: left;
+        background:
+          linear-gradient(135deg, rgba(5, 8, 20, 0.8), rgba(7, 14, 34, 0.7)),
+          url("/assets/background.png") center center / cover no-repeat;
+        isolation: isolate;
+      }
+
+      .swift-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url("/assets/noise.png");
+        background-size: 280px;
+        background-repeat: repeat;
+        mix-blend-mode: soft-light;
+        opacity: 0.16;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .swift-content {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+        align-items: center;
+        gap: clamp(26px, 4vw, 72px);
+        max-width: 1240px;
+        width: 100%;
+        margin: 0 auto;
+      }
+      .swift-left {
+        margin: 0;
+      }
+      .swift-right {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+      }
+      .hero-icon-shell {
+        position: relative;
+        width: clamp(170px, 23vw, 310px);
+        aspect-ratio: 1;
+        display: grid;
+        place-items: center;
+      }
+      .hero-icon-shell::before {
+        content: "";
+        position: absolute;
+        inset: -14%;
+        border-radius: 34%;
+        background: radial-gradient(
+          circle,
+          rgba(106, 236, 227, 0.24),
+          rgba(193, 136, 255, 0.14) 48%,
+          transparent 74%
+        );
+        filter: blur(18px);
+        z-index: 0;
+      }
+      .hero-icon {
+        width: 100%;
+        max-width: 420px;
+        height: auto;
+        position: relative;
+        z-index: 1;
+        filter: drop-shadow(0 16px 30px rgba(102, 200, 255, 0.26));
+      }
+      .secondary-swift {
+        padding: 0;
+        max-width: 720px;
+      }
+      .gradient-text {
+        margin: 0;
+        font-size: clamp(1.7rem, 4.2vw, 3.15rem);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.13;
+        display: block;
+        background: url("/assets/background.png") center center / cover no-repeat;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .secondary-swift h2 {
+        margin: 14px 0 0;
+        color: #d5e7ff;
+        font-size: clamp(1rem, 1.8vw, 1.24rem);
+        font-weight: 500;
+        line-height: 1.6;
+        max-width: 54ch;
+      }
+      .chroma-icon {
+        width: 42px;
+        height: auto;
+        margin-right: 4px;
+        vertical-align: middle;
+      }
+      @media (max-width: 768px) {
+        .container {
+          width: 95%;
+          padding: 10px;
+        }
+        h1 {
+          font-size: 2em;
+        }
+        h2 {
+          font-size: 1.5em;
+        }
+        h3 {
+          font-size: 1em;
+        }
+        .app-row {
+          flex-direction: column;
+          text-align: center;
+        }
+        .app-info, .app-image {
+          flex: unset;
+          margin: 10px 0;
+        }
+        .swift-section {
+          min-height: clamp(340px, 56vh, 520px);
+          text-align: left;
+          padding: calc(54px + 18px) 14px 22px;
+        }
+        .swift-content {
+          grid-template-columns: minmax(0, 1.12fr) minmax(110px, 0.88fr);
+          gap: clamp(10px, 3vw, 18px);
+        }
+        .swift-left {
+          margin: 0;
+          max-width: 38ch;
+        }
+        .hero-icon-shell {
+          width: clamp(120px, 31vw, 198px);
+        }
+        .gradient-text {
+          font-size: clamp(1.52rem, 6.4vw, 2.2rem);
+          line-height: 1.12;
+          letter-spacing: -0.015em;
+          background: url("/assets/background.png") center center / cover no-repeat;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          text-shadow: none;
+        }
+        .secondary-swift h2 {
+          margin-top: 10px;
+          font-size: clamp(0.9rem, 2.4vw, 1.05rem);
+          line-height: 1.42;
+          margin-left: 0;
+          margin-right: 0;
+          max-width: 34ch;
+        }
+      }
+      @media (max-width: 420px) {
+        .swift-content {
+          grid-template-columns: minmax(0, 1fr) minmax(86px, 118px);
+          gap: 10px;
+        }
+        .hero-icon-shell {
+          width: min(34vw, 118px);
+        }
+        .gradient-text {
+          font-size: clamp(1.28rem, 7vw, 1.72rem);
+        }
+      }
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 1.8em;
+        }
+        .app-row {
+          padding: 20px 10px;
+        }
+        .badge {
+          font-size: 0.8rem;
+          padding: 8px 12px;
+        }
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <div class="menu-bar">
+      <a href="/">
+        <img src="/assets/file.png" alt="Logo" class="menu-logo">
+      </a>
+      <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Toggle navigation">
+      <label for="menu-toggle" class="menu-hamburger" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+      <div class="menu-links menu-links-center">
+        <a href="/">
+          <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
+            <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/>
+          </svg>
+          Home
+        </a>
+        <a href="/AppStore">
+          <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
+            <path d="M841-518v318q0 33-23.5 56.5T761-120H201q-33 0-56.5-23.5T121-200v-318q-23-21-35.5-54t-.5-72l42-136q8-26 28.5-43t47.5-17h556q27 0 47 16.5t29 43.5l42 136q12 39-.5 71T841-518Zm-272-42q27 0 41-18.5t11-41.5l-22-140h-78v148q0 21 14 36.5t34 15.5Zm-180 0q23 0 37.5-15.5T441-612v-148h-78l-22 140q-4 24 10.5 42t37.5 18Zm-178 0q18 0 31.5-13t16.5-33l22-154h-78l-40 134q-6 20 6.5 43t41.5 23Zm540 0q29 0 42-23t6-43l-42-134h-76l22 154q3 20 16.5 33t31.5 13ZM201-200h560v-282q-5 2-6.5 2H751q-27 0-47.5-9T663-518q-18 18-41 28t-49 10q-27 0-50.5-10T481-518q-17 18-39.5 28T393-480q-29 0-52.5-10T299-518q-21 21-41.5 29.5T211-480h-4.5q-2.5 0-5.5-2v282Zm560 0H201h560Z"/>
+          </svg>
+          App Store
+        </a>
+        <a href="/Projects">
+          <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
+            <path d="M160-240v-480 520-40Zm0 80q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640v200h-80v-200H447l-80-80H160v480h200v80H160ZM584-56 440-200l144-144 56 57-87 87 87 87-56 57Zm192 0-56-57 87-87-87-87 56-57 144 144L776-56Z"/>
+          </svg>
+          Projects
+        </a>
+        <a href="/Privacy">
+          <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
+            <path d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 85-29 163.5T688-214L560-342q-18 11-38.5 16.5T480-320q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 22-5.5 42.5T618-398l60 60q20-41 31-86t11-92v-189l-240-90-240 90v189q0 121 68 220t172 132q26-8 49.5-20.5T576-214l56 56q-33 27-71.5 47T480-80Zm0-320q33 0 56.5-23.5T560-480q0-33-23.5-56.5T480-560q-33 0-56.5 23.5T400-480q0 33 23.5 56.5T480-400Zm8-77Z"/>
+          </svg>
+          Privacy
+        </a>
+      </div>
+    </div>
+
+    <div class="swift-section">
+      <div class="swift-content">
+        <div class="secondary-swift swift-left">
+          <h1 class="gradient-text">
+            Welcome to The Chroma Swift media!
+          </h1>
+          <h2>These are some of our unique apps.</h2>
+        </div>
+
+        <div class="swift-right">
+          <div class="hero-icon-shell">
+            <img src="/assets/icon.png" alt="Big icon" class="hero-icon">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="apps-container">
+      <div class="app-row">
+        <div class="app-info">
+          <h2>
+            <img 
+              src="/assets/chroma.png" 
+              alt="Chroma Icon" 
+              class="chroma-icon"
+            >
+            Chroma - All In One Color Tool
+          </h2>
+          <p>
+            A go-to color tool. Current tools include converters, color RNG, Gradient Maker, and more.
+
+          </p>
+          <div class="store-badges">
+            <a
+              href="https://apps.apple.com/us/app/chroma-all-in-one-color-tool/id6738114281"
+              class="badge app-store-badge"
+            >
+              <img src="/assets/apple.png" class="badge-icon">
+              Download on the App Store
+            </a>
+          </div>
+        </div>
+        <div class="app-image">
+          <img
+            src="/assets/chroma_preview.png"          >
+        </div>
+      </div>
+
+      <div class="app-row">
+        <div class="app-info">
+          <h2>Stay Tuned!</h2>
+          <p>
+            Stay tuned for more unique apps in the future!
+          </p>
+        </div>
+        <div class="app-image">
+          <img
+            src="/assets/stay_tuned.png"
+          >
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

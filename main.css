@@ -1,0 +1,324 @@
+/* Base typography */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "HelveticaNeue-Thin", Helvetica, Arial, sans-serif;
+    color: #404040;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Ensure pages stretch to push footer to bottom */
+main {
+    flex: 1 0 auto;
+}
+
+/* Menu styles */
+.menu-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    background-color: rgba(26, 26, 30, 0.95);
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.menu-logo {
+    height: 40px;
+    width: auto;
+    max-width: min(72vw, 320px);
+    object-fit: contain;
+}
+
+.menu-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    text-decoration: none;
+}
+
+.menu-brand-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    flex: 0 0 auto;
+}
+
+.menu-brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.05;
+    min-width: 0;
+}
+
+.menu-brand-title {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #dde9ff;
+    white-space: nowrap;
+    font-family: "Avenir Next", "SF Pro Display", "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.menu-brand-subtitle {
+    margin-top: 2px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: #9ea9cd;
+    white-space: nowrap;
+    font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+}
+
+/* Defensive fallback: keep brand sane even if page markup differs */
+.menu-bar > a:first-child {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    text-decoration: none;
+    color: #dde9ff;
+}
+
+.menu-bar > a:first-child > img {
+    width: auto;
+    height: 40px;
+    max-width: min(72vw, 320px);
+    object-fit: contain;
+    border-radius: 0;
+    flex: 0 0 auto;
+}
+
+.menu-links {
+    display: flex;
+    align-items: center;
+}
+
+.menu-links a {
+    color: #B7B8FF; 
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nav-icon {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+.menu-links a:hover {
+    color: #60619A;
+}
+
+.menu-links-center {
+    margin-left: auto;
+    margin-right: 55px;
+    justify-content: center;
+}
+
+.menu-toggle {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.menu-hamburger {
+    display: none;
+    margin-left: auto;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid #60619A;
+    background: rgba(26, 26, 30, 0.7);
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    color: #B7B8FF;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.menu-hamburger span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 999px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+
+.menu-toggle:focus-visible + .menu-hamburger {
+    outline: 2px solid #B7B8FF;
+    outline-offset: 2px;
+}
+
+.menu-links a.active {
+    color: #B7B8FF;
+}
+
+.menu-links a.active:hover {
+    color: #60619A;
+}
+
+@media (max-width: 860px) {
+    .menu-bar {
+        padding: 8px 12px;
+    }
+
+    .menu-logo {
+        height: 34px;
+        max-width: min(68vw, 260px);
+    }
+
+    .menu-hamburger {
+        display: inline-flex;
+        width: 38px;
+        height: 38px;
+        flex: 0 0 auto;
+    }
+
+    .menu-links {
+        display: none;
+        position: fixed;
+        top: 54px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: rgba(26, 26, 30, 0.98);
+        border-top: 1px solid #2b2c4a;
+        border-bottom: 1px solid #34355a;
+        padding: 10px 20px 16px;
+        margin: 0;
+        z-index: 999;
+    }
+
+    .menu-links a {
+        width: 100%;
+        margin: 0;
+        padding: 10px 0;
+        font-size: 15px;
+        border-bottom: 1px solid #2b2c4a;
+    }
+
+    .menu-links-center {
+        margin: 0;
+    }
+
+    .menu-toggle:checked + .menu-hamburger + .menu-links {
+        display: flex;
+    }
+
+    .menu-toggle:checked + .menu-hamburger span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .menu-toggle:checked + .menu-hamburger span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle:checked + .menu-hamburger span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .menu-links a:last-child {
+        border-bottom: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .menu-brand {
+        gap: 8px;
+    }
+
+    .menu-brand-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 9px;
+    }
+
+    .menu-brand-title {
+        font-size: 17px;
+    }
+
+    .menu-brand-subtitle {
+        font-size: 11px;
+    }
+
+    .menu-bar > a:first-child > img {
+        width: auto;
+        height: 34px;
+        max-width: min(68vw, 260px);
+        border-radius: 0;
+    }
+}
+
+@media (max-width: 400px) {
+    .menu-brand-subtitle {
+        display: none;
+    }
+
+    .menu-brand-title {
+        font-size: 16px;
+    }
+}
+
+/* Footer */
+.site-footer {
+    background: #eaeaea;
+    text-align: center;
+    padding: 24px 16px;
+    color: #404040;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-top: auto;
+}
+
+.site-footer-links {
+    margin-top: 8px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-weight: 500;
+}
+
+.site-footer a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.site-footer a:hover {
+    text-decoration: underline;
+}
