@@ -1,0 +1,11 @@
+# macOS filesystem metadata
+.DS_Store
+*/.DS_Store
+
+# AppleDouble companion files
+._*
+.AppleDouble
+
+# Other Finder metadata
+.LSOverride
+Icon?

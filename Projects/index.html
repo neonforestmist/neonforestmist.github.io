@@ -153,7 +153,28 @@
       border-radius: 10px;
       overflow: hidden;
     }
+    .project-meta .pill.web-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      padding: 0 10px 0 0;
+      min-height: 30px;
+      border-radius: 10px;
+      background: #ffffff;
+      border-color: #000000;
+      overflow: hidden;
+    }
+    .project-meta .pill.web-tag span {
+      color: #000000;
+    }
     .project-meta .pill.openai-tag img {
+      width: 30px;
+      height: 30px;
+      object-fit: cover;
+      border-radius: 10px 0 0 10px;
+      display: block;
+    }
+    .project-meta .pill.web-tag img {
       width: 30px;
       height: 30px;
       object-fit: cover;
@@ -269,7 +290,7 @@
     <div class="projects-grid" data-grid>
       <article class="project-card" data-tag="ios" style="--cell-bg: #cfd6dd;">
         <div class="project-thumb">
-          <img src="../assets/chroma_preview.png" alt="Chroma preview">
+          <img src="../assets/project-banners/rgba-image-banner.png" alt="RGBA Image Filters banner">
         </div>
         <div class="project-body">
           <h3 class="project-title">RGBA Image Filters</h3>
@@ -291,7 +312,7 @@
 
       <article class="project-card" data-tag="web" style="--cell-bg: #d8dadf;">
         <div class="project-thumb">
-          <img src="../assets/html.png" alt="Web project illustration">
+          <img src="../assets/project-banners/dalle-2-image.png" alt="DALL-E-2-SwiftUI banner">
         </div>
         <div class="project-body">
           <h3 class="project-title">DALL-E-2-SwiftUI</h3>
@@ -305,9 +326,31 @@
               <span>OpenAI</span>
             </span>
           </div>
-          <p class="project-blurb">A SwiftUI wrapper for the DALL-E-2 API. It can generate new images from text prompts, and edit existing ones via inpainting and outpainting.</p>
+          <p class="project-blurb">A SwiftUI wrapper for the DALL-E-2 API. It can generate new images from text prompts, create variations of existing images, and edit existing ones via inpainting and outpainting.</p>
           <div class="project-links">
             <a href="https://github.com/neonforestmist/DALL-E-2-SwiftUI" class="github-link">
+              <img src="../assets/github.png" alt="">
+              <span>Github Repo</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card" data-tag="web" style="--cell-bg: #d3d9df;">
+        <div class="project-thumb">
+          <img src="../assets/project-banners/alan-park-banner.png" alt="Alan Park banner">
+        </div>
+        <div class="project-body">
+          <h3 class="project-title">Alan Park</h3>
+          <div class="project-meta">
+            <span class="pill web-tag">
+              <img src="../assets/html.png" alt="">
+              <span>HTML/CSS/JS</span>
+            </span>
+          </div>
+          <p class="project-blurb">A 2D-platformer game similar to Super Mario Bros. with a tether gimmick.</p>
+          <div class="project-links">
+            <a href="https://github.com/neonforestmist/AlanPark" class="github-link">
               <img src="../assets/github.png" alt="">
               <span>Github Repo</span>
             </a>

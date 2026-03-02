@@ -9,410 +9,377 @@
   <title>App Store</title>
   <style>
     :root {
-      --appstore-bg: #f8fafc;
-      --appstore-surface: #ffffff;
-      --appstore-text: #0f172a;
-      --appstore-muted: #52637a;
-      --appstore-accent: #1d4ed8;
-      --appstore-border: #e2e8f0;
-      --appstore-border-strong: #cbd5e1;
-      --appstore-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
-      --appstore-sidebar-bg: rgba(248, 250, 252, 0.9);
-      --appstore-sidebar-text: #0f172a;
-      --appstore-sidebar-muted: #64748b;
-      --appstore-sidebar-border: #e2e8f0;
-      --appstore-sidebar-button-hover: #f1f5f9;
-      --appstore-sidebar-button-active: #e8f0ff;
-      --appstore-sidebar-button-active-border: #bfd3ff;
+      --as-bg: #ffffff;
+      --as-surface: #ffffff;
+      --as-text: #1d1d1f;
+      --as-secondary: #6e6e73;
+      --as-accent: #0071e3;
+      --as-accent-hover: #0077ed;
+      --as-border: rgba(0, 0, 0, 0.08);
+      --as-card-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      --as-card-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.1);
+      --as-radius: 16px;
+      --as-radius-sm: 12px;
     }
 
     body.appstore-page {
       overflow-x: hidden;
       overflow-y: auto;
-      font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
-      font-weight: 400;
-      color: var(--appstore-text);
-      background:
-        radial-gradient(1200px 420px at 22% -12%, rgba(37, 99, 235, 0.13), transparent 65%),
-        linear-gradient(180deg, #f8fbff 0%, #f8fafc 45%, #f8fafc 100%);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      color: var(--as-text);
+      background: #fff;
     }
 
-    .appstore-main {
-      padding: 94px 0 48px;
-      min-height: 100vh;
-      background: transparent;
+    /* ── Layout ── */
+    .as-main {
+      padding: 80px 0 0;
+      min-height: 0;
+      flex: 1 0 auto;
     }
 
-    .appstore-board {
+    .as-layout {
       display: grid;
-      grid-template-columns: 280px minmax(0, 1fr);
-      width: min(1320px, 100%);
+      grid-template-columns: 220px 1fr;
+      max-width: 1200px;
       margin: 0 auto;
-      color: var(--appstore-text);
-      background: transparent;
-      min-height: calc(100vh - 142px);
+      min-height: calc(100vh - 80px);
     }
 
-    .appstore-sidebar {
-      border-right: 1px solid var(--appstore-sidebar-border);
-      background: var(--appstore-sidebar-bg);
-      padding: 28px 18px;
+    /* ── Sidebar ── */
+    .as-sidebar {
+      padding: 32px 20px 40px 24px;
+      position: sticky;
+      top: 80px;
+      align-self: start;
+      height: fit-content;
+    }
+
+    .as-sidebar-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--as-secondary);
+      padding: 0 12px;
+      margin: 0 0 12px;
+    }
+
+    .as-nav-group {
       display: flex;
       flex-direction: column;
-      gap: 20px;
-      min-height: calc(100vh - 142px);
-      position: sticky;
-      top: 74px;
-      align-self: start;
-      backdrop-filter: blur(8px);
-      color: var(--appstore-sidebar-text);
+      gap: 2px;
     }
 
-    .appstore-titlebar {
+    .as-nav-btn {
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 2px 10px;
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: var(--appstore-sidebar-muted);
-    }
-
-    .appstore-mobile-toggle {
-      display: none;
-      margin-left: auto;
-      width: 40px;
-      height: 36px;
-      border-radius: 10px;
-      border: 1px solid var(--appstore-border-strong);
-      background: var(--appstore-surface);
-      align-items: center;
-      flex-direction: column;
-      justify-content: center;
-      gap: 5px;
-      padding: 8px 10px;
-      cursor: pointer;
-    }
-
-    .appstore-mobile-toggle span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      border-radius: 2px;
-      background: #334155;
-    }
-
-    .appstore-sidebar-content {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .appstore-section {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .appstore-section-label {
-      margin: 8px 0 2px;
-      font-size: 12px;
-      letter-spacing: 0.4px;
-      color: var(--appstore-sidebar-muted);
-      text-transform: uppercase;
-    }
-
-    .appstore-category-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .appstore-nav {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
       width: 100%;
-      padding: 11px 12px;
-      border: 1px solid transparent;
+      padding: 10px 12px;
+      border: none;
       border-radius: 10px;
       background: transparent;
-      color: var(--appstore-sidebar-text);
-      font-size: 16px;
-      font-weight: 600;
+      color: var(--as-text);
+      font-size: 15px;
+      font-weight: 500;
       text-align: left;
       cursor: pointer;
-      transition: transform 0.12s ease, background-color 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+      transition: background 0.15s ease, color 0.15s ease;
+      font-family: inherit;
     }
 
-    .appstore-nav-large {
-      font-size: 18px;
-      padding: 13px 16px;
-      font-weight: 700;
+    .as-nav-btn:hover {
+      background: rgba(0, 0, 0, 0.04);
     }
 
-    .appstore-nav:hover {
-      background: var(--appstore-sidebar-button-hover);
-      border-color: var(--appstore-sidebar-border);
-      transform: translateX(2px);
+    .as-nav-btn.is-active {
+      background: rgba(0, 113, 227, 0.08);
+      color: var(--as-accent);
     }
 
-    .appstore-nav.is-active {
-      background: var(--appstore-sidebar-button-active);
-      border-color: var(--appstore-sidebar-button-active-border);
-      color: #15396c;
+    .as-nav-btn.is-active .as-nav-icon {
+      opacity: 1;
     }
 
-    .appstore-icon {
-      width: 22px;
-      height: 22px;
+    .as-nav-icon {
+      width: 20px;
+      height: 20px;
       object-fit: contain;
-      filter: grayscale(1) saturate(0.2) brightness(0.5);
-      opacity: 0.8;
+      filter: brightness(0) opacity(0.45);
+      transition: filter 0.15s ease;
     }
 
-    .appstore-nav.is-active .appstore-icon {
-      opacity: 0.95;
+    .as-nav-btn:hover .as-nav-icon {
+      filter: brightness(0) opacity(0.65);
     }
 
-    .appstore-content {
-      padding: 0 clamp(18px, 4vw, 64px);
-      display: flex;
-      align-items: flex-start;
-      background: transparent;
+    .as-nav-btn.is-active .as-nav-icon {
+      filter: brightness(0) saturate(100%) invert(30%) sepia(90%) saturate(1200%) hue-rotate(200deg) opacity(0.9);
+    }
+
+    .as-nav-divider {
+      height: 1px;
+      background: var(--as-border);
+      margin: 10px 12px;
+    }
+
+    /* ── Content ── */
+    .as-content {
+      padding: 32px 40px 64px;
       min-width: 0;
     }
 
-    .appstore-content-inner {
-      width: min(920px, 100%);
-      background: transparent;
-      border: none;
-      border-radius: 0;
-      padding: 28px 0 64px;
-      box-shadow: none;
+    .as-header {
+      margin-bottom: 28px;
     }
 
-    .appstore-title {
+    .as-title {
       margin: 0 0 6px;
-      font-size: 42px;
-      line-height: 1.1;
-      color: var(--appstore-text);
+      font-size: 34px;
+      font-weight: 700;
       letter-spacing: -0.02em;
+      color: var(--as-text);
     }
 
-    .appstore-description {
-      margin: 0 0 24px;
-      font-size: 20px;
-      line-height: 1.55;
-      color: var(--appstore-muted);
-      max-width: 62ch;
-    }
-
-    .appstore-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: 8px;
-    }
-
-    .appstore-card {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      align-items: center;
-      gap: 14px;
-      padding: 13px 16px;
-      background: var(--appstore-surface);
-      border: 1px solid var(--appstore-border);
-      border-radius: 12px;
-      box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04);
-      transition: border-color 0.12s ease, transform 0.12s ease, box-shadow 0.12s ease;
-    }
-
-    .appstore-card:hover {
-      border-color: var(--appstore-border-strong);
-      box-shadow: var(--appstore-shadow);
-      transform: translateY(-1px);
-    }
-
-    .appstore-badge {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      background: #eef2f7;
-      border: 1px solid var(--appstore-border);
-      display: grid;
-      place-items: center;
-      color: #1f2937;
-      font-weight: 800;
-      font-size: 16px;
-    }
-
-    .appstore-badge.is-image {
-      padding: 0;
-      background: transparent;
-      border: none;
-      overflow: hidden;
-    }
-
-    .appstore-badge-image {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      border-radius: 12px;
-    }
-
-    .appstore-card h3 {
+    .as-subtitle {
       margin: 0;
-      font-size: 18px;
-      color: var(--appstore-text);
-      letter-spacing: -0.02em;
-    }
-
-    .appstore-card p {
-      margin: 4px 0 0;
-      font-size: 16px;
-      color: var(--appstore-muted);
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--as-secondary);
       line-height: 1.5;
     }
 
-    .appstore-cta {
-      padding: 8px 14px;
-      border-radius: 9px;
-      background: #f8fafc;
-      color: #0f172a;
-      border: 1px solid #d7e1ee;
-      font-weight: 700;
+    /* ── App Cards ── */
+    .as-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .as-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      background: var(--as-surface);
+      border-radius: var(--as-radius-sm);
+      box-shadow: var(--as-card-shadow);
+      border: 1px solid var(--as-border);
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .as-card:hover {
+      box-shadow: var(--as-card-shadow-hover);
+      transform: translateY(-2px);
+    }
+
+    .as-card-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      flex-shrink: 0;
+      overflow: hidden;
+      background: #f0f0f2;
+      display: grid;
+      place-items: center;
+    }
+
+    .as-card-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+    }
+
+    .as-card-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .as-card-name {
+      margin: 0 0 2px;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--as-text);
+      letter-spacing: -0.01em;
+    }
+
+    .as-card-desc {
+      margin: 0 0 4px;
+      font-size: 14px;
+      color: var(--as-secondary);
+      line-height: 1.4;
+    }
+
+    .as-card-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--as-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .as-card-cta {
+      padding: 6px 18px;
+      border-radius: 980px;
+      background: #f0f0f5;
+      color: var(--as-accent);
+      border: none;
+      font-weight: 600;
       font-size: 14px;
       text-decoration: none;
-      display: inline-flex;
+      cursor: pointer;
+      transition: background 0.15s ease;
+      font-family: inherit;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .as-card-cta:hover {
+      background: #e8e8ed;
+    }
+
+    /* ── Empty state ── */
+    .as-empty {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--as-secondary);
+      font-size: 15px;
+    }
+
+    /* ── Mobile toggle ── */
+    .as-mobile-toggle {
+      display: none;
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--as-text);
+      color: #fff;
+      border: none;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      z-index: 100;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
-      transition: background 0.12s ease, transform 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+      font-size: 20px;
+      font-family: inherit;
     }
 
-    .appstore-cta:hover {
-      background: #eaf2ff;
-      border-color: #bfd3ff;
-      color: #15396c;
-      transform: translateY(-1px);
-    }
-
-    .appstore-cta:focus-visible,
-    .appstore-nav:focus-visible,
-    .appstore-mobile-toggle:focus-visible {
-      outline: 2px solid #9ec0ff;
-      outline-offset: 2px;
-    }
-
-    @media (max-width: 1100px) {
-      .appstore-board {
-        grid-template-columns: 252px minmax(0, 1fr);
-      }
-
-      .appstore-title {
-        font-size: 36px;
-      }
-
-      .appstore-main {
-        padding: 92px 14px 38px;
-      }
-    }
-
+    /* ── Responsive ── */
     @media (max-width: 960px) {
-      .appstore-board {
+      .as-layout {
         grid-template-columns: 1fr;
-        min-height: auto;
-        background: var(--appstore-surface);
-        border: 1px solid var(--appstore-border);
-        border-radius: 12px;
-        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
-        overflow: hidden;
       }
 
-      .appstore-sidebar {
-        flex-direction: column;
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-        gap: 16px;
-        position: relative;
-        top: 0;
-        min-height: auto;
-        border-right: none;
-        border-bottom: 1px solid var(--appstore-border);
-        backdrop-filter: none;
-        padding: 18px 14px;
-      }
-
-      .appstore-section {
-        width: 100%;
-      }
-
-      .appstore-content {
-        padding: 0 16px;
-      }
-
-      .appstore-content-inner {
-        width: 100%;
-        padding: 20px 0 28px;
-      }
-
-      .appstore-titlebar {
-        justify-content: flex-start;
-        padding: 0;
-      }
-
-      .appstore-mobile-toggle {
-        display: inline-flex;
-      }
-
-      .appstore-sidebar-content {
-        max-height: 900px;
-        opacity: 1;
-        transition: max-height 0.3s ease, opacity 0.2s ease;
-        overflow: hidden;
-      }
-
-      body.appstore-sidebar-collapsed .appstore-sidebar-content {
-        max-height: 0;
+      .as-sidebar {
+        position: fixed;
+        top: 54px;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--as-border);
+        transform: translateY(-100%);
         opacity: 0;
         pointer-events: none;
+        transition: transform 0.25s ease, opacity 0.2s ease;
+        height: auto;
+      }
+
+      .as-sidebar.is-open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .as-sidebar.is-open + .as-content {
+        padding-top: 80px;
+      }
+
+      .as-sidebar-title {
+        display: none;
+      }
+
+      .as-nav-group {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .as-nav-btn {
+        width: auto;
+        padding: 8px 16px;
+        font-size: 14px;
+        border-radius: 980px;
+        background: rgba(0, 0, 0, 0.04);
+      }
+
+      .as-nav-btn.is-active {
+        background: var(--as-text);
+        color: #fff;
+      }
+
+      .as-nav-btn.is-active .as-nav-icon {
+        filter: brightness(0) invert(1) opacity(0.9);
+      }
+
+      .as-nav-divider {
+        display: none;
+      }
+
+      .as-content {
+        padding: 24px 16px 64px;
+        overflow: hidden;
+      }
+
+      .as-mobile-toggle {
+        display: inline-flex;
       }
     }
 
     @media (max-width: 640px) {
-      .appstore-main {
-        padding: 84px 10px 22px;
+      .as-main {
+        padding-top: 60px;
       }
 
-      .appstore-nav {
+      .as-title {
+        font-size: 28px;
+      }
+
+      .as-subtitle {
         font-size: 15px;
       }
 
-      .appstore-title {
-        font-size: 30px;
+      .as-card {
+        gap: 12px;
+        padding: 14px;
       }
 
-      .appstore-description {
+      .as-card-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 13px;
+      }
+
+      .as-card-icon img {
+        border-radius: 13px;
+      }
+
+      .as-card-name {
         font-size: 16px;
       }
 
-      .appstore-card {
-        grid-template-columns: 1fr;
-        gap: 10px;
-        align-items: flex-start;
-      }
-
-      .appstore-badge {
-        width: 50px;
-        height: 50px;
-      }
-
-      .appstore-cta {
-        width: 100%;
-        justify-self: stretch;
+      .as-card-desc {
+        font-size: 13px;
       }
     }
   </style>
@@ -456,199 +423,165 @@
     </div>
   </div>
 
-  <main class="appstore-main">
-    <div class="appstore-board">
-      <aside class="appstore-sidebar" id="appstore-sidebar-panel">
-        <div class="appstore-titlebar">
-          <span>App Store</span>
-          <button class="appstore-mobile-toggle" type="button" aria-expanded="true" aria-controls="appstore-sidebar-content" aria-label="Toggle categories">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
-        <div class="appstore-sidebar-content" id="appstore-sidebar-content">
-          <div class="appstore-section appstore-section-primary">
-            <button class="appstore-nav appstore-nav-large" data-key="all">
-              <img src="../assets/app_store_icons/Apps.svg" alt="" class="appstore-icon">
-              <span>All</span>
-            </button>
-          </div>
-          <div class="appstore-section">
-            <p class="appstore-section-label">Categories</p>
-            <div class="appstore-category-list" data-category-list></div>
-          </div>
-        </div>
+  <main class="as-main">
+    <div class="as-layout">
+      <aside class="as-sidebar" id="as-sidebar">
+        <p class="as-sidebar-title">Browse</p>
+        <nav class="as-nav-group" id="as-nav-group"></nav>
       </aside>
-      <section class="appstore-content">
-        <div class="appstore-content-inner">
-          <h1 class="appstore-title" id="category-title">Navigation Title</h1>
-          <p class="appstore-description" id="category-description">
-            Different for each category, should be very easy to change.
-          </p>
-          <div class="appstore-list" data-card-list></div>
+
+      <section class="as-content">
+        <div class="as-header">
+          <h1 class="as-title" id="as-title"></h1>
+          <p class="as-subtitle" id="as-subtitle"></p>
         </div>
+
+        <div class="as-grid" id="as-grid"></div>
       </section>
     </div>
+
+    <button class="as-mobile-toggle" id="as-mobile-toggle" type="button" aria-label="Toggle categories">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
   </main>
 
   <script>
     (() => {
-      const appCatalog = {
+      const apps = {
         soon: {
           name: "???",
-          subtitle: "Games",
-          blurb: "Soon.",
+          category: "Games",
+          desc: "Coming soon.",
           image: "../assets/app_store_icons/soon.png"
         },
         chroma: {
           name: "Chroma",
-          subtitle: "Tools",
-          blurb: "A comprehensive color tool app.",
+          category: "Tools",
+          desc: "A comprehensive color tool app.",
           image: "../assets/app_store_icons/chroma.png",
           url: "https://apps.apple.com/uy/app/chroma-a-simple-color-tool/id6738114281"
         }
       };
 
-      const navData = [
+      const sections = [
         {
           key: "all",
           label: "All",
           icon: "../assets/app_store_icons/Apps.svg",
-          title: "All",
-          description: "Here is a collection of our unique apps.",
-          items: [appCatalog.soon, appCatalog.chroma]
+          title: "App Store",
+          subtitle: "Discover our collection of apps.",
+          items: [apps.chroma, apps.soon]
         },
         {
           key: "games",
           label: "Games",
           icon: "../assets/app_store_icons/Games.svg",
           title: "Games",
-          description: "Our series of games made with care.",
-          items: [appCatalog.soon]
+          subtitle: "Our series of games made with care.",
+          items: [apps.soon]
         },
         {
-          key: "tool",
+          key: "tools",
           label: "Tools",
           icon: "../assets/app_store_icons/Tool.svg",
           title: "Tools",
-          description: "Some of our tools made for a specific purpose.",
-          items: [appCatalog.chroma]
+          subtitle: "Purpose-built tools for your workflow.",
+          items: [apps.chroma]
         }
       ];
 
-      const listContainer = document.querySelector("[data-category-list]");
-      const primaryKey = navData[0].key;
-      const primaryButton = document.querySelector(`[data-key="${primaryKey}"]`);
-      const titleEl = document.getElementById("category-title");
-      const descriptionEl = document.getElementById("category-description");
-      const cardListEl = document.querySelector("[data-card-list]");
-      const sidebarToggle = document.querySelector(".appstore-mobile-toggle");
-      const sidebarContent = document.getElementById("appstore-sidebar-content");
+      const navGroup = document.getElementById("as-nav-group");
+      const titleEl = document.getElementById("as-title");
+      const subtitleEl = document.getElementById("as-subtitle");
+      const gridEl = document.getElementById("as-grid");
+      const sidebar = document.getElementById("as-sidebar");
+      const mobileToggle = document.getElementById("as-mobile-toggle");
+      const lookup = Object.fromEntries(sections.map(s => [s.key, s]));
+      const buttons = {};
 
-      let sidebarOpen = true;
-      const setSidebarOpen = (open) => {
-        sidebarOpen = open;
-        document.body.classList.toggle("appstore-sidebar-collapsed", !open);
-        if (sidebarToggle) {
-          sidebarToggle.setAttribute("aria-expanded", String(open));
+      sections.forEach((section, i) => {
+        if (i === 1) {
+          const div = document.createElement("div");
+          div.className = "as-nav-divider";
+          navGroup.appendChild(div);
         }
-      };
-
-      if (sidebarToggle && sidebarContent) {
-        sidebarToggle.addEventListener("click", () => {
-          setSidebarOpen(!sidebarOpen);
-        });
-        setSidebarOpen(true);
-      }
-
-      const navLookup = Object.fromEntries(navData.map(item => [item.key, item]));
-      const buttonLookup = {};
-
-      const createButton = (item) => {
-        const button = document.createElement("button");
-        button.className = "appstore-nav";
-        button.dataset.key = item.key;
-
-        const icon = document.createElement("img");
-        icon.src = item.icon;
-        icon.alt = "";
-        icon.className = "appstore-icon";
-
-        const label = document.createElement("span");
-        label.textContent = item.label;
-
-        button.append(icon, label);
-        button.addEventListener("click", () => setActive(item.key));
-        return button;
-      };
-
-      const categories = navData.filter(item => item.key !== primaryKey);
-      categories.forEach(item => {
-        const button = createButton(item);
-        listContainer.appendChild(button);
-        buttonLookup[item.key] = button;
+        const btn = document.createElement("button");
+        btn.className = "as-nav-btn";
+        btn.dataset.key = section.key;
+        btn.innerHTML = `<img src="${section.icon}" alt="" class="as-nav-icon"><span>${section.label}</span>`;
+        btn.addEventListener("click", () => activate(section.key));
+        navGroup.appendChild(btn);
+        buttons[section.key] = btn;
       });
 
-      buttonLookup[primaryKey] = primaryButton;
-      primaryButton.addEventListener("click", () => setActive(primaryKey));
+      function activate(key) {
+        const section = lookup[key] || lookup.all;
+        Object.values(buttons).forEach(b => b.classList.toggle("is-active", b.dataset.key === section.key));
+        titleEl.textContent = section.title;
+        subtitleEl.textContent = section.subtitle;
+        renderGrid(section.items);
 
-      const setActive = (key) => {
-        const item = navLookup[key] || navLookup[primaryKey];
-        Object.values(buttonLookup).forEach(btn => {
-          btn.classList.toggle("is-active", btn.dataset.key === item.key);
-        });
-        titleEl.textContent = item.title;
-        descriptionEl.textContent = item.description;
-        renderCards(item.items || []);
-      };
+        if (sidebar.classList.contains("is-open")) {
+          sidebar.classList.remove("is-open");
+        }
+      }
 
-      const renderCards = (items) => {
-        cardListEl.innerHTML = "";
-        items.forEach((entry) => {
-          const card = document.createElement("article");
-          card.className = "appstore-card";
+      function renderGrid(items) {
+        gridEl.innerHTML = "";
+        items.forEach(app => {
+          const card = document.createElement("div");
+          card.className = "as-card";
 
-          const badge = document.createElement("div");
-          badge.className = "appstore-badge";
-          if (entry.image) {
-            badge.classList.add("is-image");
-            const image = document.createElement("img");
-            image.src = entry.image;
-            image.alt = entry.name === "???" ? "Soon" : entry.name;
-            image.className = "appstore-badge-image";
-            badge.appendChild(image);
-          } else {
-            badge.textContent = entry.badge || entry.name.slice(0, 2).toUpperCase();
+          const icon = document.createElement("div");
+          icon.className = "as-card-icon";
+          if (app.image) {
+            const img = document.createElement("img");
+            img.src = app.image;
+            img.alt = app.name === "???" ? "Coming soon" : app.name;
+            icon.appendChild(img);
           }
 
-          const content = document.createElement("div");
-          const title = document.createElement("h3");
-          title.textContent = entry.name;
-          const subtitle = document.createElement("p");
-          subtitle.textContent = `${entry.subtitle} - ${entry.blurb}`;
-          content.append(title, subtitle);
+          const info = document.createElement("div");
+          info.className = "as-card-info";
+          info.innerHTML = `
+            <h3 class="as-card-name">${app.name}</h3>
+            <p class="as-card-desc">${app.desc}</p>
+            <span class="as-card-tag">${app.category}</span>
+          `;
 
-          const cta = entry.url
+          const cta = app.url
             ? document.createElement("a")
             : document.createElement("button");
-          cta.className = "appstore-cta";
-          cta.textContent = "View";
+          cta.className = "as-card-cta";
+          cta.textContent = app.url ? "Get" : "View";
 
-          if (entry.url) {
-            cta.href = entry.url;
+          if (app.url) {
+            cta.href = app.url;
             cta.target = "_blank";
             cta.rel = "noopener noreferrer";
           } else {
             cta.type = "button";
           }
 
-          card.append(badge, content, cta);
-          cardListEl.appendChild(card);
+          card.append(icon, info, cta);
+          gridEl.appendChild(card);
         });
-      };
+      }
 
-      setActive(primaryKey);
+      // Mobile sidebar toggle
+      mobileToggle.addEventListener("click", () => {
+        sidebar.classList.toggle("is-open");
+      });
+
+      document.addEventListener("click", (e) => {
+        if (sidebar.classList.contains("is-open") &&
+            !sidebar.contains(e.target) &&
+            !mobileToggle.contains(e.target)) {
+          sidebar.classList.remove("is-open");
+        }
+      });
+
+      activate("all");
     })();
   </script>
 </body>
