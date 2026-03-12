@@ -457,9 +457,16 @@
         chroma: {
           name: "Chroma",
           category: "Tools",
-          desc: "A comprehensive color tool app.",
+          desc: "A loaded color tool app.",
           image: "../assets/app_store_icons/chroma.png",
           url: "https://apps.apple.com/uy/app/chroma-a-simple-color-tool/id6738114281"
+        },
+        entertainmentSoon: {
+          name: "Violette",
+          category: "Entertainment",
+          desc: "An AI chat platform that uses Apple Intelligence to simulate characters for unlimited, offline, private chats.",
+          image: "../assets/app_store_icons/soon.png"
+
         }
       };
 
@@ -470,7 +477,7 @@
           icon: "../assets/app_store_icons/Apps.svg",
           title: "App Store",
           subtitle: "Discover our collection of apps.",
-          items: [apps.chroma, apps.soon]
+          items: [apps.chroma, apps.entertainmentSoon, apps.soon]
         },
         {
           key: "games",
@@ -487,6 +494,14 @@
           title: "Tools",
           subtitle: "Purpose-built tools for your workflow.",
           items: [apps.chroma]
+        },
+        {
+          key: "entertainment",
+          label: "Entertainment",
+          icon: "../assets/app_store_icons/Entertainment.svg",
+          title: "Entertainment",
+          subtitle: "Apps made to entertain.",
+          items: [apps.entertainmentSoon]
         }
       ];
 
@@ -553,7 +568,7 @@
             ? document.createElement("a")
             : document.createElement("button");
           cta.className = "as-card-cta";
-          cta.textContent = app.url ? "Get" : "View";
+          cta.textContent = app.url ? "Get" : "Coming Soon";
 
           if (app.url) {
             cta.href = app.url;
