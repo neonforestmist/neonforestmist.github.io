@@ -64,7 +64,7 @@
     }
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 340px));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       justify-content: start;
       gap: 16px;
     }
@@ -97,6 +97,9 @@
       border: 2px solid var(--ink);
       border-radius: 6px;
       background: #d2e9ff;
+    }
+    .project-thumb img.project-screenshot {
+      object-position: top center;
     }
     .project-body {
       padding: 12px 12px 14px;
@@ -233,6 +236,13 @@
       border-radius: 10px 0 0 10px;
       display: block;
     }
+    .project-links a.demo-link img {
+      width: 22px;
+      height: 22px;
+      object-fit: cover;
+      border-radius: 6px;
+      display: block;
+    }
     @media (max-width: 640px) {
       .board {
         margin: 20px 12px 50px;
@@ -288,6 +298,32 @@
     <hr class="divider">
 
     <div class="projects-grid" data-grid>
+      <article class="project-card" data-tag="web" style="--cell-bg: #e7d5d2;">
+        <div class="project-thumb">
+          <img src="../assets/project-banners/crimsonseek-banner.png" alt="CrimsonSeek evidence audit screenshot" class="project-screenshot">
+        </div>
+        <div class="project-body">
+          <h3 class="project-title">CrimsonSeek</h3>
+          <div class="project-meta">
+            <span class="pill web-tag">
+              <img src="../assets/web.png" alt="">
+              <span>TypeScript</span>
+            </span>
+          </div>
+          <p class="project-blurb">An evidence-backed debate opponent that builds fair counterarguments and keeps credible sources visible.</p>
+          <div class="project-links">
+            <a href="https://neonforestmist.github.io/CrimsonSeek/" class="demo-link">
+              <img src="../assets/web.png" alt="">
+              <span>Demo</span>
+            </a>
+            <a href="https://github.com/neonforestmist/CrimsonSeek" class="github-link">
+              <img src="../assets/github.png" alt="">
+              <span>Github Repo</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
       <article class="project-card" data-tag="ios" style="--cell-bg: #cfd6dd;">
         <div class="project-thumb">
           <img src="../assets/project-banners/rgba-image-banner.png" alt="RGBA Image Filters banner">
