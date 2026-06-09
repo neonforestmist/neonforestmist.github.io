@@ -6,6 +6,9 @@
   <link rel="stylesheet" href="../main.css">
   <link rel="icon" href="../assets/favicon.ico" />
   <link rel="apple-touch-icon" href="../assets/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
   <title>Projects</title>
   <style>
     :root {
@@ -18,7 +21,7 @@
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: "HelveticaNeue-Thin", Helvetica, Arial, sans-serif;
+      font-family: "Silkscreen", "HelveticaNeue-Thin", Helvetica, Arial, sans-serif;
       background: #fdfaf3;
       color: var(--ink);
       min-height: 100vh;
@@ -120,12 +123,16 @@
       font-size: 0.9rem;
       font-weight: 700;
     }
+    .project-meta .pill span,
+    .project-links a span {
+      line-height: 1;
+    }
     .project-blurb {
       margin: 8px 0 4px;
-      font-size: 0.92rem;
+      font-size: 0.82rem;
       line-height: 1.45;
       color: #2b2b2b;
-      font-weight: 600;
+      font-weight: 400;
     }
     .project-meta .pill {
       padding: 4px 8px;
@@ -170,6 +177,20 @@
     .project-meta .pill.web-tag span {
       color: #000000;
     }
+    .project-meta .pill.typescript-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      padding: 0 10px 0 0;
+      min-height: 30px;
+      border-radius: 10px;
+      background: #3178c6;
+      border-color: #000000;
+      overflow: hidden;
+    }
+    .project-meta .pill.typescript-tag span {
+      color: #ffffff;
+    }
     .project-meta .pill.openai-tag img {
       width: 30px;
       height: 30px;
@@ -189,6 +210,13 @@
       height: 30px;
       object-fit: cover;
       border-radius: 10px 0 0 10px;
+      display: block;
+    }
+    .project-meta .pill.typescript-tag img {
+      width: 30px;
+      height: 30px;
+      object-fit: cover;
+      border-radius: 8px 0 0 8px;
       display: block;
     }
     .project-links {
@@ -305,8 +333,8 @@
         <div class="project-body">
           <h3 class="project-title">CrimsonSeek</h3>
           <div class="project-meta">
-            <span class="pill web-tag">
-              <img src="../assets/web.png" alt="">
+            <span class="pill typescript-tag">
+              <img src="../assets/typescript.png" alt="">
               <span>TypeScript</span>
             </span>
           </div>
