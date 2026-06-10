@@ -8,7 +8,7 @@
   <link rel="apple-touch-icon" href="../assets/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <title>Projects</title>
   <style>
     :root {
@@ -21,7 +21,7 @@
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: "Silkscreen", "HelveticaNeue-Thin", Helvetica, Arial, sans-serif;
+      font-family: "Pixelify Sans", "HelveticaNeue-Thin", Helvetica, Arial, sans-serif;
       background: #fdfaf3;
       color: var(--ink);
       min-height: 100vh;
@@ -45,10 +45,10 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 2rem;
+      font-size: 2.25rem;
       margin: 0 0 10px;
       font-weight: 700;
-      letter-spacing: 0.02em;
+      letter-spacing: 0;
     }
     .board h1 img {
       width: 28px;
@@ -57,7 +57,7 @@
     .tagline {
       margin: 0 0 18px;
       color: var(--accent);
-      font-size: 1.02rem;
+      font-size: 1.15rem;
       font-weight: 600;
     }
     .divider {
@@ -112,16 +112,17 @@
       flex: 1;
     }
     .project-title {
-      font-size: 1.05rem;
+      font-size: 1.22rem;
       font-weight: 700;
       margin: 0 0 6px;
     }
     .project-meta {
-      display: inline-flex;
-      gap: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
       align-items: center;
-      font-size: 0.9rem;
-      font-weight: 700;
+      font-size: 1rem;
+      font-weight: 600;
     }
     .project-meta .pill span,
     .project-links a span {
@@ -129,95 +130,76 @@
     }
     .project-blurb {
       margin: 8px 0 4px;
-      font-size: 0.82rem;
-      line-height: 1.45;
+      font-size: 1rem;
+      line-height: 1.25;
       color: #2b2b2b;
-      font-weight: 400;
+      font-weight: 500;
     }
-    .project-meta .pill {
-      padding: 4px 8px;
+    .project-meta .pill,
+    .project-meta .pill.swift-tag,
+    .project-meta .pill.openai-tag,
+    .project-meta .pill.web-tag,
+    .project-meta .pill.typescript-tag {
+      display: inline-flex;
+      align-items: stretch;
+      gap: 0;
+      padding: 0 11px 0 0;
+      min-height: 38px;
+      border: 2px solid var(--ink);
       border-radius: 8px;
-      background: #fff;
-      border: 3px solid #000000;
+      background: #ffffff;
+      overflow: hidden;
+      box-shadow: 2px 2px 0 rgba(0,0,0,0.08);
+    }
+    .project-meta .pill > span:not(.pill-icon) {
+      align-self: center;
+      padding-left: 10px;
+    }
+    .project-meta .pill-icon {
+      align-self: stretch;
+      border-right: 2px solid var(--ink);
+      display: grid;
+      flex: 0 0 42px;
+      overflow: hidden;
+      place-items: center;
+      width: 42px;
+    }
+    .project-meta .pill-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .project-meta .typescript-tag .pill-icon {
+      background: #3178c6;
+    }
+    .project-meta .typescript-tag .pill-icon img {
+      transform: scale(1.08);
+    }
+    .project-meta .swift-tag .pill-icon {
+      background: #f97316;
+    }
+    .project-meta .openai-tag .pill-icon,
+    .project-meta .web-tag .pill-icon {
+      background: #ffffff;
     }
     .project-meta .pill.swift-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0;
-      padding: 0 10px 0 0;
-      min-height: 30px;
-      border-radius: 10px;
-      background: #f97316;
-      border-color: #000000;
-      overflow: hidden;
+      background: #fff1e8;
     }
     .project-meta .pill.swift-tag span {
-      color: #ffffff;
+      color: #9b3100;
     }
     .project-meta .pill.openai-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0;
-      padding: 0 10px 0 0;
-      min-height: 30px;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    .project-meta .pill.web-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0;
-      padding: 0 10px 0 0;
-      min-height: 30px;
-      border-radius: 10px;
-      background: #ffffff;
-      border-color: #000000;
-      overflow: hidden;
+      background: #f5f5f1;
     }
     .project-meta .pill.web-tag span {
       color: #000000;
     }
     .project-meta .pill.typescript-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0;
-      padding: 0 10px 0 0;
-      min-height: 30px;
-      border-radius: 10px;
-      background: #3178c6;
-      border-color: #000000;
-      overflow: hidden;
+      background: #edf6ff;
     }
     .project-meta .pill.typescript-tag span {
-      color: #ffffff;
-    }
-    .project-meta .pill.openai-tag img {
-      width: 30px;
-      height: 30px;
-      object-fit: cover;
-      border-radius: 10px 0 0 10px;
-      display: block;
-    }
-    .project-meta .pill.web-tag img {
-      width: 30px;
-      height: 30px;
-      object-fit: cover;
-      border-radius: 10px 0 0 10px;
-      display: block;
-    }
-    .project-meta .pill.swift-tag img {
-      width: 30px;
-      height: 30px;
-      object-fit: cover;
-      border-radius: 10px 0 0 10px;
-      display: block;
-    }
-    .project-meta .pill.typescript-tag img {
-      width: 30px;
-      height: 30px;
-      object-fit: cover;
-      border-radius: 8px 0 0 8px;
-      display: block;
+      color: #16446f;
     }
     .project-links {
       margin-top: auto;
@@ -334,7 +316,9 @@
           <h3 class="project-title">CrimsonSeek</h3>
           <div class="project-meta">
             <span class="pill typescript-tag">
-              <img src="../assets/typescript.png" alt="">
+              <span class="pill-icon">
+                <img src="../assets/typescript.png" alt="">
+              </span>
               <span>TypeScript</span>
             </span>
           </div>
@@ -360,7 +344,9 @@
           <h3 class="project-title">RGBA Image Filters</h3>
           <div class="project-meta">
             <span class="pill swift-tag">
-              <img src="../assets/swift.png" alt="">
+              <span class="pill-icon">
+                <img src="../assets/swift.png" alt="">
+              </span>
               <span>Swift</span>
             </span>
           </div>
@@ -382,11 +368,15 @@
           <h3 class="project-title">DALL-E-2-SwiftUI</h3>
           <div class="project-meta">
             <span class="pill swift-tag">
-              <img src="../assets/swift.png" alt="">
+              <span class="pill-icon">
+                <img src="../assets/swift.png" alt="">
+              </span>
               <span>Swift</span>
             </span>
             <span class="pill openai-tag">
-              <img src="../assets/openai.png" alt="">
+              <span class="pill-icon">
+                <img src="../assets/openai.png" alt="">
+              </span>
               <span>OpenAI</span>
             </span>
           </div>
@@ -408,7 +398,9 @@
           <h3 class="project-title">Alan Park</h3>
           <div class="project-meta">
             <span class="pill web-tag">
-              <img src="../assets/html.png" alt="">
+              <span class="pill-icon">
+                <img src="../assets/html.png" alt="">
+              </span>
               <span>HTML/CSS/JS</span>
             </span>
           </div>
