@@ -4,8 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../main.css">
-  <link rel="icon" href="../assets/favicon.ico" />
-  <link rel="apple-touch-icon" href="../assets/favicon.ico" />
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  <link rel="shortcut icon" href="/assets/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -103,6 +104,11 @@
     }
     .project-thumb img.project-screenshot {
       object-position: top center;
+    }
+    .project-thumb img.project-logo-banner {
+      object-fit: contain;
+      background: #05040b;
+      image-rendering: pixelated;
     }
     .project-body {
       padding: 12px 12px 14px;
@@ -291,11 +297,17 @@
         </svg>
         Projects
       </a>
+      <a href="/AI">
+        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
+          <path d="M240-160q-33 0-56.5-23.5T160-240v-80H80v-80h80v-160H80v-80h80v-80q0-33 23.5-56.5T240-800h80v-80h80v80h160v-80h80v80h80q33 0 56.5 23.5T800-720v80h80v80h-80v160h80v80h-80v80q0 33-23.5 56.5T720-160h-80v80h-80v-80H400v80h-80v-80h-80Zm0-80h480v-480H240v480Zm120-120h240v-240H360v240Zm80-80v-80h80v80h-80Zm-200 200v-480 480Z"/>
+        </svg>
+        AI
+      </a>
       <a href="/Privacy">
         <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
           <path d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 85-29 163.5T688-214L560-342q-18 11-38.5 16.5T480-320q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 22-5.5 42.5T618-398l60 60q20-41 31-86t11-92v-189l-240-90-240 90v189q0 121 68 220t172 132q26-8 49.5-20.5T576-214l56 56q-33 27-71.5 47T480-80Zm0-320q33 0 56.5-23.5T560-480q0-33-23.5-56.5T480-560q-33 0-56.5 23.5T400-480q0 33 23.5 56.5T480-400Zm8-77Z"/>
         </svg>
-        Privacy
+        App Store Privacy
       </a>
     </div>
   </div>
@@ -392,7 +404,7 @@
 
       <article class="project-card" data-tag="web" style="--cell-bg: #d3d9df;">
         <div class="project-thumb">
-          <img src="../assets/project-banners/alan-park-banner.png" alt="Alan Park banner">
+          <img src="../assets/project-banners/alan-park-banner.png" alt="Alan Park banner" class="project-logo-banner">
         </div>
         <div class="project-body">
           <h3 class="project-title">Alan Park</h3>
