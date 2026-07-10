@@ -1,0 +1,3234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,300..700,0..1,-50..200&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  <link rel="shortcut icon" href="/assets/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/favicon.png" />
+  <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js" defer></script>
+  <title>AI</title>
+  <style>
+    :root {
+      --ai-page: #ffffff;
+      --ai-surface: #ffffff;
+      --ai-surface-2: #f6f7f8;
+      --ai-rail: #fbfbfc;
+      --ai-ink: #151715;
+      --ai-muted: #66706a;
+      --ai-line: #e5e7eb;
+      --ai-accent: #246b52;
+      --ai-accent-soft: #e8f2ee;
+      --ai-radius: 14px;
+      --ai-viewer: #202120;
+      --ai-viewer-soft: #2a2c2a;
+      --ai-viewer-ink: #f0f0ec;
+      --ai-viewer-muted: #b9bdb7;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      height: auto;
+      min-height: 100%;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100dvh;
+      height: auto;
+      padding-top: 60px;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      background: var(--ai-page);
+      color: var(--ai-ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body.is-ai-explore-open {
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .material-symbols-rounded {
+      direction: ltr;
+      display: inline-block;
+      font-family: "Material Symbols Rounded";
+      font-feature-settings: "liga";
+      font-size: 1.2rem;
+      font-style: normal;
+      font-weight: normal;
+      letter-spacing: 0;
+      line-height: 1;
+      text-transform: none;
+      white-space: nowrap;
+      word-wrap: normal;
+    }
+
+    .ai-page {
+      width: min(calc(100% - 40px), 1380px);
+      margin: 0 auto;
+      padding: 28px 0 48px;
+    }
+
+    .ai-shell {
+      overflow: visible;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .ai-top {
+      padding: 0 0 20px;
+      border-bottom: 1px solid var(--ai-line);
+      background: transparent;
+    }
+
+    .ai-topline {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .ai-title {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(2.4rem, 4.2vw, 3.35rem);
+      line-height: 1;
+      letter-spacing: 0;
+      font-weight: 800;
+    }
+
+    .ai-summary-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .ai-summary {
+      max-width: 660px;
+      margin: 0;
+      color: var(--ai-muted);
+      font-size: 1rem;
+      line-height: 1.55;
+      font-weight: 500;
+    }
+
+    .ai-workspace {
+      display: grid;
+      grid-template-columns: 238px minmax(0, 820px);
+      gap: 30px;
+      min-height: 0;
+      align-items: start;
+      overflow: visible;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      padding-top: 24px;
+    }
+
+    .ai-nav {
+      position: sticky;
+      top: 86px;
+      align-self: start;
+      padding: 0 18px 0 0;
+      border-right: 1px solid var(--ai-line);
+      background: transparent;
+    }
+
+    .ai-tabs {
+      display: grid;
+      gap: 2px;
+    }
+
+    .ai-tab {
+      display: grid;
+      grid-template-columns: 24px minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+      min-height: 0;
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      background: transparent;
+      color: var(--ai-ink);
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+      transition: background 160ms ease, color 160ms ease;
+    }
+
+    .ai-tab-icon {
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      color: var(--ai-muted);
+      font-size: 1.25rem;
+      font-variation-settings: "FILL" 0, "wght" 520, "GRAD" 0, "opsz" 24;
+      transition: color 160ms ease, font-variation-settings 160ms ease;
+    }
+
+    .ai-tab:hover,
+    .ai-tab:focus-visible {
+      background: rgba(255, 254, 250, 0.72);
+      color: var(--ai-accent);
+      outline: none;
+    }
+
+    .ai-tab:active {
+      color: var(--ai-accent);
+    }
+
+    .ai-tab.is-active {
+      background: var(--ai-accent-soft);
+      border-color: rgba(36, 107, 82, 0.18);
+      color: var(--ai-accent);
+      box-shadow: none;
+    }
+
+    .ai-tab:hover .ai-tab-icon,
+    .ai-tab:focus-visible .ai-tab-icon,
+    .ai-tab.is-active .ai-tab-icon {
+      color: currentColor;
+      font-variation-settings: "FILL" 1, "wght" 620, "GRAD" 0, "opsz" 24;
+    }
+
+    .ai-tab-name {
+      display: block;
+      font-size: 0.95rem;
+      line-height: 1.2;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .ai-tab-note {
+      display: block;
+      margin-top: 3px;
+      color: var(--ai-muted);
+      font-size: 0.78rem;
+      line-height: 1.25;
+      font-weight: 500;
+    }
+
+    .ai-main {
+      min-width: 0;
+      padding: 0;
+      background: transparent;
+    }
+
+    .ai-panel {
+      display: none;
+    }
+
+    .ai-panel.is-active {
+      display: block;
+    }
+
+    .ai-panel[hidden] {
+      display: none;
+    }
+
+    .ai-section-head {
+      max-width: 680px;
+      margin-bottom: 22px;
+    }
+
+    .ai-section-title {
+      margin: 0;
+      font-size: clamp(2.15rem, 3.4vw, 2.75rem);
+      line-height: 1.05;
+      letter-spacing: 0;
+      font-weight: 800;
+    }
+
+    .ai-section-copy {
+      margin: 12px 0 0;
+      color: var(--ai-muted);
+      font-size: 1rem;
+      line-height: 1.55;
+      font-weight: 500;
+    }
+
+    .ai-feature {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-height: 100%;
+      border: 1px solid rgba(22, 24, 21, 0.14);
+      border-radius: 18px;
+      background: var(--ai-cell-bg, var(--ai-surface-2));
+      box-shadow: 0 1px 1px rgba(17, 24, 39, 0.04), 0 16px 34px rgba(17, 24, 39, 0.06);
+      transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .ai-feature:hover {
+      border-color: rgba(47, 111, 86, 0.34);
+      box-shadow: 0 2px 2px rgba(17, 24, 39, 0.04), 0 20px 42px rgba(17, 24, 39, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .ai-feature-art {
+      display: grid;
+      min-height: 0;
+      place-items: center;
+      padding: 10px;
+      border-bottom: 1px solid rgba(22, 24, 21, 0.12);
+      background: var(--ai-thumb-bg, var(--ai-surface-2));
+      overflow: hidden;
+    }
+
+    .ai-feature-art img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 2 / 1;
+      object-fit: cover;
+      object-position: var(--ai-art-position, center);
+      border-radius: 12px;
+      box-shadow: 0 0 0 1px rgba(22, 24, 21, 0.12);
+    }
+
+    .ai-feature-body {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: flex-start;
+      padding: 16px;
+      background: var(--ai-cell-bg, var(--ai-surface-2));
+    }
+
+    .ai-release-title {
+      margin: 0;
+      max-width: none;
+      font-size: clamp(1.16rem, 1.7vw, 1.34rem);
+      line-height: 1.15;
+      letter-spacing: 0;
+      font-weight: 850;
+    }
+
+    .ai-release-copy {
+      max-width: none;
+      margin: 8px 0 0;
+      color: var(--ai-muted);
+      font-size: 0.95rem;
+      line-height: 1.45;
+      font-weight: 500;
+    }
+
+    .ai-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .ai-release-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .ai-button {
+      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 0 14px;
+      border: 1px solid var(--ai-accent);
+      border-radius: 999px;
+      background: var(--ai-accent);
+      color: var(--ai-surface);
+      font: inherit;
+      font-size: 0.9rem;
+      font-weight: 750;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 160ms ease, background 160ms ease, color 160ms ease;
+      white-space: nowrap;
+    }
+
+    .ai-button .material-symbols-rounded,
+    .ai-gallery-open .material-symbols-rounded,
+    .ai-explore-link .material-symbols-rounded {
+      font-size: 1.05rem;
+      font-variation-settings: "FILL" 0, "wght" 650, "GRAD" 0, "opsz" 20;
+    }
+
+    .ai-button:hover,
+    .ai-button:focus-visible {
+      background: #1f4d3c;
+      color: #ffffff;
+      outline: none;
+      transform: translateY(-1px);
+    }
+
+    .ai-button:active {
+      transform: translateY(0);
+    }
+
+    .ai-button.is-secondary {
+      min-height: 42px;
+      padding: 0 13px 0 9px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--ai-ink);
+      border-color: rgba(21, 23, 21, 0.28);
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.72), 0 6px 16px rgba(17, 24, 39, 0.06);
+    }
+
+    .ai-button.is-secondary:hover,
+    .ai-button.is-secondary:focus-visible {
+      background: #ffffff;
+      color: var(--ai-ink);
+    }
+
+    .ai-hf-mark {
+      width: 27px;
+      height: 27px;
+      flex: 0 0 auto;
+      object-fit: contain;
+      image-rendering: pixelated;
+    }
+
+    .ai-explore-link .ai-hf-mark {
+      width: 27px;
+      height: 27px;
+    }
+
+    .ai-release-row {
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+      margin-top: 14px;
+      padding: 12px;
+      border: 1px solid var(--ai-line);
+      border-radius: var(--ai-radius);
+      background: #fbfcf8;
+      text-decoration: none;
+      transition: border-color 160ms ease, transform 160ms ease;
+    }
+
+    .ai-release-row:hover,
+    .ai-release-row:focus-visible {
+      border-color: rgba(47, 111, 86, 0.45);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .ai-release-thumb {
+      display: grid;
+      width: 72px;
+      height: 72px;
+      place-items: center;
+      border-radius: 20px;
+      background: var(--ai-surface-2);
+    }
+
+    .ai-release-thumb img {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+      image-rendering: pixelated;
+    }
+
+    .ai-release-row h3 {
+      margin: 0;
+      font-size: 1.22rem;
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    .ai-release-row p {
+      margin: 6px 0 0;
+      color: var(--ai-muted);
+      font-size: 0.96rem;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+
+    .ai-row-link {
+      color: var(--ai-accent);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .ai-panel-foot {
+      margin-top: 14px;
+      color: var(--ai-muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+      font-weight: 600;
+    }
+
+    .ai-sample-gallery {
+      position: relative;
+      margin-top: 18px;
+      padding: 14px;
+      overflow: hidden;
+      border: 0;
+      border-radius: 28px;
+      background: #050505;
+      box-shadow: 0 18px 50px rgba(17, 24, 39, 0.14);
+    }
+
+    .ai-gallery-head {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      margin: 0;
+      pointer-events: none;
+    }
+
+    .ai-gallery-title,
+    .ai-gallery-copy {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+
+    .ai-gallery-open {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-height: 58px;
+      display: inline-flex;
+      flex: 0 0 auto;
+      align-items: center;
+      justify-content: center;
+      padding: 0 34px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.94);
+      color: #171717;
+      box-shadow: 0 16px 42px rgba(0, 0, 0, 0.22);
+      font: inherit;
+      font-size: 1.06rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 160ms ease, background 160ms ease;
+      transform: translate(-50%, -50%);
+      pointer-events: auto;
+      white-space: nowrap;
+    }
+
+    .ai-gallery-open .material-symbols-rounded {
+      display: none;
+    }
+
+    .ai-gallery-open:hover,
+    .ai-gallery-open:focus-visible {
+      background: #ffffff;
+      outline: none;
+      transform: translate(-50%, calc(-50% - 2px));
+    }
+
+    .ai-sample-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+      aspect-ratio: 2 / 1;
+      gap: 1px;
+      overflow: hidden;
+      border-radius: 18px;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .ai-sample-tile {
+      position: relative;
+      display: block;
+      min-height: 0;
+      overflow: hidden;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: #0e0e0e;
+      color: var(--ai-muted);
+      text-align: left;
+    }
+
+    .ai-sample-tile img {
+      width: 100%;
+      height: 100%;
+      max-height: none;
+      border-radius: 0;
+      object-fit: cover;
+      margin: 0;
+    }
+
+    .ai-sample-label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+
+    .ai-panel[data-ai-panel="explore"] {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      height: 100dvh;
+      min-height: 100dvh;
+      padding: 0;
+      overflow: auto;
+      overscroll-behavior: contain;
+      background: var(--ai-viewer);
+      color: var(--ai-viewer-ink);
+    }
+
+    .ai-panel[data-ai-panel="explore"].is-active {
+      display: block;
+    }
+
+    .ai-explore-bar {
+      position: fixed;
+      top: max(18px, env(safe-area-inset-top));
+      right: max(16px, env(safe-area-inset-right));
+      left: max(16px, env(safe-area-inset-left));
+      z-index: 3;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .ai-viewer-button {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(245, 245, 241, 0.94);
+      color: #1e1f1e;
+      font: inherit;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      pointer-events: auto;
+      transition: transform 160ms ease, background 160ms ease;
+    }
+
+    .ai-viewer-button:hover,
+    .ai-viewer-button:focus-visible {
+      background: #ffffff;
+      outline: none;
+      transform: translateY(-1px);
+    }
+
+    .ai-viewer-button:active {
+      transform: translateY(0);
+    }
+
+    .ai-viewer-button .material-symbols-rounded {
+      font-size: 1.35rem;
+      font-variation-settings: "FILL" 0, "wght" 650, "GRAD" 0, "opsz" 24;
+    }
+
+    .ai-explore-stage {
+      min-height: 100dvh;
+      background: #202020;
+    }
+
+    .ai-explore-mosaic,
+    .ai-explore-detail {
+      min-height: 100dvh;
+    }
+
+    .ai-explore-mosaic[hidden],
+    .ai-explore-detail[hidden] {
+      display: none !important;
+    }
+
+    .ai-explore-mosaic {
+      display: block;
+      padding: 0;
+    }
+
+    .ai-explore-details {
+      max-width: 520px;
+    }
+
+    .ai-explore-detail {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(320px, 1fr) minmax(320px, 520px);
+      gap: clamp(38px, 5vw, 86px);
+      align-items: center;
+      padding: 72px clamp(36px, 8vw, 150px) 70px;
+      touch-action: pan-y;
+    }
+
+    .ai-detail-media {
+      display: grid;
+      justify-items: end;
+    }
+
+    .ai-detail-media img {
+      width: min(100%, 860px);
+      max-height: calc(100dvh - 132px);
+      object-fit: contain;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .ai-detail-info {
+      max-width: 520px;
+    }
+
+    .ai-detail-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+      color: rgba(240, 240, 236, 0.36);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .ai-explore-title {
+      margin: 0;
+      color: var(--ai-viewer-ink);
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1;
+      letter-spacing: 0;
+      font-weight: 850;
+    }
+
+    .ai-explore-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .ai-explore-link {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 18px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      background: rgba(245, 245, 241, 0.94);
+      color: #1e1f1e;
+      font-weight: 850;
+      text-decoration: none;
+      transition: transform 160ms ease, background 160ms ease;
+      white-space: nowrap;
+    }
+
+    .ai-explore-link.is-muted {
+      width: 42px;
+      padding: 0;
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--ai-viewer-ink);
+    }
+
+    .ai-explore-link:hover,
+    .ai-explore-link:focus-visible {
+      background: #ffffff;
+      outline: none;
+      transform: translateY(-1px);
+    }
+
+    .ai-explore-link.is-muted:hover,
+    .ai-explore-link.is-muted:focus-visible {
+      background: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+    }
+
+    .ai-explore-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      background: #090909;
+    }
+
+    .ai-explore-card {
+      position: relative;
+      display: block;
+      min-height: 0;
+      aspect-ratio: 1;
+      overflow: hidden;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: #111111;
+      color: var(--ai-viewer-ink);
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .ai-explore-card:hover img,
+    .ai-explore-card:focus-visible img {
+      opacity: 0.84;
+      transform: scale(1.025);
+    }
+
+    .ai-explore-card:focus-visible {
+      outline: 2px solid #ffffff;
+      outline-offset: -4px;
+    }
+
+    .ai-explore-card img {
+      width: 100%;
+      height: 100%;
+      max-height: none;
+      object-fit: cover;
+      margin: 0;
+      transition: transform 220ms ease, opacity 220ms ease;
+    }
+
+    .ai-explore-caption {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+
+    .ai-explore-dots {
+      position: absolute;
+      right: 0;
+      bottom: 28px;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      pointer-events: none;
+    }
+
+    .ai-explore-dot {
+      width: 7px;
+      height: 7px;
+      padding: 0;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(240, 240, 236, 0.34);
+      cursor: pointer;
+      pointer-events: auto;
+    }
+
+    .ai-explore-dot.is-active {
+      background: rgba(240, 240, 236, 0.88);
+    }
+
+    .ai-empty {
+      min-height: 300px;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+      border: 1px dashed #afb5aa;
+      border-radius: var(--ai-radius);
+      background: #fbfcf8;
+      color: var(--ai-muted);
+      text-align: center;
+    }
+
+    .ai-empty h3 {
+      margin: 0;
+      color: var(--ai-ink);
+      font-size: 1.4rem;
+      letter-spacing: 0;
+    }
+
+    .ai-empty p {
+      max-width: 420px;
+      margin: 10px auto 0;
+      line-height: 1.55;
+      font-weight: 500;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ai-tab,
+      .ai-button,
+      .ai-release-row,
+      .ai-viewer-button,
+      .ai-gallery-open,
+      .ai-sample-tile,
+      .ai-explore-card,
+      .ai-explore-link {
+        transition: none;
+      }
+    }
+
+    @media (max-width: 1180px) {
+      .ai-workspace {
+        grid-template-columns: 220px minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .ai-top,
+      .ai-workspace {
+        grid-template-columns: 1fr;
+      }
+
+      .ai-workspace {
+        gap: 18px;
+        overflow: visible;
+      }
+
+      .ai-nav {
+        border-right: 0;
+        border-bottom: 1px solid rgba(23, 24, 22, 0.12);
+        position: static;
+        padding: 0 0 18px;
+      }
+
+      .ai-tabs {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .ai-main {
+        padding: 0;
+      }
+
+      .ai-feature-art {
+        border-right: 0;
+        border-bottom: 1px solid rgba(22, 24, 21, 0.12);
+      }
+
+      .ai-explore-detail {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 78px 22px 72px;
+      }
+
+      .ai-detail-media {
+        justify-items: center;
+      }
+
+      .ai-detail-media img {
+        max-height: min(58dvh, 620px);
+      }
+
+      .ai-detail-info {
+        max-width: 680px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding-top: 60px;
+      }
+
+      .ai-page {
+        width: min(calc(100% - 20px), 1280px);
+        margin: 0 auto;
+      }
+
+      .ai-feature-body {
+        padding: 14px;
+      }
+
+      .ai-main {
+        padding: 0;
+      }
+
+      .ai-nav {
+        padding: 0 0 16px;
+      }
+
+      .ai-tabs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .ai-tab {
+        gap: 8px;
+        padding: 9px;
+      }
+
+      .ai-tab-icon {
+        width: 21px;
+        height: 21px;
+        font-size: 1.12rem;
+      }
+
+      .ai-title {
+        font-size: 2.65rem;
+      }
+
+      .ai-summary-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .ai-section-title {
+        font-size: 2.2rem;
+      }
+
+      .ai-release-title {
+        font-size: 1.24rem;
+      }
+
+      .ai-release-list {
+        grid-template-columns: 1fr;
+      }
+
+      .ai-release-row {
+        grid-template-columns: 64px minmax(0, 1fr);
+      }
+
+      .ai-release-thumb {
+        width: 64px;
+        height: 64px;
+      }
+
+      .ai-release-thumb img {
+        width: 50px;
+        height: 50px;
+      }
+
+      .ai-row-link {
+        grid-column: 1 / -1;
+      }
+
+      .ai-gallery-open {
+        min-height: 50px;
+        padding: 0 28px;
+        font-size: 1rem;
+      }
+
+      .ai-sample-gallery {
+        padding: 8px;
+        border-radius: 22px;
+      }
+
+      .ai-explore-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .ai-sample-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-rows: repeat(2, minmax(0, 1fr));
+        aspect-ratio: 2 / 1;
+        border-radius: 16px;
+      }
+
+      .ai-explore-bar {
+        top: max(12px, env(safe-area-inset-top));
+        right: max(12px, env(safe-area-inset-right));
+        left: max(12px, env(safe-area-inset-left));
+      }
+
+      .ai-viewer-button {
+        width: 48px;
+        height: 48px;
+      }
+
+      .ai-explore-detail {
+        padding: 78px 16px 70px;
+      }
+
+      .ai-explore-title {
+        font-size: 2.15rem;
+      }
+
+      .ai-detail-meta {
+        gap: 10px;
+      }
+    }
+
+    /* AI release archive redesign */
+    :root {
+      color-scheme: light dark;
+      --ai-page: #f1f2f4;
+      --ai-surface: #fafafa;
+      --ai-surface-2: #e3e5e8;
+      --ai-rail: #18191b;
+      --ai-ink: #17181a;
+      --ai-muted: #62666e;
+      --ai-line: #c8cbd1;
+      --ai-accent: #c64230;
+      --ai-accent-soft: #f0d8d3;
+      --ai-radius: 6px;
+      --ai-viewer: #191a1c;
+      --ai-viewer-soft: #24262a;
+      --ai-viewer-ink: #f1f1ee;
+      --ai-viewer-muted: #aeb1b7;
+    }
+
+    body {
+      background: var(--ai-page);
+      color: var(--ai-ink);
+      font-family: "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    .ai-page {
+      width: min(calc(100% - 48px), 1420px);
+      padding: 38px 0 72px;
+    }
+
+    .ai-top {
+      padding: 4px 0 32px;
+      border-bottom: 2px solid var(--ai-ink);
+    }
+
+    .ai-title {
+      max-width: none;
+      font-size: clamp(4.75rem, 9vw, 7.5rem);
+      line-height: 0.82;
+      font-weight: 900;
+    }
+
+    .ai-summary-row {
+      margin-top: 26px;
+    }
+
+    .ai-summary {
+      max-width: 470px;
+      color: var(--ai-muted);
+      font-size: 1.04rem;
+      line-height: 1.5;
+      font-weight: 600;
+    }
+
+    .ai-workspace {
+      grid-template-columns: 196px minmax(0, 1fr);
+      gap: clamp(34px, 5vw, 72px);
+      padding-top: 30px;
+    }
+
+    .ai-nav {
+      top: 88px;
+      padding: 6px;
+      overflow: hidden;
+      border: 1px solid var(--ai-ink);
+      border-radius: var(--ai-radius);
+      background: var(--ai-rail);
+    }
+
+    .ai-tabs {
+      gap: 1px;
+    }
+
+    .ai-tab {
+      grid-template-columns: 22px minmax(0, 1fr);
+      gap: 11px;
+      min-height: 66px;
+      padding: 12px 11px;
+      border: 0;
+      border-radius: 3px;
+      background: transparent;
+      color: #f3f3f0;
+      transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+    }
+
+    .ai-tab + .ai-tab {
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .ai-tab-icon {
+      color: #92969d;
+    }
+
+    .ai-tab-note {
+      color: #989ca3;
+      font-size: 0.72rem;
+    }
+
+    .ai-tab:hover,
+    .ai-tab:focus-visible {
+      background: #282a2e;
+      color: #ffffff;
+      outline: 2px solid var(--ai-accent);
+      outline-offset: -2px;
+    }
+
+    .ai-tab:active {
+      color: #ffffff;
+      transform: translateY(1px);
+    }
+
+    .ai-tab.is-active {
+      border-color: transparent;
+      background: var(--ai-accent);
+      color: #ffffff;
+    }
+
+    .ai-tab.is-active .ai-tab-note {
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .ai-main {
+      width: 100%;
+      max-width: 1080px;
+    }
+
+    .ai-section-head {
+      max-width: 640px;
+      margin-bottom: 28px;
+    }
+
+    .ai-section-title {
+      font-size: clamp(2.7rem, 5vw, 4.6rem);
+      line-height: 0.94;
+      font-weight: 900;
+    }
+
+    .ai-section-copy {
+      max-width: 560px;
+      margin-top: 14px;
+      color: var(--ai-muted);
+      font-size: 1rem;
+      line-height: 1.5;
+      font-weight: 600;
+    }
+
+    .ai-sample-gallery {
+      margin-top: 0;
+      padding: 6px;
+      border: 1px solid #090a0b;
+      border-radius: var(--ai-radius);
+      background: #090a0b;
+      box-shadow: none;
+    }
+
+    .ai-sample-grid {
+      border-radius: 2px;
+    }
+
+    .ai-gallery-open {
+      top: auto;
+      right: auto;
+      bottom: 22px;
+      left: 22px;
+      min-height: 50px;
+      gap: 9px;
+      padding: 0 20px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: var(--ai-radius);
+      background: var(--ai-accent);
+      color: #ffffff;
+      box-shadow: none;
+      font-size: 0.96rem;
+      transform: none;
+    }
+
+    .ai-gallery-open .material-symbols-rounded {
+      display: inline-block;
+    }
+
+    .ai-gallery-open:hover,
+    .ai-gallery-open:focus-visible {
+      background: #b93c2c;
+      outline: 2px solid #ffffff;
+      outline-offset: 2px;
+      transform: translateY(-2px);
+    }
+
+    .ai-gallery-open:active {
+      transform: translateY(1px);
+    }
+
+    .ai-release-list {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .ai-panel[data-ai-panel="loras"] .ai-feature:nth-child(4n + 1),
+    .ai-panel[data-ai-panel="loras"] .ai-feature:nth-child(4n) {
+      grid-column: span 7;
+    }
+
+    .ai-panel[data-ai-panel="loras"] .ai-feature:nth-child(4n + 2),
+    .ai-panel[data-ai-panel="loras"] .ai-feature:nth-child(4n + 3) {
+      grid-column: span 5;
+    }
+
+    .ai-panel[data-ai-panel="datasets"] .ai-feature {
+      grid-column: span 8;
+    }
+
+    .ai-feature {
+      overflow: hidden;
+      border: 1px solid var(--ai-ink);
+      border-radius: var(--ai-radius);
+      background: var(--ai-surface);
+      box-shadow: none;
+      transition: border-color 180ms ease, transform 180ms ease;
+    }
+
+    .ai-feature:hover {
+      border-color: var(--ai-accent);
+      box-shadow: none;
+      transform: translateY(-3px);
+    }
+
+    .ai-feature-art {
+      padding: 0;
+      border-bottom: 1px solid var(--ai-ink);
+      background: var(--ai-surface-2);
+    }
+
+    .ai-feature-art img {
+      aspect-ratio: 2 / 1;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .ai-feature-body {
+      padding: 22px;
+      background: var(--ai-surface);
+    }
+
+    .ai-release-title {
+      font-size: clamp(1.22rem, 2vw, 1.55rem);
+      line-height: 1.08;
+      font-weight: 850;
+    }
+
+    .ai-release-copy {
+      max-width: 56ch;
+      margin-top: 10px;
+      color: var(--ai-muted);
+      line-height: 1.5;
+      font-weight: 550;
+    }
+
+    .ai-actions {
+      margin-top: 18px;
+    }
+
+    .ai-button.is-secondary {
+      min-height: 42px;
+      padding: 0 14px 0 9px;
+      border: 1px solid var(--ai-ink);
+      border-radius: var(--ai-radius);
+      background: var(--ai-ink);
+      color: #ffffff;
+      box-shadow: none;
+    }
+
+    .ai-button.is-secondary:hover,
+    .ai-button.is-secondary:focus-visible {
+      border-color: var(--ai-accent);
+      background: var(--ai-accent);
+      color: #ffffff;
+      outline: 2px solid var(--ai-accent);
+      outline-offset: 2px;
+    }
+
+    .ai-button.is-secondary:active {
+      transform: translateY(1px);
+    }
+
+    .ai-empty {
+      min-height: 320px;
+      place-items: start;
+      align-content: end;
+      padding: 32px;
+      border: 1px dashed var(--ai-muted);
+      border-radius: var(--ai-radius);
+      background: transparent;
+      text-align: left;
+    }
+
+    .ai-empty p {
+      margin-left: 0;
+    }
+
+    .ai-panel[data-ai-panel="explore"] {
+      background: var(--ai-viewer);
+    }
+
+    .ai-explore-stage {
+      background: var(--ai-viewer);
+    }
+
+    .ai-viewer-button,
+    .ai-explore-link {
+      border-radius: var(--ai-radius);
+    }
+
+    .ai-viewer-button {
+      background: #eeeeea;
+    }
+
+    .ai-explore-link {
+      border-color: rgba(255, 255, 255, 0.24);
+      background: #eeeeea;
+    }
+
+    .ai-explore-dot.is-active {
+      background: var(--ai-accent);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .ai-panel.is-active:not([data-ai-panel="explore"]) > * {
+        animation: ai-panel-enter 380ms cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+
+      .ai-panel.is-active:not([data-ai-panel="explore"]) > *:nth-child(2) {
+        animation-delay: 55ms;
+      }
+
+      @keyframes ai-panel-enter {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    }
+
+    @media (max-width: 900px) {
+      .ai-page {
+        width: min(calc(100% - 32px), 1420px);
+        padding-top: 30px;
+      }
+
+      .ai-workspace {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .ai-nav {
+        position: static;
+        overflow-x: auto;
+        padding: 5px;
+        border: 1px solid var(--ai-ink);
+      }
+
+      .ai-tabs {
+        display: flex;
+        width: max-content;
+        min-width: 100%;
+      }
+
+      .ai-tab {
+        min-width: 156px;
+      }
+
+      .ai-tab + .ai-tab {
+        border-top: 0;
+        border-left: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .ai-main {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .ai-title {
+        font-size: clamp(4rem, 23vw, 6rem);
+      }
+
+      .ai-section-title {
+        font-size: clamp(2.6rem, 14vw, 4rem);
+      }
+
+      .ai-release-list {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .ai-panel[data-ai-panel="loras"] .ai-feature:nth-child(n),
+      .ai-panel[data-ai-panel="datasets"] .ai-feature {
+        grid-column: 1;
+      }
+
+      .ai-feature-body {
+        padding: 18px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .ai-page {
+        width: min(calc(100% - 24px), 1420px);
+        padding: 24px 0 52px;
+      }
+
+      .ai-top {
+        padding-bottom: 26px;
+      }
+
+      .ai-summary-row {
+        margin-top: 20px;
+      }
+
+      .ai-workspace {
+        padding-top: 22px;
+      }
+
+      .ai-tab {
+        min-width: 0;
+        min-height: 60px;
+      }
+
+      .ai-tabs {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+        min-width: 0;
+        gap: 1px;
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .ai-tab + .ai-tab {
+        border: 0;
+      }
+
+      .ai-tab-note {
+        display: none;
+      }
+
+      .ai-sample-gallery {
+        padding: 4px;
+      }
+
+      .ai-gallery-open {
+        bottom: 14px;
+        left: 14px;
+        min-height: 44px;
+        padding: 0 15px;
+      }
+
+      .ai-feature-art img {
+        aspect-ratio: 16 / 9;
+      }
+
+      .ai-button.is-secondary {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ai-page: #17181a;
+        --ai-surface: #222428;
+        --ai-surface-2: #2d3035;
+        --ai-rail: #101113;
+        --ai-ink: #f0f1ee;
+        --ai-muted: #a9adb4;
+        --ai-line: #3c3f45;
+        --ai-accent: #ff6b55;
+        --ai-accent-soft: #3d2825;
+      }
+
+      .ai-top,
+      .ai-feature-art,
+      .ai-feature {
+        border-color: var(--ai-line);
+      }
+
+      .ai-nav {
+        border-color: #686b72;
+      }
+
+      .ai-button.is-secondary {
+        border-color: #e4e5e2;
+        background: #e4e5e2;
+        color: #17181a;
+      }
+
+      .ai-button.is-secondary:hover,
+      .ai-button.is-secondary:focus-visible {
+        color: #17181a;
+      }
+
+      .ai-tab.is-active,
+      .ai-gallery-open {
+        color: #17181a;
+      }
+    }
+
+    /* Material 3 inspired treatment for this static catalog. */
+    :root {
+      color-scheme: light;
+      --ai-page: #f8fafd;
+      --ai-surface: #ffffff;
+      --ai-surface-2: #f0f4f9;
+      --ai-rail: transparent;
+      --ai-ink: #1f1f1f;
+      --ai-muted: #5f6368;
+      --ai-line: #c4c7c5;
+      --ai-accent: #0b57d0;
+      --ai-accent-soft: #d3e3fd;
+      --ai-radius: 16px;
+      --ai-viewer: #202124;
+      --ai-viewer-soft: #303134;
+      --ai-viewer-ink: #f1f3f4;
+      --ai-viewer-muted: #bdc1c6;
+    }
+
+    body {
+      background: var(--ai-page);
+      color: var(--ai-ink);
+      font-family: "Roboto", Arial, sans-serif;
+    }
+
+    .ai-page {
+      width: min(calc(100% - 48px), 1320px);
+      padding: 32px 0 72px;
+    }
+
+    .ai-top {
+      padding: 12px 0 26px;
+      border-bottom: 1px solid var(--ai-line);
+    }
+
+    .ai-title {
+      max-width: none;
+      color: var(--ai-ink);
+      font-family: "Roboto", Arial, sans-serif;
+      font-size: clamp(2.75rem, 5vw, 4.25rem);
+      line-height: 1;
+      font-weight: 500;
+    }
+
+    .ai-summary-row {
+      margin-top: 14px;
+    }
+
+    .ai-summary {
+      max-width: 560px;
+      color: var(--ai-muted);
+      font-size: 1rem;
+      line-height: 1.5;
+      font-weight: 400;
+    }
+
+    .ai-workspace {
+      grid-template-columns: 236px minmax(0, 1fr);
+      gap: clamp(32px, 5vw, 64px);
+      padding-top: 30px;
+    }
+
+    .ai-nav {
+      top: 88px;
+      padding: 10px;
+      overflow: hidden;
+      border: 1px solid #9aa0a6;
+      border-radius: 20px;
+      background: var(--ai-surface);
+      box-shadow: 0 1px 2px rgba(60, 64, 67, 0.16), 0 4px 12px rgba(60, 64, 67, 0.08);
+    }
+
+    .ai-tabs {
+      gap: 4px;
+      background: transparent;
+    }
+
+    .ai-tab {
+      grid-template-columns: 24px minmax(0, 1fr);
+      gap: 12px;
+      min-height: 64px;
+      padding: 11px 16px;
+      border: 0;
+      border-radius: 18px;
+      background: transparent;
+      color: #3c4043;
+      transition: background 180ms ease, color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .ai-tab + .ai-tab {
+      border: 0;
+    }
+
+    .ai-tab-icon {
+      color: #5f6368;
+      font-variation-settings: "FILL" 0, "wght" 450, "GRAD" 0, "opsz" 24;
+    }
+
+    .ai-tab-name {
+      font-size: 0.94rem;
+      font-weight: 600;
+    }
+
+    .ai-tab-note {
+      margin-top: 2px;
+      color: #5f6368;
+      font-size: 0.76rem;
+      font-weight: 400;
+    }
+
+    .ai-tab:hover {
+      background: #e9eef6;
+      color: #1f1f1f;
+      outline: none;
+    }
+
+    .ai-tab:focus-visible {
+      background: #e9eef6;
+      color: #1f1f1f;
+      outline: 2px solid var(--ai-accent);
+      outline-offset: 2px;
+    }
+
+    .ai-tab:active {
+      color: #1f1f1f;
+      transform: translateY(1px);
+    }
+
+    .ai-tab.is-active {
+      background: var(--ai-accent-soft);
+      color: #041e49;
+      box-shadow: inset 3px 0 0 var(--ai-accent);
+    }
+
+    .ai-tab.is-active .ai-tab-icon {
+      color: #0b57d0;
+    }
+
+    .ai-tab.is-active .ai-tab-name {
+      color: #0b57d0;
+    }
+
+    .ai-tab.is-active .ai-tab-note {
+      color: #3c4043;
+    }
+
+    .ai-main {
+      width: 100%;
+      max-width: 980px;
+    }
+
+    .ai-section-head {
+      max-width: 650px;
+      margin-bottom: 24px;
+    }
+
+    .ai-section-title {
+      color: var(--ai-ink);
+      font-family: "Roboto", Arial, sans-serif;
+      font-size: clamp(2.25rem, 4vw, 3.25rem);
+      line-height: 1.05;
+      font-weight: 500;
+    }
+
+    .ai-section-copy {
+      max-width: 620px;
+      margin-top: 10px;
+      color: var(--ai-muted);
+      font-size: 1rem;
+      line-height: 1.5;
+      font-weight: 400;
+    }
+
+    .ai-sample-gallery {
+      margin-top: 0;
+      padding: 8px;
+      border: 1px solid var(--ai-line);
+      border-radius: var(--ai-radius);
+      background: var(--ai-surface);
+      box-shadow: 0 1px 2px rgba(60, 64, 67, 0.14), 0 2px 6px rgba(60, 64, 67, 0.08);
+    }
+
+    .ai-sample-grid {
+      border-radius: 10px;
+    }
+
+    .ai-gallery-open {
+      top: 50%;
+      right: auto;
+      bottom: auto;
+      left: 50%;
+      min-height: 48px;
+      gap: 8px;
+      padding: 0 20px;
+      border: 0;
+      border-radius: 24px;
+      background: var(--ai-accent);
+      color: #ffffff;
+      box-shadow: 0 1px 3px rgba(60, 64, 67, 0.28);
+      font-size: 0.94rem;
+      font-weight: 500;
+      transform: translate(-50%, -50%);
+    }
+
+    .ai-gallery-open .material-symbols-rounded {
+      display: inline-block;
+    }
+
+    .ai-gallery-open:hover,
+    .ai-gallery-open:focus-visible {
+      background: #0842a0;
+      color: #ffffff;
+      outline: 2px solid #a8c7fa;
+      outline-offset: 2px;
+      box-shadow: 0 2px 6px rgba(60, 64, 67, 0.32);
+      transform: translate(-50%, calc(-50% - 1px));
+    }
+
+    .ai-gallery-open:focus-visible {
+      outline: 3px solid #ffffff;
+      outline-offset: 2px;
+      box-shadow: 0 0 0 5px #0b57d0;
+    }
+
+    .ai-gallery-open:active {
+      transform: translate(-50%, calc(-50% + 1px));
+    }
+
+    .ai-release-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 28px;
+    }
+
+    .ai-panel[data-ai-panel="loras"] .ai-feature:nth-child(n),
+    .ai-panel[data-ai-panel="datasets"] .ai-feature {
+      grid-column: auto;
+    }
+
+    .ai-panel[data-ai-panel="datasets"] .ai-release-list {
+      grid-template-columns: minmax(0, 620px);
+    }
+
+    .ai-feature {
+      overflow: hidden;
+      border: 1px solid var(--ai-line);
+      border-radius: var(--ai-radius);
+      background: var(--ai-surface);
+      box-shadow: none;
+      transition: box-shadow 180ms ease, transform 180ms ease, border-color 180ms ease;
+    }
+
+    .ai-feature:hover {
+      border-color: #a8c7fa;
+      box-shadow: 0 2px 4px rgba(60, 64, 67, 0.14), 0 6px 14px rgba(60, 64, 67, 0.10);
+      transform: translateY(-2px);
+    }
+
+    .ai-feature-art {
+      padding: 8px 8px 0;
+      border: 0;
+      background: var(--ai-surface);
+    }
+
+    .ai-feature-art img {
+      aspect-ratio: 2 / 1;
+      border-radius: 10px;
+      box-shadow: none;
+    }
+
+    .ai-feature-body {
+      padding: 20px;
+      background: var(--ai-surface);
+    }
+
+    .ai-release-title {
+      color: var(--ai-ink);
+      font-family: "Roboto", Arial, sans-serif;
+      font-size: clamp(1.18rem, 1.8vw, 1.45rem);
+      line-height: 1.2;
+      font-weight: 500;
+    }
+
+    .ai-release-copy {
+      max-width: 58ch;
+      margin-top: 8px;
+      color: var(--ai-muted);
+      font-size: 0.94rem;
+      line-height: 1.5;
+      font-weight: 400;
+    }
+
+    .ai-actions {
+      margin-top: 18px;
+    }
+
+    .ai-button.is-secondary {
+      min-height: 40px;
+      padding: 0 16px 0 10px;
+      border: 0;
+      border-radius: 20px;
+      background: var(--ai-accent);
+      color: #ffffff;
+      box-shadow: none;
+      font-weight: 500;
+    }
+
+    .ai-button.is-secondary:hover,
+    .ai-button.is-secondary:focus-visible {
+      border-color: transparent;
+      background: #0842a0;
+      color: #ffffff;
+      outline: 2px solid #a8c7fa;
+      outline-offset: 2px;
+    }
+
+    .ai-button.is-secondary:active {
+      transform: translateY(1px);
+    }
+
+    .ai-empty {
+      min-height: 300px;
+      place-items: center;
+      align-content: center;
+      padding: 32px;
+      border: 1px solid var(--ai-line);
+      border-radius: var(--ai-radius);
+      background: var(--ai-surface);
+      color: var(--ai-muted);
+      text-align: center;
+      box-shadow: none;
+    }
+
+    .ai-empty h3 {
+      color: var(--ai-ink);
+      font-family: "Roboto", Arial, sans-serif;
+      font-weight: 500;
+    }
+
+    .ai-empty p {
+      margin-left: auto;
+    }
+
+    .ai-panel[data-ai-panel="explore"],
+    .ai-explore-stage {
+      background: var(--ai-viewer);
+    }
+
+    .ai-viewer-button {
+      border-radius: 50%;
+      background: #f1f3f4;
+      color: #202124;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.28);
+    }
+
+    .ai-viewer-button:hover,
+    .ai-viewer-button:focus-visible {
+      background: #e8eaed;
+      outline: 2px solid #a8c7fa;
+      outline-offset: 2px;
+    }
+
+    .ai-explore-link {
+      border-color: transparent;
+      border-radius: 22px;
+      background: #f1f3f4;
+      color: #202124;
+      box-shadow: none;
+      font-weight: 500;
+    }
+
+    .ai-explore-link:hover,
+    .ai-explore-link:focus-visible {
+      background: #d3e3fd;
+      color: #041e49;
+      outline: 2px solid #a8c7fa;
+      outline-offset: 2px;
+    }
+
+    .ai-explore-dot.is-active {
+      background: #a8c7fa;
+    }
+
+    @media (max-width: 900px) {
+      .ai-page {
+        width: min(calc(100% - 32px), 1320px);
+        padding-top: 28px;
+      }
+
+      .ai-workspace {
+        grid-template-columns: 1fr;
+        gap: 26px;
+      }
+
+      .ai-nav {
+        position: static;
+        overflow: visible;
+        padding: 8px;
+        border: 1px solid #9aa0a6;
+        border-radius: 20px;
+      }
+
+      .ai-tabs {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        width: 100%;
+        min-width: 0;
+        gap: 6px;
+      }
+
+      .ai-tab {
+        min-width: 0;
+        min-height: 62px;
+        padding: 10px 12px;
+      }
+
+      .ai-tab + .ai-tab {
+        border: 0;
+      }
+
+      .ai-main {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .ai-title {
+        font-size: clamp(2.7rem, 14vw, 3.7rem);
+      }
+
+      .ai-section-title {
+        font-size: clamp(2.1rem, 11vw, 3rem);
+      }
+
+      .ai-release-list,
+      .ai-panel[data-ai-panel="datasets"] .ai-release-list {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .ai-feature-body {
+        padding: 18px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .ai-page {
+        width: min(calc(100% - 24px), 1320px);
+        padding: 22px 0 52px;
+      }
+
+      .ai-top {
+        padding: 8px 0 22px;
+      }
+
+      .ai-summary-row {
+        margin-top: 12px;
+      }
+
+      .ai-workspace {
+        gap: 24px;
+        padding-top: 22px;
+      }
+
+      .ai-tabs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 6px;
+        background: transparent;
+      }
+
+      .ai-tab {
+        min-height: 58px;
+        border-radius: 16px;
+      }
+
+      .ai-tab-note {
+        display: none;
+      }
+
+      .ai-tab.is-active {
+        box-shadow: inset 0 3px 0 var(--ai-accent);
+      }
+
+      .ai-sample-gallery {
+        padding: 5px;
+      }
+
+      .ai-gallery-open {
+        top: 50%;
+        right: auto;
+        bottom: auto;
+        left: 50%;
+        min-height: 44px;
+        padding: 0 16px;
+        transform: translate(-50%, -50%);
+      }
+
+      .ai-feature-art img {
+        aspect-ratio: 16 / 9;
+      }
+
+      .ai-button.is-secondary {
+        width: 100%;
+      }
+    }
+
+    /* Self-contained catalog skin, informed by the field-manual reference. */
+    :root {
+      --ai-page: #edf0ed;
+      --ai-surface: #f8f9f6;
+      --ai-surface-2: #e4e9e5;
+      --ai-rail: #f4f6f2;
+      --ai-ink: #17232d;
+      --ai-muted: #5d6971;
+      --ai-line: #aeb9b9;
+      --ai-accent: #d65f1d;
+      --ai-accent-soft: #f5dfd0;
+      --ai-action: #1769d2;
+      --ai-action-hover: #0d4fa8;
+      --ai-radius: 4px;
+    }
+
+    body {
+      background-color: #f3f5f6;
+      background-image: none;
+      color: var(--ai-ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .ai-page {
+      width: min(100%, 1440px);
+      margin: 0 auto;
+      padding: 40px 56px 76px;
+    }
+
+    .ai-top {
+      padding: 14px 0 22px;
+      border-bottom: 0;
+      background: transparent;
+    }
+
+    .ai-top::after {
+      display: none;
+    }
+
+    .ai-title {
+      color: var(--ai-ink);
+      font-family: inherit;
+      font-size: 58px;
+      line-height: 0.95;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .ai-summary-row {
+      margin-top: 16px;
+    }
+
+    .ai-summary {
+      max-width: 620px;
+      color: var(--ai-muted);
+      font-size: 16px;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .ai-workspace {
+      grid-template-columns: 236px minmax(0, 1fr);
+      gap: 0;
+      padding-top: 0;
+    }
+
+    .ai-nav {
+      position: sticky;
+      top: 86px;
+      padding: 0;
+      overflow: visible;
+      border: 1px solid rgba(23, 35, 45, 0.14);
+      border-radius: 6px;
+      background: var(--ai-surface);
+      box-shadow: none;
+    }
+
+    .ai-nav-title {
+      margin: 0;
+      padding: 14px 16px 13px;
+      border-bottom: 1px solid rgba(23, 35, 45, 0.12);
+      color: var(--ai-muted);
+      font-family: inherit;
+      font-size: 13px;
+      line-height: 1.2;
+      font-weight: 750;
+      letter-spacing: 0;
+    }
+
+    .ai-tabs {
+      gap: 3px;
+      padding: 6px;
+      border-top: 0;
+      background: transparent;
+    }
+
+    .ai-tab {
+      position: relative;
+      grid-template-columns: 26px minmax(0, 1fr);
+      gap: 12px;
+      min-height: 72px;
+      padding: 13px 14px 12px 18px;
+      border: 0;
+      border-bottom: 0;
+      border-radius: 4px;
+      background: transparent;
+      color: var(--ai-ink);
+      cursor: default;
+      transition: background 150ms ease, color 150ms ease;
+    }
+
+    .ai-tab + .ai-tab {
+      border-bottom: 0;
+    }
+
+    .ai-tab-icon {
+      color: var(--ai-muted);
+      transition: none;
+      font-variation-settings: "FILL" 0, "wght" 520, "GRAD" 0, "opsz" 24;
+    }
+
+    .ai-tab-name {
+      font-size: 15px;
+      font-weight: 750;
+    }
+
+    .ai-tab-note {
+      margin-top: 4px;
+      color: var(--ai-muted);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 11px;
+      line-height: 1.35;
+      font-weight: 500;
+    }
+
+    .ai-tab:hover {
+      background: #e4e9e5;
+      color: var(--ai-ink);
+      outline: none;
+    }
+
+    .ai-tab:focus-visible {
+      background: #e4e9e5;
+      color: var(--ai-ink);
+      outline: 2px solid var(--ai-action);
+      outline-offset: -2px;
+    }
+
+    .ai-tab:active {
+      transform: none;
+    }
+
+    .ai-tab:hover .ai-tab-icon,
+    .ai-tab:focus-visible .ai-tab-icon {
+      color: var(--ai-muted);
+      font-variation-settings: "FILL" 0, "wght" 520, "GRAD" 0, "opsz" 24;
+    }
+
+    .ai-tab.is-active {
+      background: var(--ai-accent-soft);
+      color: var(--ai-ink);
+      box-shadow: none;
+    }
+
+    .ai-tab.is-active .ai-tab-icon,
+    .ai-tab.is-active .ai-tab-name {
+      color: #9d3c0c;
+    }
+
+    .ai-tab.is-active .ai-tab-icon,
+    .ai-tab.is-active:hover .ai-tab-icon,
+    .ai-tab.is-active:focus-visible .ai-tab-icon {
+      color: #9d3c0c;
+      font-variation-settings: "FILL" 1, "wght" 620, "GRAD" 0, "opsz" 24;
+    }
+
+    .ai-tab.is-active .ai-tab-note {
+      color: #5b4b42;
+    }
+
+    .ai-main {
+      width: 100%;
+      max-width: none;
+      padding-left: 48px;
+    }
+
+    .ai-section-head {
+      display: block;
+      max-width: 640px;
+      margin-bottom: 24px;
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .ai-section-title {
+      color: var(--ai-ink);
+      font-family: inherit;
+      font-size: 42px;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .ai-section-copy {
+      max-width: 520px;
+      margin: 10px 0 0;
+      color: var(--ai-muted);
+      font-size: 15px;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .ai-sample-gallery {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      border: 0;
+      border-radius: 6px;
+      background: #101417;
+      box-shadow: 0 12px 30px rgba(23, 35, 45, 0.12);
+    }
+
+    .ai-sample-grid {
+      border-radius: 0;
+    }
+
+    .ai-gallery-open {
+      min-height: 48px;
+      padding: 0 21px;
+      border: 2px solid #ffffff;
+      border-radius: 4px;
+      background: var(--ai-action);
+      color: #ffffff;
+      box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.28);
+      font-size: 15px;
+      font-weight: 750;
+    }
+
+    .ai-gallery-open:hover,
+    .ai-gallery-open:focus-visible {
+      background: var(--ai-action-hover);
+      color: #ffffff;
+      outline: 2px solid #ffffff;
+      outline-offset: 3px;
+      box-shadow: 4px 5px 0 rgba(0, 0, 0, 0.3);
+      transform: translate(-50%, calc(-50% - 1px));
+    }
+
+    .ai-gallery-open:focus-visible {
+      outline: 2px solid #ffffff;
+      outline-offset: 3px;
+      box-shadow: 0 0 0 6px var(--ai-action), 4px 5px 0 rgba(0, 0, 0, 0.3);
+    }
+
+    .ai-gallery-open:active {
+      box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+      transform: translate(-50%, calc(-50% + 1px));
+    }
+
+    .ai-release-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px 22px;
+      margin-top: 38px;
+    }
+
+    .ai-panel[data-ai-panel="datasets"] .ai-release-list {
+      grid-template-columns: minmax(0, 680px);
+    }
+
+    .ai-feature {
+      overflow: hidden;
+      border: 1px solid rgba(23, 35, 45, 0.12);
+      border-radius: 6px;
+      background: var(--ai-surface);
+      box-shadow: 0 8px 24px rgba(23, 35, 45, 0.07);
+      transition: border-color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+    }
+
+    .ai-feature:hover {
+      border-color: rgba(23, 35, 45, 0.22);
+      box-shadow: 0 12px 30px rgba(23, 35, 45, 0.11);
+      transform: translateY(-2px);
+    }
+
+    .ai-feature-art {
+      padding: 0;
+      border: 0;
+      border-bottom: 0;
+      background: var(--ai-thumb-bg, var(--ai-surface-2));
+    }
+
+    .ai-feature-art img {
+      aspect-ratio: 2 / 1;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .ai-feature-body {
+      padding: 20px 20px 22px;
+      background: rgba(248, 249, 246, 0.96);
+    }
+
+    .ai-release-title {
+      color: var(--ai-ink);
+      font-family: inherit;
+      font-size: 22px;
+      line-height: 1.16;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .ai-release-copy {
+      margin-top: 9px;
+      color: var(--ai-muted);
+      font-size: 14px;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .ai-actions {
+      margin-top: 18px;
+    }
+
+    .ai-button.is-secondary {
+      min-height: 40px;
+      padding: 0 14px 0 10px;
+      border: 1px solid var(--ai-action);
+      border-radius: 3px;
+      background: transparent;
+      color: var(--ai-action);
+      box-shadow: none;
+      font-weight: 750;
+    }
+
+    .ai-button.is-secondary:hover,
+    .ai-button.is-secondary:focus-visible {
+      border-color: var(--ai-action);
+      background: var(--ai-action);
+      color: #ffffff;
+      outline: 2px solid var(--ai-action);
+      outline-offset: 2px;
+    }
+
+    .ai-empty {
+      min-height: 320px;
+      padding: 32px;
+      border: 1px solid var(--ai-ink);
+      border-radius: 2px;
+      background: rgba(248, 249, 246, 0.78);
+      color: var(--ai-muted);
+      box-shadow: 5px 5px 0 rgba(23, 35, 45, 0.11);
+    }
+
+    .ai-empty h3 {
+      color: var(--ai-ink);
+      font-family: inherit;
+      font-weight: 800;
+    }
+
+    @media (max-width: 900px) {
+      .ai-page {
+        width: 100%;
+        padding: 28px 28px 64px;
+      }
+
+      .ai-workspace {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding-top: 0;
+      }
+
+      .ai-nav {
+        position: static;
+        padding: 0;
+        border: 1px solid rgba(23, 35, 45, 0.14);
+        border-radius: 6px;
+        background: var(--ai-surface);
+        box-shadow: none;
+      }
+
+      .ai-tabs {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 6px;
+        padding: 6px;
+      }
+
+      .ai-tab {
+        min-height: 70px;
+        padding: 12px;
+        border: 0;
+        border-bottom: 0;
+        border-radius: 4px;
+        background: transparent;
+      }
+
+      .ai-tab + .ai-tab {
+        border-bottom: 0;
+      }
+
+      .ai-tab:last-child {
+        border-right: 0;
+      }
+
+      .ai-tab.is-active {
+        box-shadow: none;
+      }
+
+      .ai-main {
+        max-width: none;
+        padding-left: 0;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .ai-title {
+        font-size: 48px;
+      }
+
+      .ai-section-head {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .ai-section-title {
+        font-size: 36px;
+      }
+
+      .ai-release-list,
+      .ai-panel[data-ai-panel="datasets"] .ai-release-list {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .ai-page {
+        padding: 20px 22px 50px;
+      }
+
+      .ai-top {
+        padding: 10px 0 22px;
+      }
+
+      .ai-title {
+        font-size: 44px;
+      }
+
+      .ai-workspace {
+        gap: 24px;
+        padding-top: 0;
+      }
+
+      .ai-tabs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .ai-tab {
+        min-height: 56px;
+        padding: 10px 11px;
+        border: 0;
+      }
+
+      .ai-tab:nth-child(2n) {
+        border-right: 0;
+      }
+
+      .ai-tab:nth-last-child(-n + 2) {
+        border-bottom: 0;
+      }
+
+      .ai-tab + .ai-tab {
+        border-bottom: 0;
+      }
+
+      .ai-tab:nth-last-child(-n + 2) {
+        border-bottom: 0;
+      }
+
+      .ai-tab-note {
+        display: none;
+      }
+
+      .ai-tab.is-active {
+        box-shadow: none;
+      }
+
+      .ai-section-head {
+        margin-bottom: 20px;
+        padding-bottom: 0;
+      }
+
+      .ai-section-title {
+        font-size: 34px;
+      }
+
+      .ai-sample-gallery {
+        box-shadow: 0 8px 22px rgba(23, 35, 45, 0.11);
+      }
+
+      .ai-gallery-open {
+        min-height: 42px;
+        padding: 0 15px;
+        font-size: 14px;
+      }
+
+      .ai-release-list {
+        margin-top: 28px;
+      }
+
+      .ai-feature {
+        box-shadow: 0 6px 18px rgba(23, 35, 45, 0.07);
+      }
+
+      .ai-feature-body {
+        padding: 18px;
+      }
+
+      .ai-release-title {
+        font-size: 21px;
+      }
+
+      .ai-button.is-secondary {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="menu-bar">
+    <a href="/">
+      <img src="../assets/file.png" alt="Logo" class="menu-logo">
+    </a>
+    <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Toggle navigation">
+    <label for="menu-toggle" class="menu-hamburger" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+    <div class="menu-links menu-links-center">
+      <a href="/">
+        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
+          <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/>
+        </svg>
+        Home
+      </a>
+      <a href="/AppStore">
+        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
+          <path d="M841-518v318q0 33-23.5 56.5T761-120H201q-33 0-56.5-23.5T121-200v-318q-23-21-35.5-54t-.5-72l42-136q8-26 28.5-43t47.5-17h556q27 0 47 16.5t29 43.5l42 136q12 39-.5 71T841-518Zm-272-42q27 0 41-18.5t11-41.5l-22-140h-78v148q0 21 14 36.5t34 15.5Zm-180 0q23 0 37.5-15.5T441-612v-148h-78l-22 140q-4 24 10.5 42t37.5 18Zm-178 0q18 0 31.5-13t16.5-33l22-154h-78l-40 134q-6 20 6.5 43t41.5 23Zm540 0q29 0 42-23t6-43l-42-134h-76l22 154q3 20 16.5 33t31.5 13ZM201-200h560v-282q-5 2-6.5 2H751q-27 0-47.5-9T663-518q-18 18-41 28t-49 10q-27 0-50.5-10T481-518q-17 18-39.5 28T393-480q-29 0-52.5-10T299-518q-21 21-41.5 29.5T211-480h-4.5q-2.5 0-5.5-2v282Zm560 0H201h560Z"/>
+        </svg>
+        App Store
+      </a>
+      <a href="/Projects">
+        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
+          <path d="M160-240v-480 520-40Zm0 80q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h240l80 80h320q33 0 56.5 23.5T880-640v200h-80v-200H447l-80-80H160v480h200v80H160ZM584-56 440-200l144-144 56 57-87 87 87 87-56 57Zm192 0-56-57 87-87-87-87 56-57 144 144L776-56Z"/>
+        </svg>
+        Projects
+      </a>
+      <a href="/AI" class="active">
+        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
+          <path d="M240-160q-33 0-56.5-23.5T160-240v-80H80v-80h80v-160H80v-80h80v-80q0-33 23.5-56.5T240-800h80v-80h80v80h160v-80h80v80h80q33 0 56.5 23.5T800-720v80h80v80h-80v160h80v80h-80v80q0 33-23.5 56.5T720-160h-80v80h-80v-80H400v80h-80v-80h-80Zm0-80h480v-480H240v480Zm120-120h240v-240H360v240Zm80-80v-80h80v80h-80Zm-200 200v-480 480Z"/>
+        </svg>
+        AI
+      </a>
+      <a href="/Privacy">
+        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
+          <path d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 85-29 163.5T688-214L560-342q-18 11-38.5 16.5T480-320q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 22-5.5 42.5T618-398l60 60q20-41 31-86t11-92v-189l-240-90-240 90v189q0 121 68 220t172 132q26-8 49.5-20.5T576-214l56 56q-33 27-71.5 47T480-80Zm0-320q33 0 56.5-23.5T560-480q0-33-23.5-56.5T480-560q-33 0-56.5 23.5T400-480q0 33 23.5 56.5T480-400Zm8-77Z"/>
+        </svg>
+        App Store Privacy
+      </a>
+    </div>
+  </div>
+
+  <main class="ai-page">
+    <section class="ai-shell" data-ai-tabs>
+      <div class="ai-workspace">
+        <aside class="ai-nav" aria-label="AI sections">
+          <h1 class="ai-nav-title">AI Section</h1>
+          <div class="ai-tabs" role="tablist" aria-label="AI sections">
+            <button class="ai-tab" type="button" role="tab" data-ai-tab="models" aria-controls="ai-panel-models" aria-selected="false">
+              <span class="material-symbols-rounded ai-tab-icon" aria-hidden="true">memory</span>
+              <span>
+                <span class="ai-tab-name">Models</span>
+                <span class="ai-tab-note">Checkpoints and demos</span>
+              </span>
+            </button>
+            <button class="ai-tab" type="button" role="tab" data-ai-tab="datasets" aria-controls="ai-panel-datasets" aria-selected="false">
+              <span class="material-symbols-rounded ai-tab-icon" aria-hidden="true">database</span>
+              <span>
+                <span class="ai-tab-name">Datasets</span>
+                <span class="ai-tab-note">Training collections</span>
+              </span>
+            </button>
+            <button class="ai-tab is-active" type="button" role="tab" data-ai-tab="loras" aria-controls="ai-panel-loras" aria-selected="true">
+              <span class="material-symbols-rounded ai-tab-icon" aria-hidden="true">palette</span>
+              <span>
+                <span class="ai-tab-name">LoRAs</span>
+                <span class="ai-tab-note">Style adapters</span>
+              </span>
+            </button>
+            <button class="ai-tab" type="button" role="tab" data-ai-tab="other" aria-controls="ai-panel-other" aria-selected="false">
+              <span class="material-symbols-rounded ai-tab-icon" aria-hidden="true">science</span>
+              <span>
+                <span class="ai-tab-name">Other</span>
+                <span class="ai-tab-note">Tools and tests</span>
+              </span>
+            </button>
+          </div>
+        </aside>
+
+        <div class="ai-main">
+          <section class="ai-panel is-active" id="ai-panel-loras" data-ai-panel="loras" role="tabpanel" aria-labelledby="ai-title-loras">
+            <div class="ai-section-head">
+              <h2 class="ai-section-title" id="ai-title-loras">LoRAs</h2>
+            </div>
+
+            <section class="ai-sample-gallery" aria-labelledby="ai-gallery-title">
+              <div class="ai-gallery-head">
+                <div>
+                  <h3 class="ai-gallery-title" id="ai-gallery-title">
+                    <span class="material-symbols-rounded" aria-hidden="true">photo_library</span>
+                    Explore
+                  </h3>
+                  <p class="ai-gallery-copy">18 preview images across Watercolor Anime, Pointillism, and Storybook Anime.</p>
+                </div>
+                <button class="ai-gallery-open" type="button" data-ai-jump="explore">
+                  Explore
+                  <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span>
+                </button>
+              </div>
+              <div class="ai-sample-grid" aria-label="LoRA sample gallery preview">
+                <div class="ai-sample-tile" aria-hidden="true">
+                  <img src="../assets/ai/thumbs/watercolor-anime_preview_01.jpg" alt="" loading="lazy" decoding="async">
+                  <span class="ai-sample-label">
+                    <span class="material-symbols-rounded" aria-hidden="true">image</span>
+                    Bamboo Valley Mist
+                  </span>
+                </div>
+                <div class="ai-sample-tile" aria-hidden="true">
+                  <img src="../assets/ai/thumbs/watercolor-anime_preview_02.jpg" alt="" loading="lazy" decoding="async">
+                  <span class="ai-sample-label">
+                    <span class="material-symbols-rounded" aria-hidden="true">image</span>
+                    Blue Jay on a Branch
+                  </span>
+                </div>
+                <div class="ai-sample-tile" aria-hidden="true">
+                  <img src="../assets/ai/thumbs/pointillism_preview_01.jpg" alt="" loading="lazy" decoding="async">
+                  <span class="ai-sample-label">
+                    <span class="material-symbols-rounded" aria-hidden="true">image</span>
+                    Rose Garden Nap
+                  </span>
+                </div>
+                <div class="ai-sample-tile" aria-hidden="true">
+                  <img src="../assets/ai/thumbs/pointillism_preview_02.jpg" alt="" loading="lazy" decoding="async">
+                  <span class="ai-sample-label">
+                    <span class="material-symbols-rounded" aria-hidden="true">image</span>
+                    Gemstone Grotto
+                  </span>
+                </div>
+                <div class="ai-sample-tile" aria-hidden="true">
+                  <img src="../assets/ai/thumbs/storybook-anime_preview_01.jpg" alt="" loading="lazy" decoding="async">
+                  <span class="ai-sample-label">
+                    <span class="material-symbols-rounded" aria-hidden="true">image</span>
+                    Strawberry Summer
+                  </span>
+                </div>
+                <div class="ai-sample-tile" aria-hidden="true">
+                  <img src="../assets/ai/thumbs/storybook-anime_preview_02.jpg" alt="" loading="lazy" decoding="async">
+                  <span class="ai-sample-label">
+                    <span class="material-symbols-rounded" aria-hidden="true">image</span>
+                    Blueberry Jam Afternoon
+                  </span>
+                </div>
+                <div class="ai-sample-tile" aria-hidden="true">
+                  <img src="../assets/ai/thumbs/watercolor-anime_preview_03.jpg" alt="" loading="lazy" decoding="async">
+                  <span class="ai-sample-label">
+                    <span class="material-symbols-rounded" aria-hidden="true">image</span>
+                    Butterfly Waltz
+                  </span>
+                </div>
+                <div class="ai-sample-tile" aria-hidden="true">
+                  <img src="../assets/ai/thumbs/pointillism_preview_03.jpg" alt="" loading="lazy" decoding="async">
+                  <span class="ai-sample-label">
+                    <span class="material-symbols-rounded" aria-hidden="true">image</span>
+                    Moonlit Lavender Aurora
+                  </span>
+                </div>
+              </div>
+            </section>
+
+            <div class="ai-release-list">
+              <article class="ai-feature" id="watercolor-anime-lora" style="--ai-thumb-bg: #dceae0; --ai-cell-bg: #eef6ee;">
+                <div class="ai-feature-art">
+                  <img src="../assets/ai/thumbs/qwen-watercolor-anime-lora-banner.png" alt="Watercolor Anime LoRA preview" loading="lazy" decoding="async">
+                </div>
+                <div class="ai-feature-body">
+                  <h3 class="ai-release-title">Qwen Image 2512 Watercolor Anime LoRA</h3>
+                  <p class="ai-release-copy">Soft ink linework, pale paper texture, transparent washes, and quiet storybook-like scene mood.</p>
+                  <div class="ai-actions">
+                    <a class="ai-button is-secondary" href="https://huggingface.co/neonforestmist/qwen-image-2512-watercolor-anime-lora" target="_blank" rel="noopener noreferrer">
+                      Download
+                    </a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ai-feature" id="pointillism-lora" style="--ai-thumb-bg: #f1e6cf; --ai-cell-bg: #fbf2dc;">
+                <div class="ai-feature-art">
+                  <img src="../assets/ai/thumbs/qwen-pointillism-lora-banner.png" alt="Pointillism LoRA preview" loading="lazy" decoding="async">
+                </div>
+                <div class="ai-feature-body">
+                  <h3 class="ai-release-title">Qwen Image 2512 Pointillism LoRA</h3>
+                  <p class="ai-release-copy">Dense paint dots, luminous color mixing, clear silhouettes, and decorative light patterns.</p>
+                  <div class="ai-actions">
+                    <a class="ai-button is-secondary" href="https://huggingface.co/neonforestmist/qwen-image-2512-pointillism-lora" target="_blank" rel="noopener noreferrer">
+                      Download
+                    </a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ai-feature" id="storybook-anime-lora" style="--ai-thumb-bg: #e4dfef; --ai-cell-bg: #f3eef8;">
+                <div class="ai-feature-art">
+                  <img src="../assets/ai/thumbs/qwen-storybook-anime-lora-banner.png" alt="Storybook Anime LoRA preview" loading="lazy" decoding="async">
+                </div>
+                <div class="ai-feature-body">
+                  <h3 class="ai-release-title">Qwen Image 2512 Storybook Anime LoRA</h3>
+                  <p class="ai-release-copy">Warm hand-painted backgrounds, cozy scene design, gentle cel-shaded characters, and readable environment detail.</p>
+                  <div class="ai-actions">
+                    <a class="ai-button is-secondary" href="https://huggingface.co/neonforestmist/qwen-image-2512-storybook-anime-lora" target="_blank" rel="noopener noreferrer">
+                      Download
+                    </a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ai-feature" id="storybook-anime-flux2-lora" style="--ai-thumb-bg: #dce2e8; --ai-cell-bg: #edf1f4;">
+                <div class="ai-feature-art">
+                  <img src="../assets/ai/thumbs/storybook-anime-flux2_cherry-blossom-dog.jpg" alt="Storybook Anime LoRA v1 cherry blossom dog preview" loading="lazy" decoding="async">
+                </div>
+                <div class="ai-feature-body">
+                  <h3 class="ai-release-title">FLUX Storybook Anime LoRA v1</h3>
+                  <p class="ai-release-copy">A storybook-anime adapter for FLUX.2 Klein 9B, kept here as the earlier FLUX release.</p>
+                  <div class="ai-actions">
+                    <a class="ai-button is-secondary" href="https://huggingface.co/neonforestmist/flux-storybook-anime-lora-v1" target="_blank" rel="noopener noreferrer">
+                      Download
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="ai-panel" id="ai-panel-explore" data-ai-panel="explore" aria-labelledby="ai-title-explore" role="dialog" aria-modal="true" hidden>
+            <div class="ai-explore-bar">
+              <button class="ai-viewer-button" type="button" data-gallery-grid aria-label="Gallery index">
+                <span class="material-symbols-rounded" aria-hidden="true">grid_view</span>
+              </button>
+              <button class="ai-viewer-button" type="button" data-ai-jump="loras" aria-label="Close Explore">
+                <span class="material-symbols-rounded" aria-hidden="true">close</span>
+              </button>
+            </div>
+
+            <div class="ai-explore-stage">
+              <div class="ai-explore-mosaic" data-gallery-view="grid">
+                <div class="ai-explore-grid" aria-label="Expanded LoRA sample gallery">
+                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="0" data-gallery-title="Bamboo Valley Mist" data-gallery-style="Watercolor Anime" data-gallery-copy="Qwen Image 2512 Watercolor Anime preview from the Hugging Face gallery." data-gallery-full="../assets/ai/watercolor-anime/preview_01.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-watercolor-anime-lora" aria-label="Open Bamboo Valley Mist">
+                    <img src="../assets/ai/thumbs/watercolor-anime_preview_01.jpg" alt="" loading="lazy" decoding="async">
+                    <span class="ai-explore-caption">Bamboo Valley Mist</span>
+                  </button>
+                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="1" data-gallery-title="Blue Jay on a Branch" data-gallery-style="Watercolor Anime" data-gallery-copy="Qwen Image 2512 Watercolor Anime preview from the Hugging Face gallery." data-gallery-full="../assets/ai/watercolor-anime/preview_02.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-watercolor-anime-lora" aria-label="Open Blue Jay on a Branch">
+                    <img src="../assets/ai/thumbs/watercolor-anime_preview_02.jpg" alt="" loading="lazy" decoding="async">
+                    <span class="ai-explore-caption">Blue Jay on a Branch</span>
+                  </button>
+                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="2" data-gallery-title="Butterfly Waltz" data-gallery-style="Watercolor Anime" data-gallery-copy="Qwen Image 2512 Watercolor Anime preview from the Hugging Face gallery." data-gallery-full="../assets/ai/watercolor-anime/preview_03.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-watercolor-anime-lora" aria-label="Open Butterfly Waltz">
+                    <img src="../assets/ai/thumbs/watercolor-anime_preview_03.jpg" alt="" loading="lazy" decoding="async">
+                    <span class="ai-explore-caption">Butterfly Waltz</span>
+                  </button>
+                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="3" data-gallery-title="Kite Over Green Fields" data-gallery-style="Watercolor Anime" data-gallery-copy="Qwen Image 2512 Watercolor Anime preview from the Hugging Face gallery." data-gallery-full="../assets/ai/watercolor-anime/preview_04.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-watercolor-anime-lora" aria-label="Open Kite Over Green Fields">
+                    <img src="../assets/ai/thumbs/watercolor-anime_preview_04.jpg" alt="" loading="lazy" decoding="async">
+                    <span class="ai-explore-caption">Kite Over Green Fields</span>
+                  </button>
+                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="4" data-gallery-title="Colors on the Palette" data-gallery-style="Watercolor Anime" data-gallery-copy="Qwen Image 2512 Watercolor Anime preview from the Hugging Face gallery." data-gallery-full="../assets/ai/watercolor-anime/preview_05.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-watercolor-anime-lora" aria-label="Open Colors on the Palette">
+                    <img src="../assets/ai/thumbs/watercolor-anime_preview_05.jpg" alt="" loading="lazy" decoding="async">
+                    <span class="ai-explore-caption">Colors on the Palette</span>
+                  </button>
+                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="5" data-gallery-title="Rain Beneath the Red Umbrella" data-gallery-style="Watercolor Anime" data-gallery-copy="Qwen Image 2512 Watercolor Anime preview from the Hugging Face gallery." data-gallery-full="../assets/ai/watercolor-anime/preview_06.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-watercolor-anime-lora" aria-label="Open Rain Beneath the Red Umbrella">
+                    <img src="../assets/ai/thumbs/watercolor-anime_preview_06.jpg" alt="" loading="lazy" decoding="async">
+                    <span class="ai-explore-caption">Rain Beneath the Red Umbrella</span>
+                  </button>
+                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="6" data-gallery-title="Rose Garden Nap" data-gallery-style="Pointillism" data-gallery-copy="Qwen Image 2512 Pointillism preview from the Hugging Face gallery." data-gallery-full="../assets/ai/pointillism/preview_01.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-pointillism-lora" aria-label="Open Rose Garden Nap">
+                    <img src="../assets/ai/thumbs/pointillism_preview_01.jpg" alt="" loading="lazy" decoding="async">
+                    <span class="ai-explore-caption">Rose Garden Nap</span>
+                  </button>
+                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="7" data-gallery-title="Gemstone Grotto" data-gallery-style="Pointillism" data-gallery-copy="Qwen Image 2512 Pointillism preview from the Hugging Face gallery." data-gallery-full="../assets/ai/pointillism/preview_02.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-pointillism-lora" aria-label="Open Gemstone Grotto">
+                    <img src="../assets/ai/thumbs/pointillism_preview_02.jpg" alt="" loading="lazy" decoding="async">
+                    <span class="ai-explore-caption">Gemstone Grotto</span>
+                  </button>
+                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="8" data-gallery-title="Moonlit Lavender Aurora" data-gallery-style="Pointillism" data-gallery-copy="Qwen Image 2512 Pointillism preview from the Hugging Face gallery." data-gallery-full="../assets/ai/pointillism/preview_03.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-pointillism-lora" aria-label="Open Moonlit Lavender Aurora">
+                    <img src="../assets/ai/thumbs/pointillism_preview_03.jpg" alt="" loading="lazy" decoding="async">
+                    <span class="ai-explore-caption">Moonlit Lavender Aurora</span>
+                  </button>
+                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="9" data-gallery-title="Rainbow Over Mountain Lake" data-gallery-style="Pointillism" data-gallery-copy="Qwen Image 2512 Pointillism preview from the Hugging Face gallery." data-gallery-full="../assets/ai/pointillism/preview_04.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-pointillism-lora" aria-label="Open Rainbow Over Mountain Lake">
+                    <img src="../assets/ai/thumbs/pointillism_preview_04.jpg" alt="" loading="lazy" decoding="async">
+                    <span class="ai-explore-caption">Rainbow Over Mountain Lake</span>
+                  </button>
+                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="10" data-gallery-title="Cherries in a Glass Jar" data-gallery-style="Pointillism" data-gallery-copy="Qwen Image 2512 Pointillism preview from the Hugging Face gallery." data-gallery-full="../assets/ai/pointillism/preview_05.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-pointillism-lora" aria-label="Open Cherries in a Glass Jar">
+                    <img src="../assets/ai/thumbs/pointillism_preview_05.jpg" alt="" loading="lazy" decoding="async">
+                    <span class="ai-explore-caption">Cherries in a Glass Jar</span>
+                  </button>
+                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="11" data-gallery-title="Sunlit Avocado" data-gallery-style="Pointillism" data-gallery-copy="Qwen Image 2512 Pointillism preview from the Hugging Face gallery." data-gallery-full="../assets/ai/pointillism/preview_06.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-pointillism-lora" aria-label="Open Sunlit Avocado">
+                    <img src="../assets/ai/thumbs/pointillism_preview_06.jpg" alt="" loading="lazy" decoding="async">
+                    <span class="ai-explore-caption">Sunlit Avocado</span>
+                  </button>
+                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="12" data-gallery-title="Strawberry Summer" data-gallery-style="Storybook Anime" data-gallery-copy="Qwen Image 2512 Storybook Anime preview from the Hugging Face gallery." data-gallery-full="../assets/ai/storybook-anime/preview_01.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-storybook-anime-lora" aria-label="Open Strawberry Summer">
+                    <img src="../assets/ai/thumbs/storybook-anime_preview_01.jpg" alt="" loading="lazy" decoding="async">
+                    <span class="ai-explore-caption">Strawberry Summer</span>
+                  </button>
+                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="13" data-gallery-title="Blueberry Jam Afternoon" data-gallery-style="Storybook Anime" data-gallery-copy="Qwen Image 2512 Storybook Anime preview from the Hugging Face gallery." data-gallery-full="../assets/ai/storybook-anime/preview_02.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-storybook-anime-lora" aria-label="Open Blueberry Jam Afternoon">
+                    <img src="../assets/ai/thumbs/storybook-anime_preview_02.jpg" alt="" loading="lazy" decoding="async">
+                    <span class="ai-explore-caption">Blueberry Jam Afternoon</span>
+                  </button>
+                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="14" data-gallery-title="Dandelion Wish" data-gallery-style="Storybook Anime" data-gallery-copy="Qwen Image 2512 Storybook Anime preview from the Hugging Face gallery." data-gallery-full="../assets/ai/storybook-anime/preview_03.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-storybook-anime-lora" aria-label="Open Dandelion Wish">
+                    <img src="../assets/ai/thumbs/storybook-anime_preview_03.jpg" alt="" loading="lazy" decoding="async">
+                    <span class="ai-explore-caption">Dandelion Wish</span>
+                  </button>
+                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="15" data-gallery-title="Sunlit Bakery" data-gallery-style="Storybook Anime" data-gallery-copy="Qwen Image 2512 Storybook Anime preview from the Hugging Face gallery." data-gallery-full="../assets/ai/storybook-anime/preview_04.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-storybook-anime-lora" aria-label="Open Sunlit Bakery">
+                    <img src="../assets/ai/thumbs/storybook-anime_preview_04.jpg" alt="" loading="lazy" decoding="async">
+                    <span class="ai-explore-caption">Sunlit Bakery</span>
+                  </button>
+                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="16" data-gallery-title="Daisy Field Dash" data-gallery-style="Storybook Anime" data-gallery-copy="Qwen Image 2512 Storybook Anime preview from the Hugging Face gallery." data-gallery-full="../assets/ai/storybook-anime/preview_05.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-storybook-anime-lora" aria-label="Open Daisy Field Dash">
+                    <img src="../assets/ai/thumbs/storybook-anime_preview_05.jpg" alt="" loading="lazy" decoding="async">
+                    <span class="ai-explore-caption">Daisy Field Dash</span>
+                  </button>
+                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="17" data-gallery-title="Quiet Morning Cup" data-gallery-style="Storybook Anime" data-gallery-copy="Qwen Image 2512 Storybook Anime preview from the Hugging Face gallery." data-gallery-full="../assets/ai/storybook-anime/preview_06.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-storybook-anime-lora" aria-label="Open Quiet Morning Cup">
+                    <img src="../assets/ai/thumbs/storybook-anime_preview_06.jpg" alt="" loading="lazy" decoding="async">
+                    <span class="ai-explore-caption">Quiet Morning Cup</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="ai-explore-detail" data-gallery-view="detail" hidden>
+                <div class="ai-detail-media">
+                  <img src="../assets/ai/watercolor-anime/preview_01.png" alt="Bamboo Valley Mist" data-gallery-detail-image>
+                </div>
+                <div class="ai-detail-info">
+                  <h2 class="ai-explore-title" id="ai-title-explore" data-gallery-detail-title>Bamboo Valley Mist</h2>
+                  <div class="ai-detail-meta" aria-label="Selected sample details">
+                    <span data-gallery-detail-style>Watercolor Anime</span>
+                    <span>1024 x 1024</span>
+                  </div>
+                  <div class="ai-explore-actions">
+                    <a class="ai-explore-link" href="https://huggingface.co/neonforestmist/qwen-image-2512-watercolor-anime-lora" target="_blank" rel="noopener noreferrer" data-gallery-detail-link>
+                      <img class="ai-hf-mark" src="../assets/ai/storybook-anime-lora.png" alt="">
+                      <span data-gallery-detail-link-label>Download</span>
+                    </a>
+                  </div>
+                </div>
+                <div class="ai-explore-dots" aria-label="Gallery position">
+                  <button class="ai-explore-dot is-active" type="button" data-gallery-dot="0" aria-label="Show Bamboo Valley Mist"></button>
+                  <button class="ai-explore-dot" type="button" data-gallery-dot="1" aria-label="Show Blue Jay on a Branch"></button>
+                  <button class="ai-explore-dot" type="button" data-gallery-dot="2" aria-label="Show Butterfly Waltz"></button>
+                  <button class="ai-explore-dot" type="button" data-gallery-dot="3" aria-label="Show Kite Over Green Fields"></button>
+                  <button class="ai-explore-dot" type="button" data-gallery-dot="4" aria-label="Show Colors on the Palette"></button>
+                  <button class="ai-explore-dot" type="button" data-gallery-dot="5" aria-label="Show Rain Beneath the Red Umbrella"></button>
+                  <button class="ai-explore-dot" type="button" data-gallery-dot="6" aria-label="Show Rose Garden Nap"></button>
+                  <button class="ai-explore-dot" type="button" data-gallery-dot="7" aria-label="Show Gemstone Grotto"></button>
+                  <button class="ai-explore-dot" type="button" data-gallery-dot="8" aria-label="Show Moonlit Lavender Aurora"></button>
+                  <button class="ai-explore-dot" type="button" data-gallery-dot="9" aria-label="Show Rainbow Over Mountain Lake"></button>
+                  <button class="ai-explore-dot" type="button" data-gallery-dot="10" aria-label="Show Cherries in a Glass Jar"></button>
+                  <button class="ai-explore-dot" type="button" data-gallery-dot="11" aria-label="Show Sunlit Avocado"></button>
+                  <button class="ai-explore-dot" type="button" data-gallery-dot="12" aria-label="Show Strawberry Summer"></button>
+                  <button class="ai-explore-dot" type="button" data-gallery-dot="13" aria-label="Show Blueberry Jam Afternoon"></button>
+                  <button class="ai-explore-dot" type="button" data-gallery-dot="14" aria-label="Show Dandelion Wish"></button>
+                  <button class="ai-explore-dot" type="button" data-gallery-dot="15" aria-label="Show Sunlit Bakery"></button>
+                  <button class="ai-explore-dot" type="button" data-gallery-dot="16" aria-label="Show Daisy Field Dash"></button>
+                  <button class="ai-explore-dot" type="button" data-gallery-dot="17" aria-label="Show Quiet Morning Cup"></button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="ai-panel" id="ai-panel-models" data-ai-panel="models" role="tabpanel" aria-labelledby="ai-title-models" hidden>
+            <div class="ai-section-head">
+              <h2 class="ai-section-title" id="ai-title-models">Models</h2>
+              <p class="ai-section-copy">Full model releases and hosted demos are tracked separately from LoRA adapters.</p>
+            </div>
+            <div class="ai-empty">
+              <div>
+                <h3>No models yet</h3>
+                <p>Published checkpoints and demos will be added when they are ready.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="ai-panel" id="ai-panel-datasets" data-ai-panel="datasets" role="tabpanel" aria-labelledby="ai-title-datasets" hidden>
+            <div class="ai-section-head">
+              <h2 class="ai-section-title" id="ai-title-datasets">Datasets</h2>
+              <p class="ai-section-copy">Training collections, source notes, and license details are grouped here.</p>
+            </div>
+            <div class="ai-release-list">
+              <article class="ai-feature" id="gpt-pointillism-style-images-dataset" style="--ai-thumb-bg: #f1e6cf; --ai-cell-bg: #fbf2dc;">
+                <div class="ai-feature-art">
+                  <img src="../assets/ai/thumbs/qwen-pointillism-lora-banner.png" alt="GPT Pointillism Style Images dataset preview" loading="lazy" decoding="async">
+                </div>
+                <div class="ai-feature-body">
+                  <h3 class="ai-release-title">GPT Pointillism Style Images Dataset</h3>
+                  <p class="ai-release-copy">Pointillism-style image collection for GPT image training, style experiments, and visual reference work.</p>
+                  <div class="ai-actions">
+                    <a class="ai-button is-secondary" href="https://huggingface.co/datasets/neonforestmist/GPT_Pointillism_Style_Images" target="_blank" rel="noopener noreferrer">
+                      Open dataset
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="ai-panel" id="ai-panel-other" data-ai-panel="other" role="tabpanel" aria-labelledby="ai-title-other" hidden>
+            <div class="ai-section-head">
+              <h2 class="ai-section-title" id="ai-title-other">Other</h2>
+              <p class="ai-section-copy">Prompts, workflows, and small experiments that do not fit the main categories.</p>
+            </div>
+            <div class="ai-empty">
+              <div>
+                <h3>No other entries yet</h3>
+                <p>Miscellaneous AI notes will be listed here.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const aiTabsRoot = document.querySelector("[data-ai-tabs]");
+
+    if (aiTabsRoot) {
+      const tabs = Array.from(aiTabsRoot.querySelectorAll("[data-ai-tab]"));
+      const panels = Array.from(aiTabsRoot.querySelectorAll("[data-ai-panel]"));
+      const jumpButtons = Array.from(aiTabsRoot.querySelectorAll("[data-ai-jump]"));
+      const explorePanel = aiTabsRoot.querySelector('[data-ai-panel="explore"]');
+      const galleryGridView = explorePanel?.querySelector('[data-gallery-view="grid"]');
+      const galleryDetailView = explorePanel?.querySelector('[data-gallery-view="detail"]');
+      const galleryCards = Array.from(explorePanel?.querySelectorAll("[data-gallery-card]") || []);
+      const galleryDots = Array.from(explorePanel?.querySelectorAll("[data-gallery-dot]") || []);
+      const galleryGridButton = explorePanel?.querySelector("[data-gallery-grid]");
+      const galleryCloseButton = explorePanel?.querySelector('[data-ai-jump="loras"]');
+      const detailImage = explorePanel?.querySelector("[data-gallery-detail-image]");
+      const detailTitle = explorePanel?.querySelector("[data-gallery-detail-title]");
+      const detailStyle = explorePanel?.querySelector("[data-gallery-detail-style]");
+      const detailLink = explorePanel?.querySelector("[data-gallery-detail-link]");
+      const detailLinkLabel = explorePanel?.querySelector("[data-gallery-detail-link-label]");
+      let lastFocusedElement = null;
+      let activeGalleryIndex = 0;
+      let detailTouchStartX = null;
+      let detailTouchStartY = null;
+
+      const showGalleryGrid = () => {
+        if (!galleryGridView || !galleryDetailView) {
+          return;
+        }
+
+        galleryGridView.hidden = false;
+        galleryDetailView.hidden = true;
+      };
+
+      const showGalleryDetail = (index) => {
+        const card = galleryCards[index];
+
+        if (!card || !galleryGridView || !galleryDetailView || !detailImage || !detailTitle || !detailStyle || !detailLink || !detailLinkLabel) {
+          return;
+        }
+
+        const selectedStyle = card.dataset.galleryStyle || "";
+        activeGalleryIndex = index;
+        detailImage.src = card.dataset.galleryFull || "";
+        detailImage.alt = card.getAttribute("aria-label") || card.dataset.galleryTitle || "Selected gallery image";
+        detailTitle.textContent = card.dataset.galleryTitle || "Gallery image";
+        detailStyle.textContent = selectedStyle;
+        detailLink.href = card.dataset.galleryLink || detailLink.href;
+        detailLinkLabel.textContent = "Download";
+
+        galleryDots.forEach((dot) => {
+          const isActive = Number(dot.dataset.galleryDot) === index;
+          dot.classList.toggle("is-active", isActive);
+          dot.setAttribute("aria-current", isActive ? "true" : "false");
+        });
+
+        galleryGridView.hidden = true;
+        galleryDetailView.hidden = false;
+      };
+
+      const showNextGalleryImage = () => {
+        if (!galleryCards.length) {
+          return;
+        }
+
+        showGalleryDetail((activeGalleryIndex + 1) % galleryCards.length);
+      };
+
+      const showPreviousGalleryImage = () => {
+        if (!galleryCards.length) {
+          return;
+        }
+
+        showGalleryDetail((activeGalleryIndex - 1 + galleryCards.length) % galleryCards.length);
+      };
+
+      const activateTab = (key) => {
+        const activeRailKey = key === "explore" ? "loras" : key;
+        const wasExploreOpen = document.body.classList.contains("is-ai-explore-open");
+
+        tabs.forEach((tab) => {
+          const isActive = tab.dataset.aiTab === activeRailKey;
+          tab.classList.toggle("is-active", isActive);
+          tab.setAttribute("aria-selected", String(isActive));
+          tab.setAttribute("tabindex", isActive ? "0" : "-1");
+        });
+
+        panels.forEach((panel) => {
+          const isActive = panel.dataset.aiPanel === key;
+          panel.classList.toggle("is-active", isActive);
+          panel.hidden = !isActive;
+        });
+
+        document.body.classList.toggle("is-ai-explore-open", key === "explore");
+
+        if (key === "explore") {
+          if (!wasExploreOpen) {
+            lastFocusedElement = document.activeElement;
+          }
+
+          showGalleryGrid();
+          requestAnimationFrame(() => galleryCloseButton?.focus({ preventScroll: true }));
+        }
+
+        if (key !== "explore" && wasExploreOpen && lastFocusedElement instanceof HTMLElement) {
+          requestAnimationFrame(() => lastFocusedElement.focus({ preventScroll: true }));
+        }
+      };
+
+      galleryCards.forEach((card, index) => {
+        card.addEventListener("click", () => showGalleryDetail(index));
+      });
+
+      galleryDots.forEach((dot) => {
+        dot.addEventListener("click", () => showGalleryDetail(Number(dot.dataset.galleryDot)));
+      });
+
+      galleryGridButton?.addEventListener("click", () => {
+        showGalleryGrid();
+        requestAnimationFrame(() => galleryCards[activeGalleryIndex]?.focus({ preventScroll: true }));
+      });
+
+      galleryDetailView?.addEventListener("touchstart", (event) => {
+        if (event.touches.length !== 1 || galleryDetailView.hidden) {
+          detailTouchStartX = null;
+          detailTouchStartY = null;
+          return;
+        }
+
+        detailTouchStartX = event.touches[0].clientX;
+        detailTouchStartY = event.touches[0].clientY;
+      }, { passive: true });
+
+      galleryDetailView?.addEventListener("touchend", (event) => {
+        if (detailTouchStartX === null || detailTouchStartY === null || galleryDetailView.hidden || !event.changedTouches.length) {
+          return;
+        }
+
+        const touchEndX = event.changedTouches[0].clientX;
+        const touchEndY = event.changedTouches[0].clientY;
+        const distanceX = touchEndX - detailTouchStartX;
+        const distanceY = touchEndY - detailTouchStartY;
+        const isHorizontalSwipe = Math.abs(distanceX) > 48 && Math.abs(distanceX) > Math.abs(distanceY) * 1.2;
+
+        detailTouchStartX = null;
+        detailTouchStartY = null;
+
+        if (!isHorizontalSwipe) {
+          return;
+        }
+
+        if (distanceX < 0) {
+          showNextGalleryImage();
+          return;
+        }
+
+        showPreviousGalleryImage();
+      }, { passive: true });
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => activateTab(tab.dataset.aiTab));
+        tab.addEventListener("keydown", (event) => {
+          if (!["ArrowDown", "ArrowRight", "ArrowUp", "ArrowLeft", "Home", "End"].includes(event.key)) {
+            return;
+          }
+
+          event.preventDefault();
+
+          const currentIndex = tabs.indexOf(tab);
+          let nextIndex = currentIndex;
+
+          if (event.key === "ArrowDown" || event.key === "ArrowRight") {
+            nextIndex = (currentIndex + 1) % tabs.length;
+          }
+
+          if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
+            nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+          }
+
+          if (event.key === "Home") {
+            nextIndex = 0;
+          }
+
+          if (event.key === "End") {
+            nextIndex = tabs.length - 1;
+          }
+
+          tabs[nextIndex].focus();
+          activateTab(tabs[nextIndex].dataset.aiTab);
+        });
+      });
+
+      jumpButtons.forEach((button) => {
+        button.addEventListener("click", () => activateTab(button.dataset.aiJump));
+      });
+
+      activateTab("loras");
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && document.body.classList.contains("is-ai-explore-open")) {
+          activateTab("loras");
+        }
+
+        if (!document.body.classList.contains("is-ai-explore-open") || galleryDetailView?.hidden) {
+          return;
+        }
+
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          showNextGalleryImage();
+        }
+
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          showPreviousGalleryImage();
+        }
+      });
+    }
+  </script>
+</body>
+</html>

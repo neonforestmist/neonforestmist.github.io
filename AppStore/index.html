@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../main.css">
-  <link rel="icon" href="../assets/favicon.ico" />
-  <link rel="apple-touch-icon" href="../assets/favicon.ico" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dashersw/liquid-glass-js@78cb6ccb0b9987bb60a88b14ccbd13a9e6e8ab2a/glass.css">
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  <link rel="shortcut icon" href="/assets/favicon.ico" />
+  <link rel="apple-touch-icon" href="/assets/favicon.png" />
   <title>App Store</title>
   <style>
     :root {
@@ -59,8 +61,8 @@
     .as-sidebar-title {
       font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      letter-spacing: 0;
+      text-transform: none;
       color: var(--as-secondary);
       padding: 0 12px;
       margin: 0 0 12px;
@@ -73,6 +75,10 @@
     }
 
     .as-nav-btn {
+      --as-category-color: var(--as-accent);
+      --as-category-bg: rgba(0, 113, 227, 0.08);
+      --as-category-focus: rgba(0, 113, 227, 0.72);
+      --as-category-icon-filter: brightness(0) saturate(100%) invert(37%) sepia(97%) saturate(1958%) hue-rotate(196deg) brightness(96%) contrast(99%);
       display: flex;
       align-items: center;
       gap: 10px;
@@ -90,13 +96,42 @@
       font-family: inherit;
     }
 
+    .as-nav-btn[data-key="all"] {
+      --as-category-color: #0071e3;
+      --as-category-bg: rgba(0, 113, 227, 0.1);
+      --as-category-focus: rgba(0, 113, 227, 0.72);
+      --as-category-icon-filter: brightness(0) saturate(100%) invert(37%) sepia(97%) saturate(1958%) hue-rotate(196deg) brightness(96%) contrast(99%);
+    }
+
+    .as-nav-btn[data-key="games"] {
+      --as-category-color: #15803d;
+      --as-category-bg: rgba(21, 128, 61, 0.12);
+      --as-category-focus: rgba(21, 128, 61, 0.72);
+      --as-category-icon-filter: brightness(0) saturate(100%) invert(45%) sepia(66%) saturate(718%) hue-rotate(92deg) brightness(90%) contrast(88%);
+    }
+
+    .as-nav-btn[data-key="tools"] {
+      --as-category-color: #c2410c;
+      --as-category-bg: rgba(194, 65, 12, 0.12);
+      --as-category-focus: rgba(194, 65, 12, 0.72);
+      --as-category-icon-filter: brightness(0) saturate(100%) invert(35%) sepia(96%) saturate(1474%) hue-rotate(5deg) brightness(92%) contrast(91%);
+    }
+
+    .as-nav-btn[data-key="entertainment"] {
+      --as-category-color: #7c3aed;
+      --as-category-bg: rgba(124, 58, 237, 0.12);
+      --as-category-focus: rgba(124, 58, 237, 0.72);
+      --as-category-icon-filter: brightness(0) saturate(100%) invert(47%) sepia(53%) saturate(1915%) hue-rotate(228deg) brightness(100%) contrast(94%);
+    }
+
     .as-nav-btn:hover {
-      background: rgba(0, 0, 0, 0.04);
+      background: var(--as-category-bg);
+      color: var(--as-category-color);
     }
 
     .as-nav-btn.is-active {
-      background: rgba(0, 113, 227, 0.08);
-      color: var(--as-accent);
+      background: var(--as-category-bg);
+      color: var(--as-category-color);
     }
 
     .as-nav-btn.is-active .as-nav-icon {
@@ -107,16 +142,19 @@
       width: 20px;
       height: 20px;
       object-fit: contain;
-      filter: brightness(0) opacity(0.45);
-      transition: filter 0.15s ease;
+      filter: brightness(0) opacity(0.46);
+      opacity: 1;
+      transition: filter 0.15s ease, opacity 0.15s ease;
     }
 
     .as-nav-btn:hover .as-nav-icon {
-      filter: brightness(0) opacity(0.65);
+      filter: var(--as-category-icon-filter);
+      opacity: 0.9;
     }
 
     .as-nav-btn.is-active .as-nav-icon {
-      filter: brightness(0) saturate(100%) invert(30%) sepia(90%) saturate(1200%) hue-rotate(200deg) opacity(0.9);
+      filter: var(--as-category-icon-filter);
+      opacity: 1;
     }
 
     .as-nav-divider {
@@ -218,8 +256,8 @@
       font-size: 11px;
       font-weight: 500;
       color: var(--as-secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
+      text-transform: none;
+      letter-spacing: 0;
     }
 
     .as-card-cta {
@@ -250,27 +288,6 @@
       font-size: 15px;
     }
 
-    /* ── Mobile toggle ── */
-    .as-mobile-toggle {
-      display: none;
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: var(--as-text);
-      color: #fff;
-      border: none;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-      cursor: pointer;
-      z-index: 100;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      font-family: inherit;
-    }
-
     /* ── Responsive ── */
     @media (max-width: 960px) {
       .as-layout {
@@ -292,7 +309,9 @@
       .as-sidebar {
         order: 2;
         position: static;
-        padding: 0 16px 12px;
+        display: flex;
+        justify-content: center;
+        padding: 0 16px 18px;
         height: auto;
       }
 
@@ -333,9 +352,6 @@
         overflow: hidden;
       }
 
-      .as-mobile-toggle {
-        display: none;
-      }
     }
 
     @media (max-width: 640px) {
@@ -375,11 +391,489 @@
       }
     }
   </style>
+  <style>
+    body.appstore-page {
+      background:
+        linear-gradient(180deg, #fbfcfe 0%, #f3f6fa 46%, #ffffff 100%);
+    }
+
+    body.appstore-page::before {
+      display: none;
+    }
+
+    .as-main {
+      padding: 80px 0 0;
+      min-height: 0;
+      flex: 1 0 auto;
+    }
+
+    .as-layout {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 0;
+      width: auto;
+      max-width: 1200px;
+      min-height: calc(100vh - 80px);
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    .as-sidebar {
+      padding: 32px 20px 40px 24px;
+      position: sticky;
+      top: 80px;
+      align-self: start;
+      height: fit-content;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      overflow: visible;
+    }
+
+    .as-content {
+      display: block;
+      padding: 32px 40px 64px;
+      min-width: 0;
+    }
+
+    .as-header {
+      margin-bottom: 28px;
+      max-width: none;
+    }
+
+    .as-title {
+      margin: 0 0 6px;
+      font-size: 34px;
+      line-height: 1.1;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .as-subtitle {
+      max-width: none;
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.5;
+    }
+
+    .as-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 0;
+      overflow: visible;
+    }
+
+    .as-nav-glass.glass-container {
+      width: 100%;
+      min-height: 0;
+      padding: 8px;
+      align-items: stretch;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 2px;
+      border-radius: 22px;
+      overflow: hidden;
+      isolation: isolate;
+      contain: paint;
+      clip-path: inset(0 round 22px);
+      box-shadow: 0 14px 34px rgba(31, 45, 72, 0.12);
+    }
+
+    .as-nav-glass canvas {
+      border-radius: inherit !important;
+      box-shadow: none !important;
+      z-index: 0;
+    }
+
+    .as-nav-glass > canvas,
+    .as-liquid-cta > canvas {
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    .as-nav-glass::after,
+    .as-liquid-cta::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
+    .as-liquid-nav {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100% !important;
+      max-width: none !important;
+      min-width: 0 !important;
+      height: 38px;
+      padding: 0 12px;
+      border: 0;
+      border-radius: 15px;
+      background: transparent;
+      color: var(--as-text);
+      cursor: pointer;
+      font: inherit;
+      text-align: left;
+      transition: background 0.16s ease, color 0.16s ease, transform 0.16s ease;
+    }
+
+    .as-liquid-nav:hover {
+      background: var(--as-category-bg);
+      transform: translateY(-1px);
+    }
+
+    .as-liquid-nav.is-active {
+      background: var(--as-category-bg);
+      color: var(--as-category-color);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.75),
+        0 1px 8px rgba(29, 29, 31, 0.06);
+    }
+
+    .as-liquid-nav .as-nav-label {
+      color: var(--as-text);
+      font-size: 14px !important;
+      font-weight: 650;
+    }
+
+    .as-liquid-nav:hover .as-nav-label {
+      color: var(--as-category-color);
+    }
+
+    .as-liquid-nav.is-active .as-nav-label {
+      color: var(--as-category-color);
+    }
+
+    .as-liquid-nav.is-active .as-nav-icon {
+      filter: var(--as-category-icon-filter) !important;
+      opacity: 1;
+    }
+
+    .as-card.as-material-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.68);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.75),
+        0 1px 2px rgba(29, 29, 31, 0.04),
+        0 18px 48px rgba(64, 76, 96, 0.1);
+      backdrop-filter: blur(18px) saturate(145%);
+      -webkit-backdrop-filter: blur(18px) saturate(145%);
+      isolation: isolate;
+      overflow: hidden;
+    }
+
+    .as-card.as-material-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.9);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.86),
+        0 2px 6px rgba(29, 29, 31, 0.05),
+        0 24px 58px rgba(64, 76, 96, 0.14);
+    }
+
+    .as-card.as-material-card .as-card-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      flex-shrink: 0;
+      overflow: hidden;
+      background: #f0f0f2;
+      border: 0;
+      box-shadow: 0 1px 2px rgba(29, 29, 31, 0.12);
+    }
+
+    .as-card.as-material-card .as-card-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .as-card.as-material-card .as-card-name {
+      margin: 0 0 2px;
+      font-size: 17px;
+      line-height: 1.2;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #1d1d1f;
+    }
+
+    .as-card.as-material-card .as-card-desc {
+      margin: 0 0 4px;
+      font-size: 14px;
+      line-height: 1.4;
+      color: #4f5966;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .as-card.as-material-card .as-card-tag {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--as-secondary);
+    }
+
+    .as-soon-cta {
+      min-width: 116px;
+      color: var(--as-secondary);
+      cursor: default;
+      opacity: 0.72;
+    }
+
+    .as-liquid-cta.glass-button {
+      width: 76px !important;
+      min-width: 76px !important;
+      max-width: 76px !important;
+      height: 34px !important;
+      min-height: 34px !important;
+      max-height: 34px !important;
+      flex-shrink: 0;
+      box-shadow: none;
+    }
+
+    .as-liquid-cta-link {
+      display: inline-flex;
+      flex-shrink: 0;
+      border-radius: 999px;
+      color: var(--as-accent);
+      text-decoration: none;
+    }
+
+    .as-liquid-cta .glass-button-text {
+      color: var(--as-accent);
+      font-size: 14px !important;
+      font-weight: 700;
+    }
+
+    .as-liquid-fallback {
+      padding: 6px 18px;
+      border-radius: 980px;
+      background: #f0f0f5;
+      color: var(--as-accent);
+      border: none;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      cursor: pointer;
+      font-family: inherit;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .as-liquid-nav:focus-visible,
+    .as-card-cta:focus-visible,
+    .as-liquid-cta-link:focus-visible .as-liquid-cta {
+      outline: 2px solid var(--as-category-focus, rgba(0, 113, 227, 0.72));
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-transparency: reduce) {
+      .as-card.as-material-card {
+        background: #ffffff;
+        border-color: rgba(0, 0, 0, 0.08);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .as-liquid-nav,
+      .as-card,
+      .as-card.as-material-card,
+      .as-card-cta {
+        transition: none !important;
+      }
+
+      .as-liquid-nav:hover,
+      .as-card:hover,
+      .as-card.as-material-card:hover {
+        transform: none !important;
+      }
+    }
+
+    @media (max-width: 960px) {
+      .as-layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr;
+        width: auto;
+        min-height: auto;
+        padding: 0;
+      }
+
+      .as-content {
+        display: contents;
+      }
+
+      .as-header {
+        order: 1;
+        padding: 16px 16px 10px;
+        margin-bottom: 0;
+      }
+
+      .as-sidebar {
+        order: 2;
+        position: static;
+        padding: 0 16px 12px;
+        height: auto;
+      }
+
+      .as-sidebar-title {
+        display: none;
+      }
+
+      .as-nav-group {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 0;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .as-nav-glass.glass-container {
+        width: max-content !important;
+        max-width: calc(100vw - 32px);
+        min-height: 0;
+        height: 54px;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: 3px;
+        padding: 5px;
+        justify-content: center;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 27px;
+        clip-path: inset(0 round 27px);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.78),
+          0 12px 34px rgba(44, 57, 79, 0.12);
+      }
+
+      .as-nav-glass.glass-container::-webkit-scrollbar {
+        display: none;
+      }
+
+      .as-liquid-nav {
+        width: auto !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        flex: 0 0 auto;
+        justify-content: center;
+        gap: 7px;
+        height: 44px;
+        padding: 0 14px;
+        border-radius: 22px;
+      }
+
+      .as-liquid-nav .as-nav-icon {
+        display: block;
+        width: 17px;
+        height: 17px;
+      }
+
+      .as-liquid-nav .as-nav-label {
+        font-size: 14px !important;
+      }
+
+      .as-liquid-nav[data-key="all"] {
+        min-width: 70px !important;
+      }
+
+      .as-liquid-nav[data-key="games"] {
+        min-width: 96px !important;
+      }
+
+      .as-liquid-nav[data-key="tools"] {
+        min-width: 90px !important;
+      }
+
+      .as-liquid-nav[data-key="entertainment"] {
+        min-width: 154px !important;
+      }
+
+      .as-grid {
+        order: 3;
+        padding: 4px 16px 64px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .as-sidebar {
+        position: relative;
+      }
+
+      .as-sidebar::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 16px;
+        bottom: 12px;
+        width: 28px;
+        background: linear-gradient(90deg, rgba(245, 248, 252, 0), rgba(245, 248, 252, 0.92));
+        pointer-events: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .as-main {
+        padding-top: 60px;
+      }
+
+      .as-title {
+        font-size: 28px;
+      }
+
+      .as-subtitle {
+        font-size: 15px;
+      }
+
+      .as-card.as-material-card {
+        gap: 12px;
+        padding: 14px;
+      }
+
+      .as-card.as-material-card .as-card-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 13px;
+      }
+
+      .as-card.as-material-card .as-card-name {
+        font-size: 16px;
+      }
+
+      .as-card.as-material-card .as-card-desc {
+        font-size: 13px;
+      }
+    }
+  </style>
 </head>
 <body class="appstore-page">
   <div class="menu-bar">
     <a href="/">
-      <img src="../assets/file.png" alt="Logo" class="menu-logo">
+      <img src="/assets/file.png" alt="The Chroma Swift Media" class="menu-logo">
     </a>
     <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Toggle navigation">
     <label for="menu-toggle" class="menu-hamburger" aria-hidden="true">
@@ -406,11 +900,17 @@
         </svg>
         Projects
       </a>
+      <a href="/AI">
+        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
+          <path d="M240-160q-33 0-56.5-23.5T160-240v-80H80v-80h80v-160H80v-80h80v-80q0-33 23.5-56.5T240-800h80v-80h80v80h160v-80h80v80h80q33 0 56.5 23.5T800-720v80h80v80h-80v160h80v80h-80v80q0 33-23.5 56.5T720-160h-80v80h-80v-80H400v80h-80v-80h-80Zm0-80h480v-480H240v480Zm120-120h240v-240H360v240Zm80-80v-80h80v80h-80Zm-200 200v-480 480Z"/>
+        </svg>
+        AI
+      </a>
       <a href="/Privacy">
         <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" aria-hidden="true" focusable="false">
           <path d="M480-80q-139-35-229.5-159.5T160-516v-244l320-120 320 120v244q0 85-29 163.5T688-214L560-342q-18 11-38.5 16.5T480-320q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 22-5.5 42.5T618-398l60 60q20-41 31-86t11-92v-189l-240-90-240 90v189q0 121 68 220t172 132q26-8 49.5-20.5T576-214l56 56q-33 27-71.5 47T480-80Zm0-320q33 0 56.5-23.5T560-480q0-33-23.5-56.5T480-560q-33 0-56.5 23.5T400-480q0 33 23.5 56.5T480-400Zm8-77Z"/>
         </svg>
-        Privacy
+        App Store Privacy
       </a>
     </div>
   </div>
@@ -418,7 +918,6 @@
   <main class="as-main">
     <div class="as-layout">
       <aside class="as-sidebar" id="as-sidebar">
-        <p class="as-sidebar-title">Browse</p>
         <nav class="as-nav-group" id="as-nav-group"></nav>
       </aside>
 
@@ -431,14 +930,25 @@
         <div class="as-grid" id="as-grid"></div>
       </section>
     </div>
-
-    <button class="as-mobile-toggle" id="as-mobile-toggle" type="button" aria-label="Toggle categories">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-    </button>
   </main>
 
+  <script defer src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/gh/dashersw/liquid-glass-js@78cb6ccb0b9987bb60a88b14ccbd13a9e6e8ab2a/container.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/gh/dashersw/liquid-glass-js@78cb6ccb0b9987bb60a88b14ccbd13a9e6e8ab2a/button.js"></script>
   <script>
-    (() => {
+    document.addEventListener("DOMContentLoaded", () => {
+      window.glassControls = {
+        edgeIntensity: 0.016,
+        rimIntensity: 0.072,
+        baseIntensity: 0.012,
+        edgeDistance: 0.18,
+        rimDistance: 0.8,
+        baseDistance: 0.12,
+        cornerBoost: 0.014,
+        rippleEffect: 0.026,
+        blurRadius: 7
+      };
+
       const apps = {
         soon: {
           name: "???",
@@ -501,43 +1011,83 @@
       const titleEl = document.getElementById("as-title");
       const subtitleEl = document.getElementById("as-subtitle");
       const gridEl = document.getElementById("as-grid");
-      const sidebar = document.getElementById("as-sidebar");
-      const mobileToggle = document.getElementById("as-mobile-toggle");
       const lookup = Object.fromEntries(sections.map(s => [s.key, s]));
       const buttons = {};
+      const liquidInstances = [];
+      const reduceTransparency = window.matchMedia("(prefers-reduced-transparency: reduce)").matches;
+      const hasLiquid = typeof Container !== "undefined" &&
+        typeof Button !== "undefined" &&
+        typeof html2canvas !== "undefined";
+      let useLiquid = hasLiquid && !reduceTransparency && supportsWebGL();
+      let navShell = null;
 
-      sections.forEach((section, i) => {
-        if (i === 1) {
-          const div = document.createElement("div");
-          div.className = "as-nav-divider";
-          navGroup.appendChild(div);
+      if (useLiquid) {
+        try {
+          navShell = new Container({ borderRadius: 27, type: "rounded", tintOpacity: 0.1 });
+          navShell.element.classList.add("as-nav-glass");
+          navGroup.appendChild(navShell.element);
+          liquidInstances.push(navShell);
+        } catch (error) {
+          navGroup.innerHTML = "";
+          navShell = null;
+          useLiquid = false;
         }
+      }
+
+      sections.forEach((section) => {
+        if (!useLiquid) {
+          const div = document.createElement("div");
+          div.className = "as-nav-fallback-row";
+          const btn = document.createElement("button");
+          btn.className = "as-nav-btn";
+          btn.type = "button";
+          btn.dataset.key = section.key;
+          btn.innerHTML = `<img src="${section.icon}" alt="" class="as-nav-icon"><span>${section.label}</span>`;
+          btn.addEventListener("click", () => activate(section.key));
+          div.appendChild(btn);
+          navGroup.appendChild(div);
+          buttons[section.key] = btn;
+          return;
+        }
+
         const btn = document.createElement("button");
-        btn.className = "as-nav-btn";
+        btn.className = "as-nav-btn as-liquid-nav";
+        btn.type = "button";
         btn.dataset.key = section.key;
-        btn.innerHTML = `<img src="${section.icon}" alt="" class="as-nav-icon"><span>${section.label}</span>`;
+        btn.innerHTML = `<img src="${section.icon}" alt="" class="as-nav-icon"><span class="as-nav-label">${section.label}</span>`;
         btn.addEventListener("click", () => activate(section.key));
-        navGroup.appendChild(btn);
+        navShell.element.appendChild(btn);
         buttons[section.key] = btn;
       });
 
+      function supportsWebGL() {
+        try {
+          const canvas = document.createElement("canvas");
+          return !!(canvas.getContext("webgl2") || canvas.getContext("webgl"));
+        } catch (error) {
+          return false;
+        }
+      }
+
       function activate(key) {
         const section = lookup[key] || lookup.all;
-        Object.values(buttons).forEach(b => b.classList.toggle("is-active", b.dataset.key === section.key));
+        Object.values(buttons).forEach(b => {
+          const isActive = b.dataset.key === section.key;
+          b.classList.toggle("is-active", isActive);
+          b.setAttribute("aria-pressed", isActive ? "true" : "false");
+        });
         titleEl.textContent = section.title;
         subtitleEl.textContent = section.subtitle;
         renderGrid(section.items);
-
-        if (sidebar.classList.contains("is-open")) {
-          sidebar.classList.remove("is-open");
-        }
+        refreshLiquidGlass();
       }
 
       function renderGrid(items) {
         gridEl.innerHTML = "";
+
         items.forEach(app => {
-          const card = document.createElement("div");
-          card.className = "as-card";
+          const card = document.createElement("article");
+          card.className = "as-card as-material-card";
 
           const icon = document.createElement("div");
           icon.className = "as-card-icon";
@@ -550,46 +1100,68 @@
 
           const info = document.createElement("div");
           info.className = "as-card-info";
-          info.innerHTML = `
-            <h3 class="as-card-name">${app.name}</h3>
-            <p class="as-card-desc">${app.desc}</p>
-            <span class="as-card-tag">${app.category}</span>
-          `;
 
-          const cta = app.url
-            ? document.createElement("a")
-            : document.createElement("button");
-          cta.className = "as-card-cta";
-          cta.textContent = app.url ? "Get" : "Coming Soon";
+          const nameEl = document.createElement("h3");
+          nameEl.className = "as-card-name";
+          nameEl.textContent = app.name;
 
-          if (app.url) {
-            cta.href = app.url;
-            cta.target = "_blank";
-            cta.rel = "noopener noreferrer";
-          } else {
-            cta.type = "button";
-          }
+          const desc = document.createElement("p");
+          desc.className = "as-card-desc";
+          desc.textContent = app.desc;
+
+          const tag = document.createElement("span");
+          tag.className = "as-card-tag";
+          tag.textContent = app.category;
+
+          info.append(nameEl, desc, tag);
+
+          const cta = createAction(app);
 
           card.append(icon, info, cta);
           gridEl.appendChild(card);
         });
       }
 
-      // Mobile sidebar toggle
-      mobileToggle.addEventListener("click", () => {
-        sidebar.classList.toggle("is-open");
-      });
+      function createAction(app) {
+        const label = app.url ? "Get" : "Coming Soon";
+        return createPlainAction(app, label);
+      }
 
-      document.addEventListener("click", (e) => {
-        if (sidebar.classList.contains("is-open") &&
-            !sidebar.contains(e.target) &&
-            !mobileToggle.contains(e.target)) {
-          sidebar.classList.remove("is-open");
+      function createPlainAction(app, label) {
+        const cta = app.url ? document.createElement("a") : document.createElement("button");
+        cta.className = app.url ? "as-card-cta as-liquid-fallback" : "as-card-cta as-soon-cta";
+        cta.textContent = label;
+        if (app.url) {
+          cta.href = app.url;
+          cta.target = "_blank";
+          cta.rel = "noopener noreferrer";
+          cta.setAttribute("aria-label", `Get ${app.name} on the App Store`);
+        } else {
+          cta.type = "button";
+          cta.disabled = true;
         }
+        return cta;
+      }
+
+      function refreshLiquidGlass() {
+        requestAnimationFrame(() => {
+          liquidInstances.forEach(instance => {
+            if (instance && typeof instance.updateSizeFromDOM === "function") {
+              instance.updateSizeFromDOM();
+            }
+          });
+        });
+      }
+
+      let resizeTimer = null;
+      window.addEventListener("resize", () => {
+        window.clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(refreshLiquidGlass, 120);
       });
 
       activate("all");
-    })();
+      requestAnimationFrame(refreshLiquidGlass);
+    });
   </script>
 </body>
 </html>
