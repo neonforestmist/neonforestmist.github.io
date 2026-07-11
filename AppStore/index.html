@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../main.css">
+  <script defer src="/nav-scroll.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dashersw/liquid-glass-js@78cb6ccb0b9987bb60a88b14ccbd13a9e6e8ab2a/glass.css">
   <link rel="icon" type="image/png" href="/assets/favicon.png" />
   <link rel="shortcut icon" href="/assets/favicon.ico" />
@@ -819,20 +820,43 @@
       }
     }
 
-    @media (max-width: 360px) {
-      .as-sidebar {
-        position: relative;
+    @media (max-width: 480px) {
+      .as-nav-glass.glass-container {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100% !important;
+        max-width: 100%;
+        height: auto;
+        min-height: 98px;
+        gap: 4px;
+        padding: 5px;
+        overflow: hidden;
+        border-radius: 22px;
+        clip-path: inset(0 round 22px);
       }
 
-      .as-sidebar::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        right: 16px;
-        bottom: 12px;
-        width: 28px;
-        background: linear-gradient(90deg, rgba(245, 248, 252, 0), rgba(245, 248, 252, 0.92));
-        pointer-events: none;
+      .as-liquid-nav,
+      .as-liquid-nav[data-key] {
+        width: 100% !important;
+        min-width: 0 !important;
+        height: 42px;
+        padding: 0 10px;
+        border-radius: 17px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .as-liquid-nav {
+        gap: 0;
+        padding-inline: 8px;
+      }
+
+      .as-liquid-nav .as-nav-icon {
+        display: none;
+      }
+
+      .as-liquid-nav .as-nav-label {
+        font-size: 13px !important;
       }
     }
 
