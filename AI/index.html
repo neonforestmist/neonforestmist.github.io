@@ -4,14 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../main.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,300..700,0..1,-50..200&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="/assets/favicon.png" />
   <link rel="shortcut icon" href="/assets/favicon.ico" />
   <link rel="apple-touch-icon" href="/assets/favicon.png" />
-  <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js" defer></script>
   <title>AI</title>
   <style>
     :root {
@@ -61,19 +56,37 @@
       color: inherit;
     }
 
-    .material-symbols-rounded {
-      direction: ltr;
+    .ai-local-icon {
+      --ai-icon: none;
       display: inline-block;
-      font-family: "Material Symbols Rounded";
-      font-feature-settings: "liga";
-      font-size: 1.2rem;
-      font-style: normal;
-      font-weight: normal;
-      letter-spacing: 0;
-      line-height: 1;
-      text-transform: none;
+      width: 1.2rem;
+      height: 1.2rem;
+      flex: 0 0 auto;
+      background: currentColor;
+      -webkit-mask: var(--ai-icon) center / contain no-repeat;
+      mask: var(--ai-icon) center / contain no-repeat;
+    }
+
+    .ai-icon-models { --ai-icon: url("../assets/ai/glyphs/cpu.svg"); }
+    .ai-icon-datasets { --ai-icon: url("../assets/ai/glyphs/database.svg"); }
+    .ai-icon-loras { --ai-icon: url("../assets/ai/glyphs/palette.svg"); }
+    .ai-icon-misc { --ai-icon: url("../assets/ai/glyphs/sparkle.svg"); }
+    .ai-icon-gallery { --ai-icon: url("../assets/ai/glyphs/images.svg"); }
+    .ai-icon-arrow { --ai-icon: url("../assets/ai/glyphs/arrow-right.svg"); }
+    .ai-icon-grid { --ai-icon: url("../assets/ai/glyphs/squares-four.svg"); }
+    .ai-icon-close { --ai-icon: url("../assets/ai/glyphs/x.svg"); }
+
+    .ai-visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      border: 0;
       white-space: nowrap;
-      word-wrap: normal;
     }
 
     .ai-page {
@@ -356,7 +369,7 @@
       padding: 0 14px;
       border: 1px solid var(--ai-accent);
       border-radius: 999px;
-      background: var(--ai-accent);
+      background: #b94613;
       color: var(--ai-surface);
       font: inherit;
       font-size: 0.9rem;
@@ -2088,8 +2101,8 @@
       --ai-line: #aeb9b9;
       --ai-accent: #d65f1d;
       --ai-accent-soft: #f5dfd0;
-      --ai-action: #1769d2;
-      --ai-action-hover: #0d4fa8;
+      --ai-action: #17232d;
+      --ai-action-hover: #283a47;
       --ai-radius: 4px;
     }
 
@@ -2184,7 +2197,7 @@
       border-radius: 4px;
       background: transparent;
       color: var(--ai-ink);
-      cursor: default;
+      cursor: pointer;
       transition: background 150ms ease, color 150ms ease;
     }
 
@@ -2290,50 +2303,125 @@
     }
 
     .ai-sample-gallery {
+      position: relative;
+      width: min(100%, 660px);
+      aspect-ratio: 4 / 2;
+      display: block;
       margin: 0;
       padding: 0;
       overflow: hidden;
-      border: 0;
+      border: 1px solid #17232d;
       border-radius: 6px;
       background: #101417;
-      box-shadow: 0 12px 30px rgba(23, 35, 45, 0.12);
+      box-shadow: 4px 4px 0 rgba(23, 35, 45, 0.14);
     }
 
     .ai-sample-grid {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      aspect-ratio: auto;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-rows: repeat(2, minmax(0, 1fr));
       border-radius: 0;
     }
 
+    .ai-gallery-head {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      background: transparent;
+      color: #f8f9f6;
+      pointer-events: none;
+    }
+
+    .ai-gallery-head > div {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    .ai-gallery-title {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0;
+      font-size: 1.05rem;
+      line-height: 1.2;
+      font-weight: 800;
+    }
+
+    .ai-gallery-title .ai-local-icon {
+      width: 22px;
+      height: 22px;
+      color: #ffb078;
+    }
+
+    .ai-gallery-copy {
+      margin: 8px 0 0;
+      color: #bdc6cb;
+      font-size: 0.84rem;
+      line-height: 1.45;
+      font-weight: 550;
+    }
+
     .ai-gallery-open {
-      min-height: 48px;
-      padding: 0 21px;
-      border: 2px solid #ffffff;
+      position: relative;
+      inset: auto;
+      z-index: 1;
+      min-height: 50px;
+      width: auto;
+      justify-content: center;
+      gap: 10px;
+      margin: 0;
+      padding: 0 22px;
+      border: 1px solid #ffb078;
       border-radius: 4px;
-      background: var(--ai-action);
+      background: var(--ai-accent);
       color: #ffffff;
-      box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.28);
+      box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.24);
       font-size: 15px;
       font-weight: 750;
+      transform: none;
+      pointer-events: auto;
+    }
+
+    .ai-gallery-open .ai-local-icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    .ai-viewer-button .ai-local-icon {
+      width: 22px;
+      height: 22px;
     }
 
     .ai-gallery-open:hover,
     .ai-gallery-open:focus-visible {
-      background: var(--ai-action-hover);
+      background: #92330b;
       color: #ffffff;
-      outline: 2px solid #ffffff;
-      outline-offset: 3px;
-      box-shadow: 4px 5px 0 rgba(0, 0, 0, 0.3);
-      transform: translate(-50%, calc(-50% - 1px));
+      outline: 2px solid #ffb078;
+      outline-offset: 2px;
+      box-shadow: 3px 4px 0 rgba(0, 0, 0, 0.28);
+      transform: translateY(-1px);
     }
 
     .ai-gallery-open:focus-visible {
-      outline: 2px solid #ffffff;
-      outline-offset: 3px;
-      box-shadow: 0 0 0 6px var(--ai-action), 4px 5px 0 rgba(0, 0, 0, 0.3);
+      outline: 2px solid #ffb078;
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px #17232d, 3px 4px 0 rgba(0, 0, 0, 0.28);
     }
 
     .ai-gallery-open:active {
       box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
-      transform: translate(-50%, calc(-50% + 1px));
+      transform: translateY(1px);
     }
 
     .ai-release-list {
@@ -2351,13 +2439,13 @@
       border: 1px solid rgba(23, 35, 45, 0.12);
       border-radius: 6px;
       background: var(--ai-surface);
-      box-shadow: 0 8px 24px rgba(23, 35, 45, 0.07);
+      box-shadow: 3px 3px 0 rgba(23, 35, 45, 0.09);
       transition: border-color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
     }
 
     .ai-feature:hover {
       border-color: rgba(23, 35, 45, 0.22);
-      box-shadow: 0 12px 30px rgba(23, 35, 45, 0.11);
+      box-shadow: 5px 5px 0 rgba(23, 35, 45, 0.12);
       transform: translateY(-2px);
     }
 
@@ -2409,6 +2497,11 @@
       color: var(--ai-action);
       box-shadow: none;
       font-weight: 750;
+    }
+
+    .ai-button.is-secondary .ai-hf-mark {
+      width: 22px;
+      height: 22px;
     }
 
     .ai-button.is-secondary:hover,
@@ -2504,6 +2597,46 @@
         font-size: 36px;
       }
 
+      .ai-sample-gallery {
+        aspect-ratio: 4 / 2;
+      }
+
+      .ai-sample-grid {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .ai-gallery-head {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        padding: 0;
+      }
+
+      .ai-gallery-head > div {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+      }
+
+      .ai-gallery-copy {
+        display: none;
+      }
+
+      .ai-gallery-open {
+        width: auto;
+        min-height: 42px;
+        margin: 0;
+        padding: 0 14px;
+        gap: 10px;
+      }
+
       .ai-release-list,
       .ai-panel[data-ai-panel="datasets"] .ai-release-list {
         grid-template-columns: 1fr;
@@ -2573,7 +2706,7 @@
       }
 
       .ai-sample-gallery {
-        box-shadow: 0 8px 22px rgba(23, 35, 45, 0.11);
+        box-shadow: 3px 3px 0 rgba(23, 35, 45, 0.14);
       }
 
       .ai-gallery-open {
@@ -2600,6 +2733,16 @@
 
       .ai-button.is-secondary {
         width: 100%;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .ai-tabs {
+        grid-template-columns: 1fr;
+      }
+
+      .ai-explore-dots {
+        gap: 6px;
       }
     }
   </style>
@@ -2656,31 +2799,31 @@
           <h1 class="ai-nav-title">AI Section</h1>
           <div class="ai-tabs" role="tablist" aria-label="AI sections">
             <button class="ai-tab" type="button" role="tab" data-ai-tab="models" aria-controls="ai-panel-models" aria-selected="false">
-              <span class="material-symbols-rounded ai-tab-icon" aria-hidden="true">memory</span>
+              <span class="ai-tab-icon ai-local-icon ai-icon-models" aria-hidden="true"></span>
               <span>
                 <span class="ai-tab-name">Models</span>
                 <span class="ai-tab-note">Checkpoints and demos</span>
               </span>
             </button>
             <button class="ai-tab" type="button" role="tab" data-ai-tab="datasets" aria-controls="ai-panel-datasets" aria-selected="false">
-              <span class="material-symbols-rounded ai-tab-icon" aria-hidden="true">database</span>
+              <span class="ai-tab-icon ai-local-icon ai-icon-datasets" aria-hidden="true"></span>
               <span>
                 <span class="ai-tab-name">Datasets</span>
                 <span class="ai-tab-note">Training collections</span>
               </span>
             </button>
             <button class="ai-tab is-active" type="button" role="tab" data-ai-tab="loras" aria-controls="ai-panel-loras" aria-selected="true">
-              <span class="material-symbols-rounded ai-tab-icon" aria-hidden="true">palette</span>
+              <span class="ai-tab-icon ai-local-icon ai-icon-loras" aria-hidden="true"></span>
               <span>
                 <span class="ai-tab-name">LoRAs</span>
                 <span class="ai-tab-note">Style adapters</span>
               </span>
             </button>
             <button class="ai-tab" type="button" role="tab" data-ai-tab="other" aria-controls="ai-panel-other" aria-selected="false">
-              <span class="material-symbols-rounded ai-tab-icon" aria-hidden="true">science</span>
+              <span class="ai-tab-icon ai-local-icon ai-icon-misc" aria-hidden="true"></span>
               <span>
                 <span class="ai-tab-name">Other</span>
-                <span class="ai-tab-note">Tools and tests</span>
+                <span class="ai-tab-note">Miscellaneous</span>
               </span>
             </button>
           </div>
@@ -2696,70 +2839,62 @@
               <div class="ai-gallery-head">
                 <div>
                   <h3 class="ai-gallery-title" id="ai-gallery-title">
-                    <span class="material-symbols-rounded" aria-hidden="true">photo_library</span>
-                    Explore
+                    <span class="ai-local-icon ai-icon-gallery" aria-hidden="true"></span>
+                    Gallery
                   </h3>
                   <p class="ai-gallery-copy">18 preview images across Watercolor Anime, Pointillism, and Storybook Anime.</p>
                 </div>
                 <button class="ai-gallery-open" type="button" data-ai-jump="explore">
                   Explore
-                  <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span>
+                  <span class="ai-local-icon ai-icon-arrow" aria-hidden="true"></span>
                 </button>
               </div>
               <div class="ai-sample-grid" aria-label="LoRA sample gallery preview">
                 <div class="ai-sample-tile" aria-hidden="true">
                   <img src="../assets/ai/thumbs/watercolor-anime_preview_01.jpg" alt="" loading="lazy" decoding="async">
                   <span class="ai-sample-label">
-                    <span class="material-symbols-rounded" aria-hidden="true">image</span>
                     Bamboo Valley Mist
                   </span>
                 </div>
                 <div class="ai-sample-tile" aria-hidden="true">
                   <img src="../assets/ai/thumbs/watercolor-anime_preview_02.jpg" alt="" loading="lazy" decoding="async">
                   <span class="ai-sample-label">
-                    <span class="material-symbols-rounded" aria-hidden="true">image</span>
                     Blue Jay on a Branch
                   </span>
                 </div>
                 <div class="ai-sample-tile" aria-hidden="true">
                   <img src="../assets/ai/thumbs/pointillism_preview_01.jpg" alt="" loading="lazy" decoding="async">
                   <span class="ai-sample-label">
-                    <span class="material-symbols-rounded" aria-hidden="true">image</span>
                     Rose Garden Nap
                   </span>
                 </div>
                 <div class="ai-sample-tile" aria-hidden="true">
                   <img src="../assets/ai/thumbs/pointillism_preview_02.jpg" alt="" loading="lazy" decoding="async">
                   <span class="ai-sample-label">
-                    <span class="material-symbols-rounded" aria-hidden="true">image</span>
                     Gemstone Grotto
                   </span>
                 </div>
                 <div class="ai-sample-tile" aria-hidden="true">
                   <img src="../assets/ai/thumbs/storybook-anime_preview_01.jpg" alt="" loading="lazy" decoding="async">
                   <span class="ai-sample-label">
-                    <span class="material-symbols-rounded" aria-hidden="true">image</span>
                     Strawberry Summer
                   </span>
                 </div>
                 <div class="ai-sample-tile" aria-hidden="true">
                   <img src="../assets/ai/thumbs/storybook-anime_preview_02.jpg" alt="" loading="lazy" decoding="async">
                   <span class="ai-sample-label">
-                    <span class="material-symbols-rounded" aria-hidden="true">image</span>
                     Blueberry Jam Afternoon
                   </span>
                 </div>
                 <div class="ai-sample-tile" aria-hidden="true">
                   <img src="../assets/ai/thumbs/watercolor-anime_preview_03.jpg" alt="" loading="lazy" decoding="async">
                   <span class="ai-sample-label">
-                    <span class="material-symbols-rounded" aria-hidden="true">image</span>
                     Butterfly Waltz
                   </span>
                 </div>
                 <div class="ai-sample-tile" aria-hidden="true">
                   <img src="../assets/ai/thumbs/pointillism_preview_03.jpg" alt="" loading="lazy" decoding="async">
                   <span class="ai-sample-label">
-                    <span class="material-symbols-rounded" aria-hidden="true">image</span>
                     Moonlit Lavender Aurora
                   </span>
                 </div>
@@ -2776,7 +2911,8 @@
                   <p class="ai-release-copy">Soft ink linework, pale paper texture, transparent washes, and quiet storybook-like scene mood.</p>
                   <div class="ai-actions">
                     <a class="ai-button is-secondary" href="https://huggingface.co/neonforestmist/qwen-image-2512-watercolor-anime-lora" target="_blank" rel="noopener noreferrer">
-                      Download
+                      <img class="ai-hf-mark" src="../assets/ai/storybook-anime-lora.png" alt="">
+                      <span>View in Hugging Face</span>
                     </a>
                   </div>
                 </div>
@@ -2791,7 +2927,8 @@
                   <p class="ai-release-copy">Dense paint dots, luminous color mixing, clear silhouettes, and decorative light patterns.</p>
                   <div class="ai-actions">
                     <a class="ai-button is-secondary" href="https://huggingface.co/neonforestmist/qwen-image-2512-pointillism-lora" target="_blank" rel="noopener noreferrer">
-                      Download
+                      <img class="ai-hf-mark" src="../assets/ai/storybook-anime-lora.png" alt="">
+                      <span>View in Hugging Face</span>
                     </a>
                   </div>
                 </div>
@@ -2806,7 +2943,8 @@
                   <p class="ai-release-copy">Warm hand-painted backgrounds, cozy scene design, gentle cel-shaded characters, and readable environment detail.</p>
                   <div class="ai-actions">
                     <a class="ai-button is-secondary" href="https://huggingface.co/neonforestmist/qwen-image-2512-storybook-anime-lora" target="_blank" rel="noopener noreferrer">
-                      Download
+                      <img class="ai-hf-mark" src="../assets/ai/storybook-anime-lora.png" alt="">
+                      <span>View in Hugging Face</span>
                     </a>
                   </div>
                 </div>
@@ -2821,7 +2959,8 @@
                   <p class="ai-release-copy">A storybook-anime adapter for FLUX.2 Klein 9B, kept here as the earlier FLUX release.</p>
                   <div class="ai-actions">
                     <a class="ai-button is-secondary" href="https://huggingface.co/neonforestmist/flux-storybook-anime-lora-v1" target="_blank" rel="noopener noreferrer">
-                      Download
+                      <img class="ai-hf-mark" src="../assets/ai/storybook-anime-lora.png" alt="">
+                      <span>View in Hugging Face</span>
                     </a>
                   </div>
                 </div>
@@ -2830,12 +2969,13 @@
           </section>
 
           <section class="ai-panel" id="ai-panel-explore" data-ai-panel="explore" aria-labelledby="ai-title-explore" role="dialog" aria-modal="true" hidden>
+            <h2 class="ai-visually-hidden" id="ai-title-explore">LoRA Gallery</h2>
             <div class="ai-explore-bar">
               <button class="ai-viewer-button" type="button" data-gallery-grid aria-label="Gallery index">
-                <span class="material-symbols-rounded" aria-hidden="true">grid_view</span>
+                <span class="ai-local-icon ai-icon-grid" aria-hidden="true"></span>
               </button>
               <button class="ai-viewer-button" type="button" data-ai-jump="loras" aria-label="Close Explore">
-                <span class="material-symbols-rounded" aria-hidden="true">close</span>
+                <span class="ai-local-icon ai-icon-close" aria-hidden="true"></span>
               </button>
             </div>
 
@@ -2922,7 +3062,7 @@
                   <img src="../assets/ai/watercolor-anime/preview_01.png" alt="Bamboo Valley Mist" data-gallery-detail-image>
                 </div>
                 <div class="ai-detail-info">
-                  <h2 class="ai-explore-title" id="ai-title-explore" data-gallery-detail-title>Bamboo Valley Mist</h2>
+                  <h2 class="ai-explore-title" data-gallery-detail-title>Bamboo Valley Mist</h2>
                   <div class="ai-detail-meta" aria-label="Selected sample details">
                     <span data-gallery-detail-style>Watercolor Anime</span>
                     <span>1024 x 1024</span>
@@ -2930,7 +3070,7 @@
                   <div class="ai-explore-actions">
                     <a class="ai-explore-link" href="https://huggingface.co/neonforestmist/qwen-image-2512-watercolor-anime-lora" target="_blank" rel="noopener noreferrer" data-gallery-detail-link>
                       <img class="ai-hf-mark" src="../assets/ai/storybook-anime-lora.png" alt="">
-                      <span data-gallery-detail-link-label>Download</span>
+                      <span data-gallery-detail-link-label>View in Hugging Face</span>
                     </a>
                   </div>
                 </div>
@@ -2996,12 +3136,12 @@
 
           <section class="ai-panel" id="ai-panel-other" data-ai-panel="other" role="tabpanel" aria-labelledby="ai-title-other" hidden>
             <div class="ai-section-head">
-              <h2 class="ai-section-title" id="ai-title-other">Other</h2>
+              <h2 class="ai-section-title" id="ai-title-other">Miscellaneous</h2>
               <p class="ai-section-copy">Prompts, workflows, and small experiments that do not fit the main categories.</p>
             </div>
             <div class="ai-empty">
               <div>
-                <h3>No other entries yet</h3>
+                <h3>No miscellaneous entries yet</h3>
                 <p>Miscellaneous AI notes will be listed here.</p>
               </div>
             </div>
@@ -3059,7 +3199,7 @@
         detailTitle.textContent = card.dataset.galleryTitle || "Gallery image";
         detailStyle.textContent = selectedStyle;
         detailLink.href = card.dataset.galleryLink || detailLink.href;
-        detailLinkLabel.textContent = "Download";
+        detailLinkLabel.textContent = "View in Hugging Face";
 
         galleryDots.forEach((dot) => {
           const isActive = Number(dot.dataset.galleryDot) === index;
