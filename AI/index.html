@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../main.css">
-  <script defer src="/nav-scroll.js"></script>
+  <link rel="stylesheet" href="../main.css?v=mobile-nav-sheet-6">
+  <script defer src="/nav-scroll.js?v=mobile-nav-sheet-6"></script>
   <link rel="icon" type="image/png" href="/assets/favicon.png" />
   <link rel="shortcut icon" href="/assets/favicon.ico" />
   <link rel="apple-touch-icon" href="/assets/favicon.png" />
@@ -2431,6 +2431,7 @@
       margin-top: 38px;
     }
 
+    .ai-panel[data-ai-panel="models"] .ai-release-list,
     .ai-panel[data-ai-panel="datasets"] .ai-release-list {
       grid-template-columns: minmax(0, 680px);
     }
@@ -2461,6 +2462,34 @@
       aspect-ratio: 2 / 1;
       border-radius: 0;
       box-shadow: none;
+    }
+
+    .ai-feature-art img.ai-model-banner {
+      aspect-ratio: 5 / 2;
+      object-fit: cover;
+    }
+
+    .ai-feature-art img.ai-model-banner.is-two-one {
+      aspect-ratio: 2 / 1;
+    }
+
+    .ai-model-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      aspect-ratio: 3 / 1;
+      overflow: hidden;
+      background: #d9e5dc;
+    }
+
+    .ai-feature-art .ai-model-gallery img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+
+    .ai-feature-art .ai-model-gallery img + img {
+      border-left: 1px solid rgba(23, 35, 45, 0.2);
     }
 
     .ai-feature-body {
@@ -2749,6 +2778,1088 @@
         gap: 6px;
       }
     }
+
+    /* App Store style glass chooser for the AI catalog. */
+    :root {
+      --ai-page: #f6f8fb;
+      --ai-surface: rgba(255, 255, 255, 0.82);
+      --ai-surface-2: #eef3f8;
+      --ai-rail: rgba(255, 255, 255, 0.76);
+      --ai-ink: #17212b;
+      --ai-muted: #60707f;
+      --ai-line: rgba(23, 33, 43, 0.12);
+      --ai-accent: #99552c;
+      --ai-accent-soft: rgba(248, 224, 211, 0.9);
+      --ai-action: #1d73e8;
+      --ai-action-hover: #155fc0;
+      --ai-radius: 20px;
+    }
+
+    body {
+      background:
+        linear-gradient(180deg, #fafbfe 0%, #f2f5f9 48%, #eef3f8 100%);
+      color: var(--ai-ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .ai-page {
+      width: min(100%, 1240px);
+      padding: 36px 34px 78px;
+    }
+
+    .ai-workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 30px;
+      padding-top: 0;
+    }
+
+    .ai-nav {
+      position: relative;
+      top: auto;
+      width: min(100%, 620px);
+      align-self: start;
+      overflow: hidden;
+      padding: 0;
+      border: 1px solid rgba(23, 33, 43, 0.13);
+      border-radius: 20px;
+      background:
+        linear-gradient(140deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.62)),
+        var(--ai-rail);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.82),
+        0 22px 70px rgba(76, 91, 113, 0.14);
+      backdrop-filter: blur(22px) saturate(170%);
+      -webkit-backdrop-filter: blur(22px) saturate(170%);
+    }
+
+    .ai-nav::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.58), transparent 45%, rgba(255, 255, 255, 0.34)),
+        radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.8), transparent 36%);
+    }
+
+    .ai-nav-title {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      padding: 26px 30px 22px;
+      border-bottom: 1px solid rgba(23, 33, 43, 0.11);
+      color: #5f6a73;
+      font-family: inherit;
+      font-size: 24px;
+      line-height: 1.15;
+      font-weight: 760;
+      letter-spacing: 0;
+    }
+
+    .ai-tabs {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      padding: 24px 10px 10px;
+      background: transparent;
+    }
+
+    .ai-tab {
+      --ai-tab-active-bg: rgba(226, 236, 250, 0.86);
+      --ai-tab-active-fg: #1f5fb5;
+      --ai-tab-active-note: #4f5d6b;
+      position: relative;
+      display: grid;
+      grid-template-columns: 40px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+      min-width: 0;
+      min-height: 110px;
+      width: 100%;
+      padding: 24px 24px 22px;
+      border: 0;
+      border-radius: 8px;
+      background: transparent;
+      color: var(--ai-ink);
+      box-shadow: none;
+      text-align: left;
+      cursor: pointer;
+      transition: background 180ms ease, color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .ai-tab[data-ai-tab="datasets"] {
+      --ai-tab-active-bg: rgba(231, 238, 246, 0.9);
+      --ai-tab-active-fg: #36556e;
+      --ai-tab-active-note: #526171;
+    }
+
+    .ai-tab[data-ai-tab="loras"] {
+      --ai-tab-active-bg: var(--ai-accent-soft);
+      --ai-tab-active-fg: var(--ai-accent);
+      --ai-tab-active-note: #615048;
+    }
+
+    .ai-tab[data-ai-tab="other"] {
+      --ai-tab-active-bg: rgba(233, 240, 246, 0.88);
+      --ai-tab-active-fg: #344b60;
+      --ai-tab-active-note: #576777;
+    }
+
+    .ai-tab-icon {
+      width: 32px;
+      height: 32px;
+      margin-top: 2px;
+      color: #66737f;
+      transition: color 180ms ease;
+      font-variation-settings: "FILL" 0, "wght" 520, "GRAD" 0, "opsz" 24;
+    }
+
+    .ai-tab-name {
+      display: block;
+      color: #17212b;
+      font-size: clamp(1.45rem, 2.2vw, 1.85rem);
+      line-height: 1.05;
+      font-weight: 820;
+      letter-spacing: 0;
+    }
+
+    .ai-tab-note {
+      display: block;
+      margin-top: 8px;
+      color: var(--ai-muted);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: clamp(0.86rem, 1.4vw, 1.03rem);
+      line-height: 1.35;
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+
+    .ai-tab:hover {
+      background: rgba(236, 242, 249, 0.72);
+      color: var(--ai-ink);
+      outline: none;
+      transform: translateY(-1px);
+    }
+
+    .ai-tab:focus-visible {
+      background: rgba(236, 242, 249, 0.86);
+      color: var(--ai-ink);
+      outline: 2px solid rgba(29, 115, 232, 0.54);
+      outline-offset: -2px;
+    }
+
+    .ai-tab:active {
+      transform: translateY(1px);
+    }
+
+    .ai-tab.is-active {
+      background: var(--ai-tab-active-bg);
+      color: var(--ai-tab-active-fg);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.62);
+    }
+
+    .ai-tab.is-active .ai-tab-icon,
+    .ai-tab.is-active .ai-tab-name {
+      color: var(--ai-tab-active-fg);
+    }
+
+    .ai-tab.is-active .ai-tab-icon,
+    .ai-tab.is-active:hover .ai-tab-icon,
+    .ai-tab.is-active:focus-visible .ai-tab-icon {
+      color: var(--ai-tab-active-fg);
+      font-variation-settings: "FILL" 1, "wght" 650, "GRAD" 0, "opsz" 24;
+    }
+
+    .ai-tab.is-active .ai-tab-note {
+      color: var(--ai-tab-active-note);
+    }
+
+    .ai-main {
+      width: min(100%, 980px);
+      max-width: none;
+      padding-left: 0;
+    }
+
+    .ai-section-head {
+      max-width: 680px;
+      margin-bottom: 22px;
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .ai-section-title {
+      color: var(--ai-ink);
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      line-height: 1.03;
+      font-weight: 820;
+      letter-spacing: 0;
+    }
+
+    .ai-section-copy {
+      max-width: 620px;
+      margin: 10px 0 0;
+      color: var(--ai-muted);
+      font-size: 1rem;
+      line-height: 1.55;
+      font-weight: 500;
+    }
+
+    .ai-sample-gallery {
+      position: relative;
+      display: grid;
+      gap: 14px;
+      width: min(100%, 860px);
+      aspect-ratio: auto;
+      margin: 0;
+      padding: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(23, 33, 43, 0.12);
+      border-radius: 22px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(247, 250, 253, 0.74)),
+        rgba(255, 255, 255, 0.76);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.82),
+        0 18px 54px rgba(76, 91, 113, 0.13);
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+    }
+
+    .ai-gallery-head {
+      position: relative;
+      inset: auto;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 4px 4px 0;
+      background: transparent;
+      color: var(--ai-ink);
+      pointer-events: auto;
+    }
+
+    .ai-gallery-head > div,
+    .ai-gallery-title,
+    .ai-gallery-copy {
+      position: static;
+      width: auto;
+      height: auto;
+      overflow: visible;
+      clip: auto;
+      clip-path: none;
+      white-space: normal;
+    }
+
+    .ai-gallery-title {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0;
+      color: var(--ai-ink);
+      font-size: 1rem;
+      line-height: 1.2;
+      font-weight: 780;
+    }
+
+    .ai-gallery-title .ai-local-icon {
+      width: 20px;
+      height: 20px;
+      color: var(--ai-action);
+    }
+
+    .ai-gallery-copy {
+      margin: 5px 0 0;
+      color: var(--ai-muted);
+      font-size: 0.9rem;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+
+    .ai-gallery-open {
+      position: static;
+      inset: auto;
+      z-index: 1;
+      min-height: 40px;
+      width: auto;
+      justify-content: center;
+      gap: 8px;
+      margin: 0;
+      padding: 0 16px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(238, 244, 252, 0.96);
+      color: var(--ai-action);
+      box-shadow: none;
+      font-size: 0.92rem;
+      font-weight: 740;
+      transform: none;
+      pointer-events: auto;
+    }
+
+    .ai-gallery-open .ai-local-icon {
+      width: 17px;
+      height: 17px;
+    }
+
+    .ai-gallery-open:hover,
+    .ai-gallery-open:focus-visible {
+      background: #e5f0ff;
+      color: var(--ai-action-hover);
+      outline: 2px solid rgba(29, 115, 232, 0.34);
+      outline-offset: 2px;
+      box-shadow: none;
+      transform: translateY(-1px);
+    }
+
+    .ai-gallery-open:active {
+      box-shadow: none;
+      transform: translateY(1px);
+    }
+
+    .ai-sample-grid {
+      position: relative;
+      inset: auto;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 2 / 1;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+      overflow: hidden;
+      border-radius: 16px;
+      background: rgba(214, 224, 235, 0.72);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .ai-sample-tile {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      background: #e8eef5;
+      color: var(--ai-ink);
+    }
+
+    .ai-sample-tile img {
+      width: 100%;
+      height: 100%;
+      max-height: none;
+      margin: 0;
+      border-radius: 0;
+      object-fit: cover;
+    }
+
+    .ai-sample-label {
+      position: absolute;
+      right: 8px;
+      bottom: 8px;
+      left: 8px;
+      width: auto;
+      height: auto;
+      overflow: hidden;
+      clip: auto;
+      clip-path: none;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      padding: 5px 7px;
+      border: 1px solid rgba(255, 255, 255, 0.62);
+      border-radius: 9px;
+      background: rgba(255, 255, 255, 0.74);
+      color: #21303d;
+      box-shadow: 0 5px 15px rgba(25, 34, 44, 0.12);
+      backdrop-filter: blur(14px) saturate(150%);
+      -webkit-backdrop-filter: blur(14px) saturate(150%);
+      font-size: 0.68rem;
+      line-height: 1.2;
+      font-weight: 720;
+      white-space: normal;
+    }
+
+    .ai-release-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .ai-panel[data-ai-panel="models"] .ai-release-list,
+    .ai-panel[data-ai-panel="datasets"] .ai-release-list {
+      grid-template-columns: minmax(0, 720px);
+    }
+
+    .ai-feature {
+      border: 1px solid rgba(23, 33, 43, 0.1);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.84);
+      box-shadow: 0 16px 44px rgba(76, 91, 113, 0.12);
+      transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .ai-feature:hover {
+      border-color: rgba(29, 115, 232, 0.22);
+      box-shadow: 0 20px 54px rgba(76, 91, 113, 0.16);
+      transform: translateY(-2px);
+    }
+
+    .ai-feature-art {
+      padding: 8px;
+      border: 0;
+      background: var(--ai-thumb-bg, var(--ai-surface-2));
+    }
+
+    .ai-feature-art img {
+      border-radius: 12px;
+      box-shadow: none;
+    }
+
+    .ai-feature-body {
+      padding: 18px 20px 20px;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .ai-release-title {
+      color: var(--ai-ink);
+      font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+      line-height: 1.18;
+      font-weight: 780;
+      letter-spacing: 0;
+    }
+
+    .ai-release-copy {
+      margin-top: 8px;
+      color: var(--ai-muted);
+      font-size: 0.94rem;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .ai-button.is-secondary {
+      min-height: 38px;
+      padding: 0 14px 0 9px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(238, 244, 252, 0.96);
+      color: var(--ai-action);
+      box-shadow: none;
+      font-weight: 740;
+    }
+
+    .ai-button.is-secondary:hover,
+    .ai-button.is-secondary:focus-visible {
+      border-color: transparent;
+      background: var(--ai-action);
+      color: #ffffff;
+      outline: 2px solid rgba(29, 115, 232, 0.34);
+      outline-offset: 2px;
+    }
+
+    .ai-empty {
+      border: 1px solid rgba(23, 33, 43, 0.12);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.78);
+      color: var(--ai-muted);
+      box-shadow: 0 16px 44px rgba(76, 91, 113, 0.1);
+    }
+
+    @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+      .ai-nav,
+      .ai-sample-gallery {
+        background: rgba(255, 255, 255, 0.96);
+      }
+
+      .ai-sample-label {
+        background: rgba(255, 255, 255, 0.94);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ai-tab,
+      .ai-gallery-open,
+      .ai-feature,
+      .ai-button {
+        transition: none;
+      }
+
+      .ai-tab:hover,
+      .ai-feature:hover,
+      .ai-gallery-open:hover {
+        transform: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .ai-page {
+        padding: 28px 18px 60px;
+      }
+
+      .ai-nav {
+        width: 100%;
+        border-radius: 18px;
+      }
+
+      .ai-nav-title {
+        padding: 22px 22px 18px;
+        font-size: 22px;
+      }
+
+      .ai-tabs {
+        gap: 6px;
+        padding: 14px 8px 8px;
+      }
+
+      .ai-tab {
+        min-height: 94px;
+        grid-template-columns: 32px minmax(0, 1fr);
+        gap: 13px;
+        padding: 18px 15px 16px;
+      }
+
+      .ai-tab-icon {
+        width: 26px;
+        height: 26px;
+      }
+
+      .ai-tab-name {
+        font-size: 1.28rem;
+      }
+
+      .ai-tab-note {
+        margin-top: 6px;
+        font-size: 0.76rem;
+      }
+
+      .ai-gallery-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .ai-gallery-open {
+        width: 100%;
+      }
+
+      .ai-sample-grid {
+        aspect-ratio: 1.25 / 1;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(4, minmax(0, 1fr));
+      }
+
+      .ai-release-list,
+      .ai-panel[data-ai-panel="models"] .ai-release-list,
+      .ai-panel[data-ai-panel="datasets"] .ai-release-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .ai-page {
+        padding-right: 14px;
+        padding-left: 14px;
+      }
+
+      .ai-tabs {
+        grid-template-columns: 1fr;
+      }
+
+      .ai-tab {
+        min-height: 82px;
+      }
+    }
+
+    /* Corrected App Store-style rail for AI: sidebar on desktop, tabbar on mobile. */
+    .ai-page {
+      width: min(100%, 1280px);
+      padding: 36px 24px 78px;
+    }
+
+    .ai-workspace {
+      grid-template-columns: 264px minmax(0, 1fr);
+      gap: 28px;
+      align-items: start;
+      padding-top: 0;
+    }
+
+    .ai-nav {
+      position: sticky;
+      top: 92px;
+      width: auto;
+      height: calc(100dvh - 116px);
+      min-height: 420px;
+      max-height: 680px;
+      display: flex;
+      flex-direction: column;
+      padding: 18px 14px;
+      border: 1px solid rgba(29, 29, 31, 0.12);
+      border-radius: 26px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(247, 249, 253, 0.7));
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.92),
+        0 22px 54px rgba(49, 64, 90, 0.12);
+      overflow: hidden;
+      backdrop-filter: blur(18px) saturate(145%);
+      -webkit-backdrop-filter: blur(18px) saturate(145%);
+    }
+
+    .ai-nav::before {
+      display: none;
+    }
+
+    .ai-nav-title {
+      display: flex;
+      align-items: center;
+      min-height: 46px;
+      margin: 0;
+      padding: 4px 9px 14px;
+      border: 0;
+      color: var(--ai-ink);
+      font-size: 22px;
+      line-height: 1;
+      font-weight: 750;
+      letter-spacing: 0;
+    }
+
+    .ai-tabs {
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 4px;
+      border-radius: 18px;
+      background: transparent;
+    }
+
+    .ai-tab {
+      --ai-tab-active-bg: rgba(0, 113, 227, 0.1);
+      --ai-tab-active-fg: #0071e3;
+      --ai-tab-active-note: #4f5966;
+      width: 100%;
+      min-height: 68px;
+      display: grid;
+      grid-template-columns: 24px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      padding: 10px 12px;
+      border: 0;
+      border-radius: 14px;
+      background: transparent;
+      color: var(--ai-ink);
+      box-shadow: none;
+      transition: background 0.16s ease, color 0.16s ease;
+    }
+
+    .ai-tab[data-ai-tab="models"] {
+      --ai-tab-active-bg: rgba(0, 113, 227, 0.1);
+      --ai-tab-active-fg: #0071e3;
+    }
+
+    .ai-tab[data-ai-tab="datasets"] {
+      --ai-tab-active-bg: rgba(21, 128, 61, 0.12);
+      --ai-tab-active-fg: #15803d;
+    }
+
+    .ai-tab[data-ai-tab="loras"] {
+      --ai-tab-active-bg: rgba(194, 65, 12, 0.12);
+      --ai-tab-active-fg: #c2410c;
+      --ai-tab-active-note: #5d6971;
+    }
+
+    .ai-tab[data-ai-tab="other"] {
+      --ai-tab-active-bg: rgba(124, 58, 237, 0.12);
+      --ai-tab-active-fg: #7c3aed;
+    }
+
+    .ai-tab:hover,
+    .ai-tab:focus-visible {
+      background: var(--ai-tab-active-bg);
+      color: var(--ai-tab-active-fg);
+      outline: none;
+      transform: none;
+    }
+
+    .ai-tab:focus-visible {
+      outline: 2px solid rgba(0, 113, 227, 0.42);
+      outline-offset: 2px;
+    }
+
+    .ai-tab.is-active {
+      background: var(--ai-tab-active-bg);
+      color: var(--ai-tab-active-fg);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.75),
+        0 1px 8px rgba(29, 29, 31, 0.06);
+    }
+
+    .ai-tab-icon {
+      width: 20px;
+      height: 20px;
+      margin-top: 0;
+      color: #66737f;
+    }
+
+    .ai-tab-name {
+      color: inherit;
+      font-size: 15px;
+      line-height: 1.2;
+      font-weight: 650;
+    }
+
+    .ai-tab-note {
+      margin-top: 3px;
+      color: var(--ai-muted);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 12px;
+      line-height: 1.25;
+      font-weight: 500;
+    }
+
+    .ai-tab:hover .ai-tab-icon,
+    .ai-tab:hover .ai-tab-name,
+    .ai-tab.is-active .ai-tab-icon,
+    .ai-tab.is-active .ai-tab-name {
+      color: var(--ai-tab-active-fg);
+    }
+
+    .ai-main {
+      width: 100%;
+      max-width: none;
+      padding: 32px 40px 64px;
+    }
+
+    .ai-section-head {
+      max-width: none;
+      margin-bottom: 24px;
+    }
+
+    .ai-section-title {
+      font-size: 42px;
+      line-height: 1.05;
+      font-weight: 800;
+    }
+
+    .ai-sample-gallery {
+      position: relative;
+      width: min(100%, 720px);
+      aspect-ratio: 3 / 2;
+      min-height: 0;
+      display: block;
+      margin: 0;
+      padding: 16px;
+      border: 1px solid rgba(12, 17, 22, 0.2);
+      border-radius: 26px;
+      background: #24282d;
+      overflow: hidden;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 18px 48px rgba(39, 50, 64, 0.18);
+    }
+
+    .ai-sample-gallery::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: calc(100% - 32px);
+      height: auto;
+      aspect-ratio: 3 / 2;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      border-radius: 18px;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04) 30%, rgba(0, 0, 0, 0.08) 100%);
+      pointer-events: none;
+    }
+
+    .ai-gallery-head {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      min-height: 0;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      pointer-events: none;
+    }
+
+    .ai-gallery-head > div {
+      display: none;
+    }
+
+    .ai-gallery-copy {
+      display: none;
+    }
+
+    .ai-sample-grid {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 0;
+      width: calc(100% - 32px);
+      height: auto;
+      aspect-ratio: 3 / 2;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      padding: 0;
+      border-radius: 18px;
+      background: #24282d;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .ai-sample-tile {
+      overflow: hidden;
+      border-radius: 12px;
+      background: #171a1e;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+      aspect-ratio: 1 / 1;
+    }
+
+    .ai-sample-tile:nth-child(n + 7) {
+      display: none;
+    }
+
+    .ai-sample-tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .ai-sample-label {
+      display: none;
+    }
+
+    .ai-gallery-open {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      justify-self: center;
+      align-self: center;
+      min-height: 48px;
+      width: auto;
+      min-width: 104px;
+      max-width: max-content;
+      padding: 0 20px;
+      border-radius: 999px;
+      font-size: 16px;
+      font-weight: 750;
+      color: #000000;
+      pointer-events: auto;
+      transform: translate(-50%, -50%);
+    }
+
+    .ai-gallery-open:hover,
+    .ai-gallery-open:focus-visible {
+      color: #000000;
+      transform: translate(-50%, calc(-50% - 1px));
+    }
+
+    .ai-gallery-open:active {
+      transform: translate(-50%, calc(-50% + 1px));
+    }
+
+    .ai-panel[data-ai-panel="explore"] .ai-viewer-button {
+      color: #000000;
+    }
+
+    .ai-panel[data-ai-panel="explore"] .ai-viewer-button .ai-local-icon {
+      color: #000000;
+      background: #000000;
+    }
+
+    @media (max-width: 960px) {
+      .ai-page {
+        width: 100%;
+        padding: 28px 16px 64px;
+      }
+
+      .ai-workspace {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        gap: 22px;
+      }
+
+      .ai-nav {
+        position: static;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        max-height: none;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        overflow: visible;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        align-items: center;
+      }
+
+      .ai-nav-title {
+        display: none;
+      }
+
+      .ai-tabs {
+        width: max-content;
+        max-width: 100%;
+        height: 54px;
+        min-height: 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        margin: 0 auto;
+        padding: 5px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        border-radius: 27px;
+        background: rgba(255, 255, 255, 0.78);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.78),
+          0 12px 34px rgba(44, 57, 79, 0.12);
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .ai-tabs::-webkit-scrollbar {
+        display: none;
+      }
+
+      .ai-tab,
+      .ai-tab[data-ai-tab] {
+        width: auto;
+        min-width: 0;
+        max-width: none;
+        height: 44px;
+        min-height: 44px;
+        flex: 0 0 auto;
+        grid-template-columns: 17px max-content;
+        justify-content: center;
+        gap: 7px;
+        padding: 0 14px;
+        border-radius: 22px;
+      }
+
+      .ai-tab.is-active {
+        background: var(--ai-tab-active-bg);
+        color: var(--ai-tab-active-fg);
+      }
+
+      .ai-tab.is-active .ai-tab-icon,
+      .ai-tab.is-active .ai-tab-name {
+        color: var(--ai-tab-active-fg);
+      }
+
+      .ai-tab-icon {
+        width: 17px;
+        height: 17px;
+      }
+
+      .ai-tab-name {
+        font-size: 14px;
+      }
+
+      .ai-tab-note {
+        display: none;
+      }
+
+      .ai-main {
+        padding: 0;
+      }
+
+      .ai-sample-gallery {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .ai-tabs {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        min-height: 98px;
+        gap: 4px;
+        padding: 5px;
+        overflow: hidden;
+        border-radius: 22px;
+      }
+
+      .ai-tab,
+      .ai-tab[data-ai-tab] {
+        width: 100%;
+        height: 42px;
+        min-height: 42px;
+        grid-template-columns: 17px minmax(0, max-content);
+        padding: 0 10px;
+        border-radius: 17px;
+      }
+
+      .ai-section-title {
+        font-size: 36px;
+      }
+
+      .ai-sample-gallery {
+        padding: 12px;
+      }
+
+      .ai-gallery-head {
+        min-height: 0;
+      }
+
+      .ai-gallery-open {
+        width: auto;
+        min-width: 96px;
+        max-width: max-content;
+        min-height: 44px;
+        padding-inline: 18px;
+      }
+
+      .ai-sample-grid,
+      .ai-sample-gallery::after {
+        width: calc(100% - 24px);
+        border-radius: 16px;
+      }
+
+      .ai-sample-grid {
+        gap: 6px;
+      }
+
+      .ai-sample-tile {
+        border-radius: 10px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .ai-tabs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .ai-tab,
+      .ai-tab[data-ai-tab] {
+        gap: 0;
+        padding-inline: 8px;
+      }
+
+      .ai-tab-icon {
+        display: none;
+      }
+
+      .ai-tab-name {
+        font-size: 13px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2850,7 +3961,6 @@
                 </div>
                 <button class="ai-gallery-open" type="button" data-ai-jump="explore">
                   Explore
-                  <span class="ai-local-icon ai-icon-arrow" aria-hidden="true"></span>
                 </button>
               </div>
               <div class="ai-sample-grid" aria-label="LoRA sample gallery preview">
@@ -3074,7 +4184,7 @@
                   <div class="ai-explore-actions">
                     <a class="ai-explore-link" href="https://huggingface.co/neonforestmist/qwen-image-2512-watercolor-anime-lora" target="_blank" rel="noopener noreferrer" data-gallery-detail-link>
                       <img class="ai-hf-mark" src="../assets/ai/storybook-anime-lora.png" alt="">
-                      <span data-gallery-detail-link-label>View in Hugging Face</span>
+                      <span data-gallery-detail-link-label>View LoRA in Hugging Face</span>
                     </a>
                   </div>
                 </div>
@@ -3107,11 +4217,38 @@
               <h2 class="ai-section-title" id="ai-title-models">Models</h2>
               <p class="ai-section-copy">Full model releases and hosted demos are tracked separately from LoRA adapters.</p>
             </div>
-            <div class="ai-empty">
-              <div>
-                <h3>No models yet</h3>
-                <p>Published checkpoints and demos will be added when they are ready.</p>
-              </div>
+            <div class="ai-release-list">
+              <article class="ai-feature" id="clover-image-tiny" style="--ai-thumb-bg: #eef5f1; --ai-cell-bg: #f3f8f5;">
+                <div class="ai-feature-art">
+                  <img class="ai-model-banner" src="../assets/clover-image-tiny-banner.png" alt="Clover Image Tiny image model banner" loading="lazy" decoding="async">
+                </div>
+                <div class="ai-feature-body">
+                  <h3 class="ai-release-title">Clover Image Tiny</h3>
+                  <p class="ai-release-copy">A compact image model release for lightweight generation experiments and visual demos.</p>
+                  <div class="ai-actions">
+                    <a class="ai-button is-secondary" href="https://huggingface.co/neonforestmist/Clover-Image-Tiny" target="_blank" rel="noopener noreferrer">
+                      <img class="ai-hf-mark" src="../assets/ai/storybook-anime-lora.png" alt="">
+                      <span>View in Hugging Face</span>
+                    </a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="ai-feature" id="smolgpt-fables" style="--ai-thumb-bg: #d9e5dc; --ai-cell-bg: #eef4ef;">
+                <div class="ai-feature-art">
+                  <img class="ai-model-banner is-two-one" src="../assets/smol-gpt-fables-banner.png" alt="SmolGPT-Fables model banner" loading="lazy" decoding="async">
+                </div>
+                <div class="ai-feature-body">
+                  <h3 class="ai-release-title">SmolGPT-Fables</h3>
+                  <p class="ai-release-copy">A 6,032,640-parameter English model trained from scratch for structured Markdown stories, continuations, editorial passes, and bounded image-generation intents.</p>
+                  <div class="ai-actions">
+                    <a class="ai-button is-secondary" href="https://huggingface.co/neonforestmist/smolgpt-fables" target="_blank" rel="noopener noreferrer">
+                      <img class="ai-hf-mark" src="../assets/ai/storybook-anime-lora.png" alt="">
+                      <span>View in Hugging Face</span>
+                    </a>
+                  </div>
+                </div>
+              </article>
             </div>
           </section>
 
@@ -3121,6 +4258,25 @@
               <p class="ai-section-copy">Training collections, source notes, and license details are grouped here.</p>
             </div>
             <div class="ai-release-list">
+              <article class="ai-feature" id="smolgpt-markdown-stories" style="--ai-thumb-bg: #dfe9df; --ai-cell-bg: #f0f5ee;">
+                <div class="ai-feature-art">
+                  <div class="ai-model-gallery">
+                    <img src="https://huggingface.co/neonforestmist/smolgpt-fables/resolve/main/assets/genre-gallery/solarpunk.png" alt="Children harvest fruit beside a green canal city" loading="lazy" decoding="async">
+                    <img src="https://huggingface.co/neonforestmist/smolgpt-fables/resolve/main/assets/genre-gallery/mystery.png" alt="A child detective follows silver feathers through a moonlit greenhouse" loading="lazy" decoding="async">
+                    <img src="https://huggingface.co/neonforestmist/smolgpt-fables/resolve/main/assets/genre-gallery/adventure.png" alt="A young navigator and shaggy dog sail a red airship" loading="lazy" decoding="async">
+                  </div>
+                </div>
+                <div class="ai-feature-body">
+                  <h3 class="ai-release-title">SmolGPT Markdown Stories</h3>
+                  <p class="ai-release-copy">A deterministic synthetic corpus of 4,800 Markdown artifacts across 800 story families and 25 balanced genres, with stories, canvases, and orchestration episodes.</p>
+                  <div class="ai-actions">
+                    <a class="ai-button is-secondary" href="https://huggingface.co/datasets/neonforestmist/smolgpt-markdown-stories" target="_blank" rel="noopener noreferrer">
+                      Open dataset
+                    </a>
+                  </div>
+                </div>
+              </article>
+
               <article class="ai-feature" id="gpt-pointillism-style-images-dataset" style="--ai-thumb-bg: #f1e6cf; --ai-cell-bg: #fbf2dc;">
                 <div class="ai-feature-art">
                   <img src="../assets/ai/thumbs/qwen-pointillism-lora-banner.png" alt="GPT Pointillism Style Images dataset preview" loading="lazy" decoding="async">
@@ -3203,7 +4359,7 @@
         detailTitle.textContent = card.dataset.galleryTitle || "Gallery image";
         detailStyle.textContent = selectedStyle;
         detailLink.href = card.dataset.galleryLink || detailLink.href;
-        detailLinkLabel.textContent = "View in Hugging Face";
+        detailLinkLabel.textContent = "View LoRA in Hugging Face";
 
         galleryDots.forEach((dot) => {
           const isActive = Number(dot.dataset.galleryDot) === index;
