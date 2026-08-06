@@ -3913,7 +3913,7 @@
         <aside class="ai-nav" aria-label="AI sections">
           <h1 class="ai-nav-title">AI Section</h1>
           <div class="ai-tabs" role="tablist" aria-label="AI sections">
-            <button class="ai-tab" type="button" role="tab" data-ai-tab="models" aria-controls="ai-panel-models" aria-selected="false">
+            <button class="ai-tab is-active" type="button" role="tab" data-ai-tab="models" aria-controls="ai-panel-models" aria-selected="true">
               <span class="ai-tab-icon ai-local-icon ai-icon-models" aria-hidden="true"></span>
               <span>
                 <span class="ai-tab-name">Models</span>
@@ -3927,7 +3927,7 @@
                 <span class="ai-tab-note">Training collections</span>
               </span>
             </button>
-            <button class="ai-tab is-active" type="button" role="tab" data-ai-tab="loras" aria-controls="ai-panel-loras" aria-selected="true">
+            <button class="ai-tab" type="button" role="tab" data-ai-tab="loras" aria-controls="ai-panel-loras" aria-selected="false">
               <span class="ai-tab-icon ai-local-icon ai-icon-loras" aria-hidden="true"></span>
               <span>
                 <span class="ai-tab-name">LoRAs</span>
@@ -3945,7 +3945,7 @@
         </aside>
 
         <div class="ai-main">
-          <section class="ai-panel is-active" id="ai-panel-loras" data-ai-panel="loras" role="tabpanel" aria-labelledby="ai-title-loras">
+          <section class="ai-panel" id="ai-panel-loras" data-ai-panel="loras" role="tabpanel" aria-labelledby="ai-title-loras" hidden>
             <div class="ai-section-head">
               <h2 class="ai-section-title" id="ai-title-loras">LoRAs</h2>
             </div>
@@ -4018,14 +4018,14 @@
             <div class="ai-release-list">
               <article class="ai-feature" id="watercolor-anime-lora" style="--ai-thumb-bg: #dceae0; --ai-cell-bg: #eef6ee;">
                 <div class="ai-feature-art">
-                  <img src="../assets/ai/thumbs/qwen-watercolor-anime-lora-banner.png" alt="Watercolor Anime LoRA preview" loading="lazy" decoding="async">
+                  <img src="../assets/ai/banners/qwen-watercolor-anime-lora/qwen-watercolor-anime-lora-banner.png" alt="Watercolor Anime LoRA preview" loading="lazy" decoding="async">
                 </div>
                 <div class="ai-feature-body">
                   <h3 class="ai-release-title">Qwen Image 2512 Watercolor Anime LoRA</h3>
                   <p class="ai-release-copy">Soft ink linework, pale paper texture, transparent washes, and quiet storybook-like scene mood.</p>
                   <div class="ai-actions">
                     <a class="ai-button is-secondary" href="https://huggingface.co/neonforestmist/qwen-image-2512-watercolor-anime-lora" target="_blank" rel="noopener noreferrer">
-                      <img class="ai-hf-mark" src="../assets/ai/storybook-anime-lora.png" alt="">
+                      <img class="ai-hf-mark" src="../assets/huggingface.png" alt="">
                       <span>View in Hugging Face</span>
                     </a>
                   </div>
@@ -4034,14 +4034,14 @@
 
               <article class="ai-feature" id="pointillism-lora" style="--ai-thumb-bg: #f1e6cf; --ai-cell-bg: #fbf2dc;">
                 <div class="ai-feature-art">
-                  <img src="../assets/ai/thumbs/qwen-pointillism-lora-banner.png" alt="Pointillism LoRA preview" loading="lazy" decoding="async">
+                  <img src="../assets/ai/banners/qwen-pointillism-lora/qwen-pointillism-lora-banner.png" alt="Pointillism LoRA preview" loading="lazy" decoding="async">
                 </div>
                 <div class="ai-feature-body">
                   <h3 class="ai-release-title">Qwen Image 2512 Pointillism LoRA</h3>
                   <p class="ai-release-copy">Dense paint dots, luminous color mixing, clear silhouettes, and decorative light patterns.</p>
                   <div class="ai-actions">
                     <a class="ai-button is-secondary" href="https://huggingface.co/neonforestmist/qwen-image-2512-pointillism-lora" target="_blank" rel="noopener noreferrer">
-                      <img class="ai-hf-mark" src="../assets/ai/storybook-anime-lora.png" alt="">
+                      <img class="ai-hf-mark" src="../assets/huggingface.png" alt="">
                       <span>View in Hugging Face</span>
                     </a>
                   </div>
@@ -4050,14 +4050,14 @@
 
               <article class="ai-feature" id="storybook-anime-lora" style="--ai-thumb-bg: #e4dfef; --ai-cell-bg: #f3eef8;">
                 <div class="ai-feature-art">
-                  <img src="../assets/ai/thumbs/qwen-storybook-anime-lora-banner.png" alt="Storybook Anime LoRA preview" loading="lazy" decoding="async">
+                  <img src="../assets/ai/banners/qwen-storybook-anime-lora/qwen-storybook-anime-lora-banner.png" alt="Storybook Anime LoRA preview" loading="lazy" decoding="async">
                 </div>
                 <div class="ai-feature-body">
                   <h3 class="ai-release-title">Qwen Image 2512 Storybook Anime LoRA</h3>
                   <p class="ai-release-copy">Warm hand-painted backgrounds, cozy scene design, gentle cel-shaded characters, and readable environment detail.</p>
                   <div class="ai-actions">
                     <a class="ai-button is-secondary" href="https://huggingface.co/neonforestmist/qwen-image-2512-storybook-anime-lora" target="_blank" rel="noopener noreferrer">
-                      <img class="ai-hf-mark" src="../assets/ai/storybook-anime-lora.png" alt="">
+                      <img class="ai-hf-mark" src="../assets/huggingface.png" alt="">
                       <span>View in Hugging Face</span>
                     </a>
                   </div>
@@ -4073,7 +4073,7 @@
                   <p class="ai-release-copy">A storybook-anime adapter for FLUX.2 Klein 9B, kept here as the earlier FLUX release.</p>
                   <div class="ai-actions">
                     <a class="ai-button is-secondary" href="https://huggingface.co/neonforestmist/flux-storybook-anime-lora-v1" target="_blank" rel="noopener noreferrer">
-                      <img class="ai-hf-mark" src="../assets/ai/storybook-anime-lora.png" alt="">
+                      <img class="ai-hf-mark" src="../assets/huggingface.png" alt="">
                       <span>View in Hugging Face</span>
                     </a>
                   </div>
@@ -4183,7 +4183,7 @@
                   </div>
                   <div class="ai-explore-actions">
                     <a class="ai-explore-link" href="https://huggingface.co/neonforestmist/qwen-image-2512-watercolor-anime-lora" target="_blank" rel="noopener noreferrer" data-gallery-detail-link>
-                      <img class="ai-hf-mark" src="../assets/ai/storybook-anime-lora.png" alt="">
+                      <img class="ai-hf-mark" src="../assets/huggingface.png" alt="">
                       <span data-gallery-detail-link-label>View LoRA in Hugging Face</span>
                     </a>
                   </div>
@@ -4212,7 +4212,7 @@
             </div>
           </section>
 
-          <section class="ai-panel" id="ai-panel-models" data-ai-panel="models" role="tabpanel" aria-labelledby="ai-title-models" hidden>
+          <section class="ai-panel is-active" id="ai-panel-models" data-ai-panel="models" role="tabpanel" aria-labelledby="ai-title-models">
             <div class="ai-section-head">
               <h2 class="ai-section-title" id="ai-title-models">Models</h2>
               <p class="ai-section-copy">Full model releases and hosted demos are tracked separately from LoRA adapters.</p>
@@ -4220,14 +4220,14 @@
             <div class="ai-release-list">
               <article class="ai-feature" id="clover-image-tiny" style="--ai-thumb-bg: #eef5f1; --ai-cell-bg: #f3f8f5;">
                 <div class="ai-feature-art">
-                  <img class="ai-model-banner" src="../assets/clover-image-tiny-banner.png" alt="Clover Image Tiny image model banner" loading="lazy" decoding="async">
+                  <img class="ai-model-banner" src="../assets/ai/banners/clover-image-tiny/clover-image-tiny-banner.png" alt="Clover Image Tiny image model banner" loading="lazy" decoding="async">
                 </div>
                 <div class="ai-feature-body">
                   <h3 class="ai-release-title">Clover Image Tiny</h3>
                   <p class="ai-release-copy">A compact image model release for lightweight generation experiments and visual demos.</p>
                   <div class="ai-actions">
                     <a class="ai-button is-secondary" href="https://huggingface.co/neonforestmist/Clover-Image-Tiny" target="_blank" rel="noopener noreferrer">
-                      <img class="ai-hf-mark" src="../assets/ai/storybook-anime-lora.png" alt="">
+                      <img class="ai-hf-mark" src="../assets/huggingface.png" alt="">
                       <span>View in Hugging Face</span>
                     </a>
                   </div>
@@ -4236,14 +4236,14 @@
 
               <article class="ai-feature" id="smolgpt-fables" style="--ai-thumb-bg: #d9e5dc; --ai-cell-bg: #eef4ef;">
                 <div class="ai-feature-art">
-                  <img class="ai-model-banner is-two-one" src="../assets/smol-gpt-fables-banner.png" alt="SmolGPT-Fables model banner" loading="lazy" decoding="async">
+                  <img class="ai-model-banner is-two-one" src="../assets/ai/banners/smol-gpt-fables/smol-gpt-fables-banner.png" alt="SmolGPT-Fables model banner" loading="lazy" decoding="async">
                 </div>
                 <div class="ai-feature-body">
                   <h3 class="ai-release-title">SmolGPT-Fables</h3>
                   <p class="ai-release-copy">A 6,032,640-parameter English model trained from scratch for structured Markdown stories, continuations, editorial passes, and bounded image-generation intents.</p>
                   <div class="ai-actions">
                     <a class="ai-button is-secondary" href="https://huggingface.co/neonforestmist/smolgpt-fables" target="_blank" rel="noopener noreferrer">
-                      <img class="ai-hf-mark" src="../assets/ai/storybook-anime-lora.png" alt="">
+                      <img class="ai-hf-mark" src="../assets/huggingface.png" alt="">
                       <span>View in Hugging Face</span>
                     </a>
                   </div>
@@ -4260,11 +4260,7 @@
             <div class="ai-release-list">
               <article class="ai-feature" id="smolgpt-markdown-stories" style="--ai-thumb-bg: #dfe9df; --ai-cell-bg: #f0f5ee;">
                 <div class="ai-feature-art">
-                  <div class="ai-model-gallery">
-                    <img src="https://huggingface.co/neonforestmist/smolgpt-fables/resolve/main/assets/genre-gallery/solarpunk.png" alt="Children harvest fruit beside a green canal city" loading="lazy" decoding="async">
-                    <img src="https://huggingface.co/neonforestmist/smolgpt-fables/resolve/main/assets/genre-gallery/mystery.png" alt="A child detective follows silver feathers through a moonlit greenhouse" loading="lazy" decoding="async">
-                    <img src="https://huggingface.co/neonforestmist/smolgpt-fables/resolve/main/assets/genre-gallery/adventure.png" alt="A young navigator and shaggy dog sail a red airship" loading="lazy" decoding="async">
-                  </div>
+                  <img class="ai-model-banner is-two-one" src="../assets/ai/banners/smol-gpt-markdown/smol-gpt-markdown.png" alt="SmolGPT Markdown Stories banner" loading="lazy" decoding="async">
                 </div>
                 <div class="ai-feature-body">
                   <h3 class="ai-release-title">SmolGPT Markdown Stories</h3>
@@ -4279,7 +4275,7 @@
 
               <article class="ai-feature" id="gpt-pointillism-style-images-dataset" style="--ai-thumb-bg: #f1e6cf; --ai-cell-bg: #fbf2dc;">
                 <div class="ai-feature-art">
-                  <img src="../assets/ai/thumbs/qwen-pointillism-lora-banner.png" alt="GPT Pointillism Style Images dataset preview" loading="lazy" decoding="async">
+                  <img src="../assets/ai/banners/qwen-pointillism-lora/qwen-pointillism-lora-banner.png" alt="GPT Pointillism Style Images dataset preview" loading="lazy" decoding="async">
                 </div>
                 <div class="ai-feature-body">
                   <h3 class="ai-release-title">GPT Pointillism Style Images Dataset</h3>
@@ -4507,7 +4503,7 @@
         button.addEventListener("click", () => activateTab(button.dataset.aiJump));
       });
 
-      activateTab("loras");
+      activateTab("models");
 
       document.addEventListener("keydown", (event) => {
         if (event.key === "Escape" && document.body.classList.contains("is-ai-explore-open")) {

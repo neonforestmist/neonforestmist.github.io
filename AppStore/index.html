@@ -1037,10 +1037,10 @@
 
       const apps = {
         soon: {
-          name: "???",
+          name: "Super Alan Run",
           category: "Games",
-          desc: "Coming soon.",
-          image: "../assets/app_store_icons/soon.png"
+          desc: "Super Alan Run (COMING SOON)",
+          image: "../assets/app_store_icons/super-alan-run.png"
         },
         chroma: {
           name: "Chroma",
@@ -1180,7 +1180,7 @@
           if (app.image) {
             const img = document.createElement("img");
             img.src = app.image;
-            img.alt = app.name === "???" ? "Coming soon" : app.name;
+             img.alt = app.name;
             icon.appendChild(img);
           }
 
