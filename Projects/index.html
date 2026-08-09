@@ -383,6 +383,204 @@
         transform: none;
       }
     }
+
+    .projects-layout {
+      display: grid;
+      grid-template-columns: 236px minmax(0, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .projects-sidebar {
+      position: sticky;
+      top: 92px;
+      overflow: hidden;
+      border: 1px solid #d9e0e8;
+      border-radius: 12px;
+      background: #ffffff;
+      box-shadow: 0 6px 22px rgba(31, 41, 55, 0.08);
+    }
+
+    .projects-nav-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 64px;
+      margin: 0;
+      padding: 18px;
+      border-bottom: 1px solid #e7ebf0;
+      color: #6e6e73;
+      font-size: 24px !important;
+      line-height: 1.1;
+      font-weight: 600;
+    }
+
+    .projects-nav-icon {
+      width: 30px !important;
+      height: 30px !important;
+      flex: 0 0 auto;
+      object-fit: contain;
+    }
+
+    .projects-tabs {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding: 8px;
+    }
+
+    .projects-tab {
+      display: grid;
+      grid-template-columns: 20px minmax(0, 1fr);
+      gap: 10px;
+      align-items: center;
+      width: 100%;
+      min-height: 50px;
+      padding: 9px 11px;
+      border: 0;
+      border-radius: 8px;
+      background: transparent;
+      color: var(--ink);
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.16s ease, color 0.16s ease;
+    }
+
+    .projects-tab--text {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .projects-tab:hover,
+    .projects-tab:focus-visible {
+      background: #f3f6fb;
+      color: #0b57d0;
+      outline: none;
+    }
+
+    .projects-tab.is-active {
+      background: rgba(11, 87, 208, 0.1);
+      color: #0b57d0;
+      box-shadow: inset 3px 0 0 #0b57d0;
+    }
+
+    .projects-tab-icon {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+    }
+
+    .projects-tab-copy {
+      display: block;
+      min-width: 0;
+    }
+
+    .projects-tab-name {
+      display: block;
+      font-size: 15px;
+      line-height: 1.2;
+      font-weight: 700;
+    }
+
+    .projects-tab-note {
+      display: block;
+      margin-top: 3px;
+      color: #687586;
+      font-size: 11px;
+      line-height: 1.25;
+      font-weight: 500;
+    }
+
+    .projects-content {
+      min-width: 0;
+    }
+
+    .projects-header {
+      margin-bottom: 22px;
+    }
+
+    .projects-title {
+      margin: 0 0 10px !important;
+    }
+
+    .projects-panel[hidden] {
+      display: none;
+    }
+
+    @media (max-width: 760px) {
+      .projects-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .projects-sidebar {
+        position: static;
+        overflow: visible;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .board .projects-nav-title {
+        display: none;
+      }
+
+      .projects-tabs {
+        width: max-content;
+        max-width: 100%;
+        height: 54px;
+        flex-direction: row;
+        align-items: center;
+        gap: 3px;
+        margin: 0 auto;
+        padding: 5px;
+        overflow-x: auto;
+        border-radius: 27px;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.78),
+          0 12px 34px rgba(44, 57, 79, 0.12);
+        scrollbar-width: none;
+      }
+
+      .projects-tabs::-webkit-scrollbar {
+        display: none;
+      }
+
+      .projects-tab {
+        width: auto;
+        min-width: 0;
+        height: 44px;
+        min-height: 44px;
+        flex: 0 0 auto;
+        grid-template-columns: 17px max-content;
+        gap: 7px;
+        padding: 0 14px;
+        border-radius: 22px;
+      }
+
+      .projects-tab--text {
+        grid-template-columns: max-content;
+      }
+
+      .projects-tab-icon {
+        width: 17px;
+        height: 17px;
+      }
+
+      .projects-tab-name {
+        font-size: 14px;
+      }
+
+      .projects-tab-note {
+        display: none;
+      }
+
+      .projects-header {
+        margin-bottom: 18px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -431,13 +629,37 @@
   </div>
 
   <main class="board">
-    <h1>
-      Projects
-    </h1>
-    <p class="tagline">Our library of open source projects.</p>
-    <hr class="divider">
+    <div class="projects-layout">
+      <aside class="projects-sidebar" aria-label="Project sections">
+        <h1 class="projects-nav-title">
+          <img class="projects-nav-icon" src="../assets/star.png" alt="" aria-hidden="true">
+          <span>Projects</span>
+        </h1>
+        <nav class="projects-tabs" role="tablist" aria-label="Project sections">
+          <button id="projects-tab-spotlight" class="projects-tab is-active" type="button" role="tab" data-project-tab="spotlight" aria-controls="projects-panel-spotlight" aria-selected="true">
+            <img class="projects-tab-icon" src="../assets/star.png" alt="" aria-hidden="true">
+            <span class="projects-tab-copy">
+              <span class="projects-tab-name">Spotlight</span>
+              <span class="projects-tab-note">Featured work</span>
+            </span>
+          </button>
+          <button id="projects-tab-projects" class="projects-tab projects-tab--text" type="button" role="tab" data-project-tab="projects" aria-controls="projects-panel-projects" aria-selected="false">
+            <span class="projects-tab-copy">
+              <span class="projects-tab-name">Projects</span>
+              <span class="projects-tab-note">Open source work</span>
+            </span>
+          </button>
+        </nav>
+      </aside>
 
-    <section class="spotlight-section" aria-labelledby="spotlight-title">
+      <div class="projects-content">
+        <header class="projects-header">
+          <h1 class="projects-title">Projects</h1>
+          <p class="tagline">My open source projects</p>
+          <hr class="divider">
+        </header>
+
+    <section class="spotlight-section projects-panel" id="projects-panel-spotlight" data-project-panel="spotlight" role="tabpanel" aria-labelledby="projects-tab-spotlight">
       <h2 class="section-heading" id="spotlight-title">
         <img src="../assets/star.png" alt="" aria-hidden="true" width="320" height="320">
         <span>Spotlight</span>
@@ -501,7 +723,7 @@
       </div>
     </section>
 
-    <section aria-labelledby="projects-section-title">
+    <section class="projects-panel" id="projects-panel-projects" data-project-panel="projects" role="tabpanel" aria-labelledby="projects-tab-projects" hidden>
       <h2 class="section-heading projects-section-heading" id="projects-section-title">Projects</h2>
       <div class="projects-grid" data-grid>
       <article class="project-card" data-tag="web" style="--cell-bg: #e7d5d2;">
@@ -613,7 +835,36 @@
       </article>
       </div>
     </section>
+      </div>
+    </div>
   </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const tabs = Array.from(document.querySelectorAll("[data-project-tab]"));
+      const panels = Array.from(document.querySelectorAll("[data-project-panel]"));
+
+      function activate(key) {
+        tabs.forEach((tab) => {
+          const isActive = tab.dataset.projectTab === key;
+          tab.classList.toggle("is-active", isActive);
+          tab.setAttribute("aria-selected", isActive ? "true" : "false");
+        });
+
+        panels.forEach((panel) => {
+          const isActive = panel.dataset.projectPanel === key;
+          panel.hidden = !isActive;
+          panel.classList.toggle("is-active", isActive);
+        });
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => activate(tab.dataset.projectTab));
+      });
+
+      activate("spotlight");
+    });
+  </script>
 
 </body>
 </html>

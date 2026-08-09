@@ -3860,6 +3860,244 @@
         font-size: 13px;
       }
     }
+
+    /* Keep the section rail beside its content through tablet widths. */
+    @media (min-width: 761px) and (max-width: 960px) {
+      .ai-page {
+        width: 100%;
+        padding: 28px 20px 64px;
+      }
+
+      .ai-workspace {
+        grid-template-columns: 220px minmax(0, 1fr);
+        grid-template-rows: none;
+        gap: 22px;
+      }
+
+      .ai-nav {
+        position: sticky;
+        top: 84px;
+        width: auto;
+        height: fit-content;
+        min-height: 0;
+        max-height: none;
+        padding: 14px 10px;
+        border: 1px solid rgba(29, 29, 31, 0.12);
+        border-radius: 20px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(247, 249, 253, 0.7));
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.92),
+          0 18px 42px rgba(49, 64, 90, 0.1);
+        overflow: visible;
+        backdrop-filter: blur(18px) saturate(145%);
+        -webkit-backdrop-filter: blur(18px) saturate(145%);
+      }
+
+      .ai-nav-title {
+        display: flex;
+        align-items: center;
+        min-height: 42px;
+        margin: 0;
+        padding: 4px 8px 12px;
+        border: 0;
+        font-size: 18px;
+      }
+
+      .ai-tabs {
+        width: auto;
+        max-width: none;
+        height: auto;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        margin: 0;
+        padding: 4px;
+        overflow: visible;
+        border-radius: 16px;
+        background: transparent;
+      }
+
+      .ai-tab,
+      .ai-tab[data-ai-tab] {
+        width: 100%;
+        min-width: 0;
+        max-width: none;
+        height: auto;
+        min-height: 60px;
+        flex: 0 0 auto;
+        grid-template-columns: 20px minmax(0, 1fr);
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 14px;
+      }
+
+      .ai-tab-icon {
+        width: 20px;
+        height: 20px;
+      }
+
+      .ai-tab-name {
+        font-size: 14px;
+      }
+
+      .ai-tab-note {
+        display: block;
+        margin-top: 3px;
+        font-size: 11px;
+      }
+
+      .ai-main {
+        min-width: 0;
+        padding: 24px 0 48px;
+      }
+
+      .ai-section-title {
+        font-size: 36px;
+      }
+
+      .ai-sample-gallery {
+        width: 100%;
+      }
+    }
+
+    /* Shared segmented side-rail treatment. */
+    @media (min-width: 761px) {
+      .ai-nav {
+        height: fit-content;
+        min-height: 0;
+        max-height: none;
+        padding: 0;
+        border: 1px solid #d9e0e8;
+        border-radius: 12px;
+        background: #ffffff;
+        box-shadow: 0 6px 22px rgba(31, 41, 55, 0.08);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
+
+      .ai-nav-title {
+        min-height: 64px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 18px;
+        border-bottom: 1px solid #e7ebf0;
+        color: #6e6e73;
+        font-size: 24px;
+        line-height: 1.1;
+        font-weight: 600;
+      }
+
+      .ai-nav-title-icon {
+        width: 30px;
+        height: 30px;
+        flex: 0 0 auto;
+        color: #0b57d0;
+      }
+
+      .ai-tabs {
+        gap: 3px;
+        padding: 8px;
+      }
+
+      .ai-tab,
+      .ai-tab[data-ai-tab] {
+        min-height: 50px;
+        grid-template-columns: 20px minmax(0, 1fr);
+        gap: 10px;
+        padding: 9px 11px;
+        border-radius: 8px;
+      }
+
+      .ai-tab[data-ai-tab="models"],
+      .ai-tab[data-ai-tab="datasets"],
+      .ai-tab[data-ai-tab="loras"],
+      .ai-tab[data-ai-tab="other"],
+      .ai-tab[data-ai-tab="previews"] {
+        --ai-tab-active-bg: rgba(11, 87, 208, 0.1);
+        --ai-tab-active-fg: #0b57d0;
+        --ai-tab-active-note: #5f6368;
+      }
+
+      .ai-tab:hover,
+      .ai-tab:focus-visible {
+        background: #f3f6fb;
+        color: #0b57d0;
+      }
+
+      .ai-tab.is-active {
+        background: var(--ai-tab-active-bg);
+        color: var(--ai-tab-active-fg);
+        box-shadow: inset 3px 0 0 var(--ai-tab-active-fg);
+      }
+
+      .ai-tab.is-active .ai-tab-icon,
+      .ai-tab.is-active .ai-tab-name {
+        color: var(--ai-tab-active-fg);
+      }
+
+      .ai-tab-note {
+        color: #687586;
+        font-size: 11px;
+      }
+    }
+
+    .ai-preview-collections {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .ai-preview-collection {
+      overflow: hidden;
+      border: 1px solid rgba(23, 33, 43, 0.1);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.84);
+      box-shadow: 0 16px 44px rgba(76, 91, 113, 0.1);
+    }
+
+    .ai-preview-collection-head {
+      padding: 16px 18px 12px;
+    }
+
+    .ai-preview-collection-title {
+      margin: 0;
+      color: var(--ai-ink);
+      font-size: 18px;
+      line-height: 1.2;
+      font-weight: 780;
+    }
+
+    .ai-preview-collection-copy {
+      margin: 6px 0 0;
+      color: var(--ai-muted);
+      font-size: 13px;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+
+    .ai-preview-collection-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      padding: 0 10px 10px;
+    }
+
+    .ai-preview-collection-grid img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 9px;
+    }
+
+    @media (max-width: 720px) {
+      .ai-preview-collections {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
@@ -3911,7 +4149,10 @@
     <section class="ai-shell" data-ai-tabs>
       <div class="ai-workspace">
         <aside class="ai-nav" aria-label="AI sections">
-          <h1 class="ai-nav-title">AI Section</h1>
+          <h1 class="ai-nav-title">
+            <span class="ai-nav-title-icon ai-local-icon ai-icon-models" aria-hidden="true"></span>
+            <span>AI Section</span>
+          </h1>
           <div class="ai-tabs" role="tablist" aria-label="AI sections">
             <button class="ai-tab is-active" type="button" role="tab" data-ai-tab="models" aria-controls="ai-panel-models" aria-selected="true">
               <span class="ai-tab-icon ai-local-icon ai-icon-models" aria-hidden="true"></span>
@@ -3939,6 +4180,13 @@
               <span>
                 <span class="ai-tab-name">Other</span>
                 <span class="ai-tab-note">Miscellaneous</span>
+              </span>
+            </button>
+            <button class="ai-tab" type="button" role="tab" data-ai-tab="previews" aria-controls="ai-panel-previews" aria-selected="false">
+              <span class="ai-tab-icon ai-local-icon ai-icon-gallery" aria-hidden="true"></span>
+              <span>
+                <span class="ai-tab-name">Gallery</span>
+                <span class="ai-tab-note">AI Previews</span>
               </span>
             </button>
           </div>
@@ -4302,6 +4550,60 @@
               </div>
             </div>
           </section>
+
+          <section class="ai-panel" id="ai-panel-previews" data-ai-panel="previews" role="tabpanel" aria-labelledby="ai-title-previews" hidden>
+            <div class="ai-section-head">
+              <h2 class="ai-section-title" id="ai-title-previews">AI Previews</h2>
+              <p class="ai-section-copy">Browse preview collections from the watercolor, pointillism, and storybook AI styles.</p>
+            </div>
+
+            <div class="ai-preview-collections">
+              <article class="ai-preview-collection">
+                <div class="ai-preview-collection-head">
+                  <h3 class="ai-preview-collection-title">Watercolor Anime</h3>
+                  <p class="ai-preview-collection-copy">Soft washes and storybook scenes.</p>
+                </div>
+                <div class="ai-preview-collection-grid" aria-label="Watercolor Anime previews">
+                  <img src="../assets/ai/thumbs/watercolor-anime_preview_01.jpg" alt="" loading="lazy" decoding="async">
+                  <img src="../assets/ai/thumbs/watercolor-anime_preview_02.jpg" alt="" loading="lazy" decoding="async">
+                  <img src="../assets/ai/thumbs/watercolor-anime_preview_03.jpg" alt="" loading="lazy" decoding="async">
+                  <img src="../assets/ai/thumbs/watercolor-anime_preview_04.jpg" alt="" loading="lazy" decoding="async">
+                  <img src="../assets/ai/thumbs/watercolor-anime_preview_05.jpg" alt="" loading="lazy" decoding="async">
+                  <img src="../assets/ai/thumbs/watercolor-anime_preview_06.jpg" alt="" loading="lazy" decoding="async">
+                </div>
+              </article>
+
+              <article class="ai-preview-collection">
+                <div class="ai-preview-collection-head">
+                  <h3 class="ai-preview-collection-title">Pointillism</h3>
+                  <p class="ai-preview-collection-copy">Dense dots and luminous color.</p>
+                </div>
+                <div class="ai-preview-collection-grid" aria-label="Pointillism previews">
+                  <img src="../assets/ai/thumbs/pointillism_preview_01.jpg" alt="" loading="lazy" decoding="async">
+                  <img src="../assets/ai/thumbs/pointillism_preview_02.jpg" alt="" loading="lazy" decoding="async">
+                  <img src="../assets/ai/thumbs/pointillism_preview_03.jpg" alt="" loading="lazy" decoding="async">
+                  <img src="../assets/ai/thumbs/pointillism_preview_04.jpg" alt="" loading="lazy" decoding="async">
+                  <img src="../assets/ai/thumbs/pointillism_preview_05.jpg" alt="" loading="lazy" decoding="async">
+                  <img src="../assets/ai/thumbs/pointillism_preview_06.jpg" alt="" loading="lazy" decoding="async">
+                </div>
+              </article>
+
+              <article class="ai-preview-collection">
+                <div class="ai-preview-collection-head">
+                  <h3 class="ai-preview-collection-title">Storybook Anime</h3>
+                  <p class="ai-preview-collection-copy">Warm painted scenes and gentle characters.</p>
+                </div>
+                <div class="ai-preview-collection-grid" aria-label="Storybook Anime previews">
+                  <img src="../assets/ai/thumbs/storybook-anime_preview_01.jpg" alt="" loading="lazy" decoding="async">
+                  <img src="../assets/ai/thumbs/storybook-anime_preview_02.jpg" alt="" loading="lazy" decoding="async">
+                  <img src="../assets/ai/thumbs/storybook-anime_preview_03.jpg" alt="" loading="lazy" decoding="async">
+                  <img src="../assets/ai/thumbs/storybook-anime_preview_04.jpg" alt="" loading="lazy" decoding="async">
+                  <img src="../assets/ai/thumbs/storybook-anime_preview_05.jpg" alt="" loading="lazy" decoding="async">
+                  <img src="../assets/ai/thumbs/storybook-anime_preview_06.jpg" alt="" loading="lazy" decoding="async">
+                </div>
+              </article>
+            </div>
+          </section>
         </div>
 
       </div>
@@ -4384,7 +4686,9 @@
       };
 
       const activateTab = (key) => {
-        const activeRailKey = key === "explore" ? "loras" : key;
+        const isGalleryKey = key === "explore";
+        const activeRailKey = isGalleryKey ? "previews" : key;
+        const panelKey = isGalleryKey ? "explore" : key;
         const wasExploreOpen = document.body.classList.contains("is-ai-explore-open");
 
         tabs.forEach((tab) => {
@@ -4395,14 +4699,14 @@
         });
 
         panels.forEach((panel) => {
-          const isActive = panel.dataset.aiPanel === key;
+          const isActive = panel.dataset.aiPanel === panelKey;
           panel.classList.toggle("is-active", isActive);
           panel.hidden = !isActive;
         });
 
-        document.body.classList.toggle("is-ai-explore-open", key === "explore");
+        document.body.classList.toggle("is-ai-explore-open", isGalleryKey);
 
-        if (key === "explore") {
+        if (isGalleryKey) {
           if (!wasExploreOpen) {
             lastFocusedElement = document.activeElement;
           }
@@ -4411,7 +4715,7 @@
           requestAnimationFrame(() => galleryCloseButton?.focus({ preventScroll: true }));
         }
 
-        if (key !== "explore" && wasExploreOpen && lastFocusedElement instanceof HTMLElement) {
+        if (!isGalleryKey && wasExploreOpen && lastFocusedElement instanceof HTMLElement) {
           requestAnimationFrame(() => lastFocusedElement.focus({ preventScroll: true }));
         }
       };

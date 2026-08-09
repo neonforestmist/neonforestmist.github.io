@@ -391,6 +391,7 @@
         font-size: 13px;
       }
     }
+
   </style>
   <style>
     body.appstore-page {
@@ -950,6 +951,232 @@
         font-size: 13px;
       }
     }
+
+    /* Keep the category rail beside the app list through tablet widths. */
+    @media (min-width: 761px) and (max-width: 960px) {
+      .as-main {
+        padding-top: 80px;
+      }
+
+      .as-layout {
+        grid-template-columns: 220px minmax(0, 1fr);
+        grid-template-rows: none;
+        width: auto;
+        max-width: 1280px;
+        min-height: calc(100vh - 80px);
+        padding: 0 16px;
+        gap: 20px;
+      }
+
+      .as-sidebar {
+        order: initial;
+        position: sticky;
+        top: 92px;
+        display: flex;
+        flex-direction: column;
+        padding: 14px 10px;
+        height: fit-content;
+        min-height: 0;
+        max-height: none;
+        border: 1px solid rgba(29, 29, 31, 0.12);
+        border-radius: 20px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(247, 249, 253, 0.7));
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.92),
+          0 18px 42px rgba(49, 64, 90, 0.1);
+        overflow: visible;
+        backdrop-filter: blur(18px) saturate(145%);
+        -webkit-backdrop-filter: blur(18px) saturate(145%);
+      }
+
+      .as-sidebar-brand {
+        display: flex;
+        min-height: 42px;
+        padding: 4px 8px 12px;
+      }
+
+      .as-sidebar-brand-title {
+        font-size: 18px;
+      }
+
+      .as-sidebar .as-nav-group {
+        width: auto;
+        flex: 1;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap: 4px;
+        justify-content: flex-start;
+      }
+
+      .as-nav-fallback-row,
+      .as-nav-btn {
+        width: 100%;
+      }
+
+      .as-nav-btn {
+        padding: 10px 12px;
+        border-radius: 14px;
+        background: transparent;
+      }
+
+      .as-nav-glass.glass-container {
+        width: 100% !important;
+        max-width: none;
+        height: auto;
+        min-height: 0;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: stretch;
+        gap: 4px;
+        padding: 4px;
+        justify-content: flex-start;
+        overflow: visible;
+        border-radius: 16px;
+        clip-path: none;
+        box-shadow: none;
+      }
+
+      .as-liquid-nav {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        height: 46px;
+        flex: 0 0 auto;
+        justify-content: flex-start;
+        padding: 0 12px;
+        border-radius: 14px;
+      }
+
+      .as-liquid-nav .as-nav-label {
+        font-size: 14px !important;
+      }
+
+      .as-content {
+        display: block;
+        min-width: 0;
+        padding: 24px 16px 56px;
+      }
+
+      .as-header {
+        order: initial;
+        padding: 0;
+        margin-bottom: 24px;
+      }
+
+      .as-grid {
+        order: initial;
+        padding: 0;
+        overflow: visible;
+      }
+    }
+
+    /* Shared segmented side-rail treatment. */
+    @media (min-width: 761px) {
+      .as-sidebar {
+        height: fit-content;
+        min-height: 0;
+        max-height: none;
+        padding: 0;
+        border: 1px solid #d9e0e8;
+        border-radius: 12px;
+        background: #ffffff;
+        box-shadow: 0 6px 22px rgba(31, 41, 55, 0.08);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
+
+      .as-sidebar-brand {
+        display: flex;
+        align-items: center;
+        min-height: 0;
+        gap: 12px;
+        min-height: 64px;
+        padding: 18px;
+        border-bottom: 1px solid #e7ebf0;
+      }
+
+      .as-sidebar-brand-icon {
+        display: block;
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+        object-position: center;
+        align-self: center;
+        filter: none;
+        image-rendering: pixelated;
+      }
+
+      .as-sidebar-brand-title {
+        font-size: 24px;
+        line-height: 1.1;
+        color: #6e6e73;
+        font-weight: 600;
+      }
+
+      .as-sidebar .as-nav-group {
+        gap: 3px;
+        padding: 8px;
+      }
+
+      .as-nav-glass.glass-container {
+        gap: 3px;
+        padding: 0;
+        border-radius: 0;
+        background: transparent !important;
+        box-shadow: none;
+      }
+
+      .as-nav-glass::after {
+        display: none;
+      }
+
+      .as-liquid-nav,
+      .as-nav-btn {
+        height: 50px;
+        min-height: 50px;
+        padding: 0 11px;
+        border-radius: 8px;
+        background: transparent;
+      }
+
+      .as-liquid-nav:hover,
+      .as-nav-btn:hover {
+        background: #f3f6fb;
+        color: #0b57d0;
+        transform: none;
+      }
+
+      .as-liquid-nav.is-active,
+      .as-nav-btn.is-active {
+        background: rgba(11, 87, 208, 0.1);
+        color: #0b57d0;
+        box-shadow: inset 3px 0 0 #0b57d0;
+      }
+
+      .as-liquid-nav .as-nav-label {
+        color: inherit;
+        font-size: 14px !important;
+        font-weight: 650;
+      }
+
+      .as-liquid-nav.is-active .as-nav-label {
+        color: #0b57d0;
+      }
+    }
+
+    .as-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .as-title-emoji {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8em;
+      line-height: 1;
+    }
   </style>
 </head>
 <body class="appstore-page">
@@ -1001,7 +1228,7 @@
     <div class="as-layout">
       <aside class="as-sidebar" id="as-sidebar">
         <div class="as-sidebar-brand" aria-hidden="true">
-          <img src="../assets/app_store_icons/Apps.svg" alt="" class="as-sidebar-brand-icon">
+          <img src="../assets/apple.png" alt="" class="as-sidebar-brand-icon">
           <span class="as-sidebar-brand-title">App Store</span>
         </div>
         <nav class="as-nav-group" id="as-nav-group"></nav>
@@ -1045,7 +1272,7 @@
         chroma: {
           name: "Chroma",
           category: "Tools",
-          desc: "A loaded color tool app.",
+          desc: "A color tools app.",
           image: "../assets/app_store_icons/chroma.png",
           url: "https://apps.apple.com/uy/app/chroma-a-simple-color-tool/id6738114281"
         },
@@ -1062,14 +1289,16 @@
         {
           key: "all",
           label: "All",
+          emoji: "📱",
           icon: "../assets/app_store_icons/Apps.svg",
           title: "App Store",
           subtitle: "Discover our collection of apps.",
-          items: [apps.entertainmentSoon, apps.chroma, apps.soon]
+          items: [apps.soon, apps.entertainmentSoon, apps.chroma]
         },
         {
           key: "entertainment",
           label: "Entertainment",
+          emoji: "🎭",
           icon: "../assets/app_store_icons/Entertainment.svg",
           title: "Entertainment",
           subtitle: "Apps made to entertain.",
@@ -1078,6 +1307,7 @@
         {
           key: "tools",
           label: "Tools",
+          emoji: "🛠️",
           icon: "../assets/app_store_icons/Tool.svg",
           title: "Tools",
           subtitle: "Purpose-built tools for your workflow.",
@@ -1086,6 +1316,7 @@
         {
           key: "games",
           label: "Games",
+          emoji: "🎮",
           icon: "../assets/app_store_icons/Games.svg",
           title: "Games",
           subtitle: "Our series of games made with care.",
@@ -1121,6 +1352,8 @@
       }
 
       sections.forEach((section) => {
+        const iconMarkup = `<img src="${section.icon}" alt="" class="as-nav-icon">`;
+
         if (!useLiquid) {
           const div = document.createElement("div");
           div.className = "as-nav-fallback-row";
@@ -1128,7 +1361,7 @@
           btn.className = "as-nav-btn";
           btn.type = "button";
           btn.dataset.key = section.key;
-          btn.innerHTML = `<img src="${section.icon}" alt="" class="as-nav-icon"><span>${section.label}</span>`;
+          btn.innerHTML = `${iconMarkup}<span>${section.label}</span>`;
           btn.addEventListener("click", () => activate(section.key));
           div.appendChild(btn);
           navGroup.appendChild(div);
@@ -1140,7 +1373,7 @@
         btn.className = "as-nav-btn as-liquid-nav";
         btn.type = "button";
         btn.dataset.key = section.key;
-        btn.innerHTML = `<img src="${section.icon}" alt="" class="as-nav-icon"><span class="as-nav-label">${section.label}</span>`;
+        btn.innerHTML = `${iconMarkup}<span class="as-nav-label">${section.label}</span>`;
         btn.addEventListener("click", () => activate(section.key));
         navShell.element.appendChild(btn);
         buttons[section.key] = btn;
@@ -1162,7 +1395,17 @@
           b.classList.toggle("is-active", isActive);
           b.setAttribute("aria-pressed", isActive ? "true" : "false");
         });
-        titleEl.textContent = section.title;
+        titleEl.replaceChildren();
+        if (section.emoji) {
+          const emoji = document.createElement("span");
+          emoji.className = "as-title-emoji";
+          emoji.setAttribute("aria-hidden", "true");
+          emoji.textContent = section.emoji;
+          titleEl.appendChild(emoji);
+        }
+        const title = document.createElement("span");
+        title.textContent = section.title;
+        titleEl.appendChild(title);
         subtitleEl.textContent = section.subtitle;
         renderGrid(section.items);
         refreshLiquidGlass();
