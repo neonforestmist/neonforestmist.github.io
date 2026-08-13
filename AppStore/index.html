@@ -1080,7 +1080,7 @@
         border: 1px solid #d9e0e8;
         border-radius: 12px;
         background: #ffffff;
-        box-shadow: 0 6px 22px rgba(31, 41, 55, 0.08);
+        box-shadow: none;
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
       }
@@ -1177,6 +1177,98 @@
       font-size: 0.8em;
       line-height: 1;
     }
+
+    /* Use the same clean segmented control in compact and landscape layouts. */
+    @media (max-width: 760px), (max-width: 960px) and (orientation: landscape) {
+      .as-layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr;
+        width: auto;
+        min-height: auto;
+        padding: 0;
+      }
+
+      .as-content {
+        display: contents;
+      }
+
+      .as-header {
+        order: 1;
+        padding: 16px 16px 10px;
+        margin-bottom: 0;
+      }
+
+      .as-sidebar {
+        order: 2;
+        position: static;
+        display: flex;
+        padding: 0 16px 12px;
+        height: auto;
+        min-height: 0;
+        max-height: none;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        overflow: visible;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
+
+      .as-sidebar-brand {
+        display: none;
+      }
+
+      .as-sidebar .as-nav-group {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 0;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .as-grid {
+        order: 3;
+        padding: 4px 16px 64px;
+      }
+
+      .as-nav-glass.glass-container {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100% !important;
+        max-width: 100%;
+        height: auto;
+        min-height: 98px;
+        gap: 4px;
+        padding: 5px;
+        overflow: hidden;
+        border-radius: 22px;
+        clip-path: inset(0 round 22px);
+        background: rgba(255, 255, 255, 0.9) !important;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.78),
+          0 12px 34px rgba(44, 57, 79, 0.12);
+      }
+
+      .as-liquid-nav,
+      .as-liquid-nav[data-key] {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        height: 42px;
+        min-height: 42px;
+        flex: 0 0 auto;
+        justify-content: center;
+        gap: 7px;
+        padding: 0 10px;
+        border-radius: 17px;
+      }
+
+      .as-liquid-nav .as-nav-label {
+        font-size: 14px !important;
+      }
+    }
   </style>
 </head>
 <body class="appstore-page">
@@ -1266,8 +1358,9 @@
         soon: {
           name: "Super Alan Run",
           category: "Games",
-          desc: "Super Alan Run (COMING SOON)",
-          image: "../assets/app_store_icons/super-alan-run.png"
+          desc: "The Endless Runner.",
+          image: "../assets/app_store_icons/super-alan-run.png",
+          url: "https://apps.apple.com/us/app/super-alan-run/id6799301516"
         },
         chroma: {
           name: "Chroma",
@@ -1296,6 +1389,15 @@
           items: [apps.soon, apps.entertainmentSoon, apps.chroma]
         },
         {
+          key: "games",
+          label: "Games",
+          emoji: "🎮",
+          icon: "../assets/app_store_icons/Games.svg",
+          title: "Games",
+          subtitle: "Our series of games made with care.",
+          items: [apps.soon]
+        },
+        {
           key: "entertainment",
           label: "Entertainment",
           emoji: "🎭",
@@ -1312,15 +1414,6 @@
           title: "Tools",
           subtitle: "Purpose-built tools for your workflow.",
           items: [apps.chroma]
-        },
-        {
-          key: "games",
-          label: "Games",
-          emoji: "🎮",
-          icon: "../assets/app_store_icons/Games.svg",
-          title: "Games",
-          subtitle: "Our series of games made with care.",
-          items: [apps.soon]
         }
       ];
 

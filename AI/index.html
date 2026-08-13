@@ -3971,7 +3971,7 @@
         border: 1px solid #d9e0e8;
         border-radius: 12px;
         background: #ffffff;
-        box-shadow: 0 6px 22px rgba(31, 41, 55, 0.08);
+        box-shadow: none;
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
       }
@@ -3990,10 +3990,12 @@
       }
 
       .ai-nav-title-icon {
+        display: block;
         width: 30px;
         height: 30px;
         flex: 0 0 auto;
-        color: #0b57d0;
+        object-fit: contain;
+        image-rendering: pixelated;
       }
 
       .ai-tabs {
@@ -4098,6 +4100,80 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* Match the App Store segmented control on compact and landscape screens. */
+    @media (max-width: 760px), (max-width: 960px) and (orientation: landscape) {
+      .ai-workspace {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        gap: 22px;
+      }
+
+      .ai-nav {
+        position: static;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        max-height: none;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        overflow: visible;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
+
+      .ai-nav-title {
+        display: none;
+      }
+
+      .ai-main {
+        padding: 0;
+      }
+
+      .ai-tabs {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        min-height: 98px;
+        gap: 4px;
+        padding: 5px;
+        overflow: hidden;
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.78),
+          0 12px 34px rgba(44, 57, 79, 0.12);
+      }
+
+      .ai-tab,
+      .ai-tab[data-ai-tab] {
+        width: 100%;
+        min-width: 0;
+        max-width: none;
+        height: 42px;
+        min-height: 42px;
+        flex: 0 0 auto;
+        grid-template-columns: 17px minmax(0, max-content);
+        justify-content: center;
+        gap: 7px;
+        padding: 0 10px;
+        border-radius: 17px;
+      }
+
+      .ai-tab-note {
+        display: none;
+      }
+
+      .ai-tab-icon {
+        width: 17px;
+        height: 17px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -4150,7 +4226,7 @@
       <div class="ai-workspace">
         <aside class="ai-nav" aria-label="AI sections">
           <h1 class="ai-nav-title">
-            <span class="ai-nav-title-icon ai-local-icon ai-icon-models" aria-hidden="true"></span>
+            <img class="ai-nav-title-icon" src="../assets/ai_chip.png" alt="" aria-hidden="true">
             <span>AI Section</span>
           </h1>
           <div class="ai-tabs" role="tablist" aria-label="AI sections">
