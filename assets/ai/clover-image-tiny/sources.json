@@ -1,0 +1,48 @@
+{
+  "model": "https://huggingface.co/neonforestmist/Clover-Image-Tiny",
+  "retrieved": "2026-09-07",
+  "examples": [
+    {
+      "slug": "moonlit-greenhouse",
+      "title": "Moonlit greenhouse",
+      "prompt": "a tiny glass greenhouse glowing in a moonlit garden",
+      "source": "https://huggingface.co/neonforestmist/Clover-Image-Tiny/resolve/3f2a698bc3cbad617970a73d623e0732bb5f87f5/examples/prompt-gallery/original/image_74.png",
+      "image": "../assets/ai/clover-image-tiny/moonlit-greenhouse.png"
+    },
+    {
+      "slug": "blue-flowers",
+      "title": "Blue flowers",
+      "prompt": "A bouquet of blue flowers",
+      "source": "https://huggingface.co/neonforestmist/Clover-Image-Tiny/resolve/3f2a698bc3cbad617970a73d623e0732bb5f87f5/examples/prompt-gallery/original/image_79.png",
+      "image": "../assets/ai/clover-image-tiny/blue-flowers.png"
+    },
+    {
+      "slug": "stained-glass-night",
+      "title": "Stained-glass night",
+      "prompt": "A stain glass window of a starry night",
+      "source": "https://huggingface.co/neonforestmist/Clover-Image-Tiny/resolve/3f2a698bc3cbad617970a73d623e0732bb5f87f5/examples/prompt-gallery/original/image_78.png",
+      "image": "../assets/ai/clover-image-tiny/stained-glass-night.png"
+    },
+    {
+      "slug": "snowy-mountains",
+      "title": "Snowy mountains",
+      "prompt": "snowy mountains under a cloudy sky",
+      "source": "https://huggingface.co/neonforestmist/Clover-Image-Tiny/resolve/main/examples/prompt-gallery/original/image_76.png",
+      "image": "../assets/ai/clover-image-tiny/snowy-mountains.png"
+    },
+    {
+      "slug": "desert-moon",
+      "title": "Desert moon",
+      "prompt": "A desert with a big moon in the sky",
+      "source": "https://huggingface.co/neonforestmist/Clover-Image-Tiny/resolve/main/examples/prompt-gallery/original/image_77.png",
+      "image": "../assets/ai/clover-image-tiny/desert-moon.png"
+    },
+    {
+      "slug": "origami-heart",
+      "title": "Origami heart",
+      "prompt": "An origami heart",
+      "source": "https://huggingface.co/neonforestmist/Clover-Image-Tiny/resolve/main/examples/prompt-gallery/original/image_80.png",
+      "image": "../assets/ai/clover-image-tiny/origami-heart.png"
+    }
+  ]
+}

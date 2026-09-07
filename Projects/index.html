@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../main.css?v=mobile-nav-sheet-6">
+  <link rel="stylesheet" href="../main.css?v=portfolio-layout-8">
   <script defer src="/nav-scroll.js?v=mobile-nav-sheet-6"></script>
   <link rel="icon" type="image/png" href="/assets/favicon.png" />
   <link rel="shortcut icon" href="/assets/favicon.ico" />
@@ -630,13 +630,12 @@
       }
     }
   </style>
-  <link rel="stylesheet" href="../section-shell.css">
+  <link rel="stylesheet" href="../section-shell.css?v=portfolio-layout-9">
+  <script defer src="../section-tabs.js?v=portfolio-layout-7"></script>
 </head>
-<body class="projects-page">
+<body class="projects-page section-page">
   <div class="menu-bar">
-    <a href="/">
-      <img src="../assets/file.png" alt="Lukas Lozada Perez" class="menu-logo">
-    </a>
+    <a href="/" class="site-wordmark"><span class="site-wordmark-emoji" aria-hidden="true">🍀</span><span class="site-wordmark-text">Lukas Lozada Perez</span></a>
     <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Toggle navigation">
     <label for="menu-toggle" class="menu-hamburger" aria-hidden="true">
       <span></span>
@@ -677,14 +676,14 @@
     </div>
   </div>
 
-  <main class="board">
-    <div class="projects-layout">
-      <aside class="projects-sidebar" aria-label="Project sections">
-        <h1 class="projects-nav-title">
+  <main class="board section-container">
+    <div class="projects-layout section-layout">
+      <aside class="projects-sidebar section-sidebar" aria-label="Project sections">
+        <h2 class="projects-nav-title section-brand">
           <img class="projects-nav-icon" src="../assets/folder.png" alt="" aria-hidden="true">
           <span>Projects</span>
-        </h1>
-        <nav class="projects-tabs" role="tablist" aria-label="Project sections">
+        </h2>
+        <nav class="projects-tabs section-tabs" role="tablist" aria-label="Project sections">
           <button id="projects-tab-spotlight" class="projects-tab is-active" type="button" role="tab" data-project-tab="spotlight" aria-controls="projects-panel-spotlight" aria-selected="true">
             <img class="projects-tab-icon" src="../assets/star.png" alt="" aria-hidden="true">
             <span class="projects-tab-copy">
@@ -702,18 +701,14 @@
         </nav>
       </aside>
 
-      <div class="projects-content">
-        <header class="projects-header">
+      <div class="projects-content section-content">
+        <header class="projects-header section-header">
           <h1 class="projects-title">Projects</h1>
           <p class="tagline">My open source projects</p>
           <hr class="divider">
         </header>
 
     <section class="spotlight-section projects-panel" id="projects-panel-spotlight" data-project-panel="spotlight" role="tabpanel" aria-labelledby="projects-tab-spotlight">
-      <h2 class="section-heading" id="spotlight-title">
-        <img src="../assets/star.png" alt="" aria-hidden="true" width="320" height="320">
-        <span>Spotlight</span>
-      </h2>
       <div class="spotlight-grid">
         <article class="project-card" data-tag="python" style="--cell-bg: #dce7f3;">
           <div class="project-thumb project-echosafe-thumb">
@@ -787,6 +782,10 @@
           </div>
           <div class="project-body">
             <h3 class="project-title">Probatio Agent</h3>
+            <div class="project-award">
+              <img src="../assets/trophy.png" alt="" aria-hidden="true">
+              <span>1st Place - Novita × Harbor Code &amp; Debug Track</span>
+            </div>
             <div class="project-meta">
               <span class="pill python-tag">
                 <span class="pill-icon">
@@ -808,7 +807,6 @@
     </section>
 
     <section class="projects-panel" id="projects-panel-projects" data-project-panel="projects" role="tabpanel" aria-labelledby="projects-tab-projects" hidden>
-      <h2 class="section-heading projects-section-heading" id="projects-section-title">Projects</h2>
       <div class="projects-grid" data-grid>
       <article class="project-card" data-tag="web" style="--cell-bg: #e7d5d2;">
         <div class="project-thumb">
@@ -929,6 +927,8 @@
       const panels = Array.from(document.querySelectorAll("[data-project-panel]"));
 
       function activate(key) {
+        document.querySelector(".projects-title").textContent = key === "spotlight" ? "Spotlight" : "Projects";
+        document.querySelector(".projects-header .tagline").textContent = key === "spotlight" ? "Selected projects and award-winning work." : "My open source projects.";
         tabs.forEach((tab) => {
           const isActive = tab.dataset.projectTab === key;
           tab.classList.toggle("is-active", isActive);

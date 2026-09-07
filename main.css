@@ -495,3 +495,55 @@ main {
 .site-footer a:hover {
     text-decoration: underline;
 }
+
+/* A native clover emoji and a softly colored wordmark form the site identity. */
+.menu-bar { min-height: 64px; }
+.menu-bar .site-wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    min-height: 44px;
+    flex: 0 1 auto;
+    color: #d8e7ff;
+    font-family: "Avenir Next", "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: clamp(18px, 2vw, 23px);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.2;
+    white-space: nowrap;
+    text-decoration: none;
+}
+.site-wordmark-emoji {
+    flex: 0 0 auto;
+    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+    font-size: 1.25em;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0;
+    filter: drop-shadow(0 0 8px rgba(156, 226, 183, 0.18));
+}
+.site-wordmark-text {
+    display: block;
+    color: #d8e7ff;
+}
+@supports ((background-clip: text) or (-webkit-background-clip: text)) {
+    .site-wordmark-text {
+        background: linear-gradient(105deg, #baf4d0 0%, #c2e5ff 48%, #d6c8ff 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+    }
+}
+.menu-bar .site-wordmark:hover .site-wordmark-text { filter: brightness(1.12); }
+.menu-bar .site-wordmark:focus-visible { outline: 2px solid #b7b8ff; outline-offset: 4px; }
+@media (max-width: 600px) {
+    .menu-bar .site-wordmark { gap: 7px; font-size: clamp(17px, 4.75vw, 19px); }
+}
+@media (forced-colors: active) {
+    .site-wordmark-text {
+        background: none;
+        color: LinkText;
+        -webkit-text-fill-color: currentColor;
+    }
+}

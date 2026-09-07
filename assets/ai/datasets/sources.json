@@ -1,0 +1,351 @@
+{
+  "retrieved": "2026-09-07",
+  "catalog_source": "https://huggingface.co/api/datasets?author=neonforestmist&full=true&limit=100",
+  "datasets": [
+    {
+      "_id": "6a4833be1376eebe6890b1b4",
+      "id": "neonforestmist/GPT_Pointillism_Style_Images",
+      "author": "neonforestmist",
+      "cardData": {
+        "license": "apache-2.0",
+        "task_categories": [
+          "text-to-image"
+        ],
+        "language": [
+          "en"
+        ],
+        "tags": [
+          "synthetic",
+          "gpt-generated",
+          "pointillism",
+          "image-caption-pairs",
+          "qwen-image"
+        ],
+        "pretty_name": "GPT Pointillism Style Images",
+        "size_categories": [
+          "n<1K"
+        ]
+      },
+      "disabled": false,
+      "gated": false,
+      "lastModified": "2026-07-03T22:20:26.000Z",
+      "likes": 0,
+      "trendingScore": 0,
+      "private": false,
+      "sha": "0f1bbd4c768ed9bd65a62ae7f7bf3f0aee351691",
+      "description": "\n\t\n\t\t\n\t\n\t\n\t\tGPT Pointillism Style Images\n\t\n\n\n\t\n\t\t\n\t\n\t\n\t\tDataset description\n\t\n\nThis is a synthetic GPT-generated pointillism style image dataset. It contains 70 image-caption pairs with colorful dotted texture, painterly lighting, and pointillism-inspired compositions.\nThe images focus on colorful stippled brushwork, luminous dotted texture, painterly lighting, cozy subjects, gardens, landscapes, interiors, and decorative still-life scenes.\n\n\t\n\t\t\n\t\n\t\n\t\tContents\n\t\n\nimages/\nmetadata.jsonl\u2026 See the full description on the dataset page: https://huggingface.co/datasets/neonforestmist/GPT_Pointillism_Style_Images.",
+      "downloads": 165,
+      "tags": [
+        "task_categories:text-to-image",
+        "language:en",
+        "license:apache-2.0",
+        "size_categories:n<1K",
+        "format:imagefolder",
+        "modality:image",
+        "modality:text",
+        "library:datasets",
+        "library:mlcroissant",
+        "region:us",
+        "synthetic",
+        "gpt-generated",
+        "pointillism",
+        "image-caption-pairs",
+        "qwen-image"
+      ],
+      "createdAt": "2026-07-03T22:12:14.000Z",
+      "key": ""
+    },
+    {
+      "_id": "6a528d8b30e84f914003814e",
+      "id": "neonforestmist/smolgpt-markdown-stories",
+      "author": "neonforestmist",
+      "cardData": {
+        "pretty_name": "SmolGPT-Fables Stories",
+        "language": [
+          "en"
+        ],
+        "license": "cc-by-4.0",
+        "task_categories": [
+          "text-generation"
+        ],
+        "tags": [
+          "synthetic",
+          "storytelling",
+          "markdown",
+          "fables"
+        ],
+        "configs": [
+          {
+            "config_name": "stories",
+            "default": true,
+            "data_files": [
+              {
+                "split": "train",
+                "path": "data/stories/train-*.parquet"
+              },
+              {
+                "split": "validation",
+                "path": "data/stories/validation-*.parquet"
+              },
+              {
+                "split": "test",
+                "path": "data/stories/test-*.parquet"
+              }
+            ]
+          },
+          {
+            "config_name": "counterfactual-copy-v5r3",
+            "data_files": [
+              {
+                "split": "train",
+                "path": "data/counterfactual-copy-v5r3/train-*.parquet"
+              },
+              {
+                "split": "validation",
+                "path": "data/counterfactual-copy-v5r3/validation-*.parquet"
+              },
+              {
+                "split": "test",
+                "path": "data/counterfactual-copy-v5r3/test-*.parquet"
+              }
+            ]
+          }
+        ]
+      },
+      "disabled": false,
+      "gated": false,
+      "lastModified": "2026-07-13T15:05:02.000Z",
+      "likes": 0,
+      "trendingScore": 0,
+      "private": false,
+      "sha": "7d30e5a274e529967733b4f39565ab24d3171375",
+      "description": "\n\t\n\t\t\n\t\n\t\n\t\tSmolGPT-Fables Stories\n\t\n\nA deterministic, text-only corpus of 96,000 original English\nMarkdown stories built for SmolGPT-Fables. Every row is one complete supervised\nstory example with an exact prompt / completion boundary, a requested scene\ncount from one to six, and plain-language conditioning fields.\nNo model, API, browser, or network service was used to create this dataset.\n\n\t\n\t\t\n\t\n\t\n\t\tDataset summary\n\t\n\n\n96,000 stories across 96,000 isolated story families\n25 genres and all\u2026 See the full description on the dataset page: https://huggingface.co/datasets/neonforestmist/smolgpt-markdown-stories.",
+      "downloads": 153,
+      "tags": [
+        "task_categories:text-generation",
+        "language:en",
+        "license:cc-by-4.0",
+        "size_categories:10K<n<100K",
+        "format:parquet",
+        "modality:tabular",
+        "modality:text",
+        "library:datasets",
+        "library:dask",
+        "library:polars",
+        "library:mlcroissant",
+        "region:us",
+        "synthetic",
+        "storytelling",
+        "markdown",
+        "fables"
+      ],
+      "createdAt": "2026-07-11T18:38:03.000Z",
+      "key": ""
+    },
+    {
+      "_id": "6a5a75ffe12db1ae56ecc7e6",
+      "id": "neonforestmist/GPT_Monet_Style_Images",
+      "author": "neonforestmist",
+      "cardData": {
+        "license": "apache-2.0",
+        "task_categories": [
+          "text-to-image"
+        ],
+        "language": [
+          "en"
+        ],
+        "tags": [
+          "synthetic",
+          "gpt-generated",
+          "monet-style",
+          "impressionism",
+          "image-caption-pairs"
+        ],
+        "pretty_name": "GPT Monet Style Images",
+        "size_categories": [
+          "n<1K"
+        ]
+      },
+      "disabled": false,
+      "gated": false,
+      "lastModified": "2026-07-17T18:40:02.000Z",
+      "likes": 0,
+      "trendingScore": 0,
+      "private": false,
+      "sha": "2941a88e5268bbb4224ff2916013b78ec313d03a",
+      "description": "\n\t\n\t\t\n\t\n\t\n\t\tGPT Monet Style Images\n\t\n\n\n\t\n\t\t\n\t\n\t\n\t\tDataset Description\n\t\n\nThis is a synthetic GPT-generated Monet-style image dataset. It contains 100 image-caption pairs with impressionist lighting, soft broken color, painterly atmosphere, and garden, water, street, interior, and still-life compositions.\nThe images focus on luminous outdoor light, loose brushwork, atmospheric color, reflective water, flowers, fields, cozy scenes, cafes, village streets, and calm impressionist subjects.\u2026 See the full description on the dataset page: https://huggingface.co/datasets/neonforestmist/GPT_Monet_Style_Images.",
+      "downloads": 579,
+      "tags": [
+        "task_categories:text-to-image",
+        "language:en",
+        "license:apache-2.0",
+        "size_categories:n<1K",
+        "modality:image",
+        "region:us",
+        "synthetic",
+        "gpt-generated",
+        "monet-style",
+        "impressionism",
+        "image-caption-pairs"
+      ],
+      "createdAt": "2026-07-17T18:35:43.000Z",
+      "key": ""
+    },
+    {
+      "_id": "6a6bdfaa4cd9d82c8ee02005",
+      "id": "neonforestmist/GPT_Watercolor_Anime_Style_Images",
+      "author": "neonforestmist",
+      "cardData": {
+        "license": "apache-2.0",
+        "task_categories": [
+          "text-to-image"
+        ],
+        "language": [
+          "en"
+        ],
+        "tags": [
+          "synthetic",
+          "gpt-generated",
+          "watercolor-anime",
+          "watercolor",
+          "anime",
+          "image-caption-pairs"
+        ],
+        "pretty_name": "GPT Watercolor Anime Style Images",
+        "size_categories": [
+          "n<1K"
+        ]
+      },
+      "disabled": false,
+      "gated": false,
+      "lastModified": "2026-08-01T20:33:00.000Z",
+      "likes": 0,
+      "trendingScore": 0,
+      "private": false,
+      "sha": "23715cded47d5f52a660aef0ec82cbd54470d3c1",
+      "description": "\n\t\n\t\t\n\t\n\t\n\t\tGPT Watercolor Anime Style Images\n\t\n\n\n\t\n\t\t\n\t\n\t\n\t\tDataset Description\n\t\n\nThis is a synthetic GPT-generated Watercolor Anime Style image dataset. It contains 120 image-caption pairs with transparent watercolor washes, soft ink linework, pale paper texture, muted colors, and traditional anime illustration scenes.\nThe images focus on soft watercolor washes, expressive linework, gentle lighting, quiet interiors, nature scenes, village streets, character studies, and calm storybook\u2026 See the full description on the dataset page: https://huggingface.co/datasets/neonforestmist/GPT_Watercolor_Anime_Style_Images.",
+      "downloads": 639,
+      "tags": [
+        "task_categories:text-to-image",
+        "language:en",
+        "license:apache-2.0",
+        "size_categories:n<1K",
+        "format:imagefolder",
+        "modality:image",
+        "modality:text",
+        "library:datasets",
+        "library:mlcroissant",
+        "region:us",
+        "synthetic",
+        "gpt-generated",
+        "watercolor-anime",
+        "watercolor",
+        "anime",
+        "image-caption-pairs"
+      ],
+      "createdAt": "2026-07-30T23:35:06.000Z",
+      "key": ""
+    },
+    {
+      "_id": "6a6e5b3bd61016d83eb73608",
+      "id": "neonforestmist/GPT_Storybook_Anime_Style_Images",
+      "author": "neonforestmist",
+      "cardData": {
+        "license": "apache-2.0",
+        "task_categories": [
+          "text-to-image"
+        ],
+        "language": [
+          "en"
+        ],
+        "tags": [
+          "synthetic",
+          "gpt-generated",
+          "storybook-anime",
+          "storybook",
+          "anime",
+          "image-caption-pairs"
+        ],
+        "pretty_name": "GPT Storybook Anime Style Images",
+        "size_categories": [
+          "n<1K"
+        ]
+      },
+      "disabled": false,
+      "gated": false,
+      "lastModified": "2026-08-01T21:05:26.000Z",
+      "likes": 0,
+      "trendingScore": 0,
+      "private": false,
+      "sha": "af1908030f5ebe2cd8c2950ddf1a699bff12c120",
+      "description": "\n\t\n\t\t\n\t\n\t\n\t\tGPT Storybook Anime Style Images\n\t\n\n\n\t\n\t\t\n\t\n\t\n\t\tDataset Description\n\t\n\nThis is a synthetic GPT-generated Storybook Anime Style image dataset. It contains 100 image-caption pairs featuring original anime-inspired characters and scenes with a warm, illustrated storybook feeling.\nThe images focus on expressive character moments, gentle lighting, quiet interiors, nature scenes, village streets, cozy everyday settings, and calm storybook moods. Captions commonly describe soft linework\u2026 See the full description on the dataset page: https://huggingface.co/datasets/neonforestmist/GPT_Storybook_Anime_Style_Images.",
+      "downloads": 435,
+      "tags": [
+        "task_categories:text-to-image",
+        "language:en",
+        "license:apache-2.0",
+        "size_categories:n<1K",
+        "format:imagefolder",
+        "modality:image",
+        "modality:text",
+        "library:datasets",
+        "library:mlcroissant",
+        "region:us",
+        "synthetic",
+        "gpt-generated",
+        "storybook-anime",
+        "storybook",
+        "anime",
+        "image-caption-pairs"
+      ],
+      "createdAt": "2026-08-01T20:46:51.000Z",
+      "key": ""
+    }
+  ],
+  "previews": [
+    {
+      "id": "neonforestmist/GPT_Pointillism_Style_Images",
+      "title": "GPT Pointillism Style Images",
+      "slug": "pointillism",
+      "count": 70,
+      "description": "Colorful stippled textures, painterly light, landscapes, and decorative still-life scenes with matching captions.",
+      "preview": "../assets/ai/datasets/pointillism.jpg",
+      "source": "https://huggingface.co/datasets/neonforestmist/GPT_Pointillism_Style_Images/resolve/0f1bbd4c768ed9bd65a62ae7f7bf3f0aee351691/images/gpt_pointillism_0001.jpg",
+      "license": "Apache-2.0",
+      "url": "https://huggingface.co/datasets/neonforestmist/GPT_Pointillism_Style_Images"
+    },
+    {
+      "id": "neonforestmist/GPT_Monet_Style_Images",
+      "title": "GPT Monet Style Images",
+      "slug": "monet",
+      "count": 100,
+      "description": "Impressionist gardens, reflective water, and quiet interiors with loose brushwork and luminous color.",
+      "preview": "../assets/ai/datasets/monet.png",
+      "source": "https://huggingface.co/datasets/neonforestmist/GPT_Monet_Style_Images/resolve/2941a88e5268bbb4224ff2916013b78ec313d03a/images/gpt_monet_0001.png",
+      "license": "Apache-2.0",
+      "url": "https://huggingface.co/datasets/neonforestmist/GPT_Monet_Style_Images"
+    },
+    {
+      "id": "neonforestmist/GPT_Watercolor_Anime_Style_Images",
+      "title": "GPT Watercolor Anime Style Images",
+      "slug": "watercolor-anime",
+      "count": 120,
+      "description": "Transparent watercolor washes, soft ink lines, and traditional anime scenes, paired with descriptive captions.",
+      "preview": "../assets/ai/datasets/watercolor-anime.png",
+      "source": "https://huggingface.co/datasets/neonforestmist/GPT_Watercolor_Anime_Style_Images/resolve/23715cded47d5f52a660aef0ec82cbd54470d3c1/images/gpt_watercolor_anime_0001.png",
+      "license": "Apache-2.0",
+      "url": "https://huggingface.co/datasets/neonforestmist/GPT_Watercolor_Anime_Style_Images"
+    },
+    {
+      "id": "neonforestmist/GPT_Storybook_Anime_Style_Images",
+      "title": "GPT Storybook Anime Style Images",
+      "slug": "storybook-anime",
+      "count": 100,
+      "description": "Original anime-inspired characters and cozy scenes with soft linework, gentle lighting, and a warm storybook feel.",
+      "preview": "../assets/ai/datasets/storybook-anime.png",
+      "source": "https://huggingface.co/datasets/neonforestmist/GPT_Storybook_Anime_Style_Images/resolve/af1908030f5ebe2cd8c2950ddf1a699bff12c120/images/gpt_storybook_anime_0001.png",
+      "license": "Apache-2.0",
+      "url": "https://huggingface.co/datasets/neonforestmist/GPT_Storybook_Anime_Style_Images"
+    }
+  ]
+}

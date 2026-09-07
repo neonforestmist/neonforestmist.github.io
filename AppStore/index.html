@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../main.css?v=mobile-nav-sheet-6">
+  <link rel="stylesheet" href="../main.css?v=portfolio-layout-8">
   <script defer src="/nav-scroll.js?v=mobile-nav-sheet-6"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dashersw/liquid-glass-js@78cb6ccb0b9987bb60a88b14ccbd13a9e6e8ab2a/glass.css">
   <link rel="icon" type="image/png" href="/assets/favicon.png" />
@@ -1270,13 +1270,12 @@
       }
     }
   </style>
-  <link rel="stylesheet" href="../section-shell.css">
+  <link rel="stylesheet" href="../section-shell.css?v=portfolio-layout-9">
+  <script defer src="../section-tabs.js?v=portfolio-layout-7"></script>
 </head>
-<body class="appstore-page">
+<body class="appstore-page section-page">
   <div class="menu-bar">
-    <a href="/">
-      <img src="/assets/file.png" alt="Lukas Lozada Perez" class="menu-logo">
-    </a>
+    <a href="/" class="site-wordmark"><span class="site-wordmark-emoji" aria-hidden="true">🍀</span><span class="site-wordmark-text">Lukas Lozada Perez</span></a>
     <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Toggle navigation">
     <label for="menu-toggle" class="menu-hamburger" aria-hidden="true">
       <span></span>
@@ -1317,18 +1316,18 @@
     </div>
   </div>
 
-  <main class="as-main">
-    <div class="as-layout">
-      <aside class="as-sidebar" id="as-sidebar">
-        <div class="as-sidebar-brand" aria-hidden="true">
+  <main class="as-main section-container">
+    <div class="as-layout section-layout">
+      <aside class="as-sidebar section-sidebar" id="as-sidebar" aria-label="App Store categories">
+        <div class="as-sidebar-brand section-brand" aria-hidden="true">
           <img src="../assets/apple.png" alt="" class="as-sidebar-brand-icon">
           <span class="as-sidebar-brand-title">App Store</span>
         </div>
-        <nav class="as-nav-group" id="as-nav-group"></nav>
+        <nav class="as-nav-group section-tabs" id="as-nav-group" aria-label="App categories"></nav>
       </aside>
 
-      <section class="as-content">
-        <div class="as-header">
+      <section class="as-content section-content">
+        <div class="as-header section-header">
           <h1 class="as-title" id="as-title"></h1>
           <p class="as-subtitle" id="as-subtitle"></p>
         </div>
@@ -1338,23 +1337,8 @@
     </div>
   </main>
 
-  <script defer src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/gh/dashersw/liquid-glass-js@78cb6ccb0b9987bb60a88b14ccbd13a9e6e8ab2a/container.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/gh/dashersw/liquid-glass-js@78cb6ccb0b9987bb60a88b14ccbd13a9e6e8ab2a/button.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      window.glassControls = {
-        edgeIntensity: 0.016,
-        rimIntensity: 0.072,
-        baseIntensity: 0.012,
-        edgeDistance: 0.18,
-        rimDistance: 0.8,
-        baseDistance: 0.12,
-        cornerBoost: 0.014,
-        rippleEffect: 0.026,
-        blurRadius: 7
-      };
-
       const apps = {
         soon: {
           name: "Super Alan Run",
@@ -1424,63 +1408,16 @@
       const gridEl = document.getElementById("as-grid");
       const lookup = Object.fromEntries(sections.map(s => [s.key, s]));
       const buttons = {};
-      const liquidInstances = [];
-      const reduceTransparency = window.matchMedia("(prefers-reduced-transparency: reduce)").matches;
-      const hasLiquid = typeof Container !== "undefined" &&
-        typeof Button !== "undefined" &&
-        typeof html2canvas !== "undefined";
-      let useLiquid = hasLiquid && !reduceTransparency && supportsWebGL();
-      let navShell = null;
-
-      if (useLiquid) {
-        try {
-          navShell = new Container({ borderRadius: 27, type: "rounded", tintOpacity: 0.1 });
-          navShell.element.classList.add("as-nav-glass");
-          navGroup.appendChild(navShell.element);
-          liquidInstances.push(navShell);
-        } catch (error) {
-          navGroup.innerHTML = "";
-          navShell = null;
-          useLiquid = false;
-        }
-      }
-
       sections.forEach((section) => {
-        const iconMarkup = `<img src="${section.icon}" alt="" class="as-nav-icon">`;
-
-        if (!useLiquid) {
-          const div = document.createElement("div");
-          div.className = "as-nav-fallback-row";
-          const btn = document.createElement("button");
-          btn.className = "as-nav-btn";
-          btn.type = "button";
-          btn.dataset.key = section.key;
-          btn.innerHTML = `${iconMarkup}<span>${section.label}</span>`;
-          btn.addEventListener("click", () => activate(section.key));
-          div.appendChild(btn);
-          navGroup.appendChild(div);
-          buttons[section.key] = btn;
-          return;
-        }
-
         const btn = document.createElement("button");
-        btn.className = "as-nav-btn as-liquid-nav";
+        btn.className = "as-nav-btn";
         btn.type = "button";
         btn.dataset.key = section.key;
-        btn.innerHTML = `${iconMarkup}<span class="as-nav-label">${section.label}</span>`;
+        btn.innerHTML = `<img src="${section.icon}" alt="" class="as-nav-icon"><span>${section.label}</span>`;
         btn.addEventListener("click", () => activate(section.key));
-        navShell.element.appendChild(btn);
+        navGroup.appendChild(btn);
         buttons[section.key] = btn;
       });
-
-      function supportsWebGL() {
-        try {
-          const canvas = document.createElement("canvas");
-          return !!(canvas.getContext("webgl2") || canvas.getContext("webgl"));
-        } catch (error) {
-          return false;
-        }
-      }
 
       function activate(key) {
         const section = lookup[key] || lookup.all;
@@ -1495,7 +1432,6 @@
         titleEl.appendChild(title);
         subtitleEl.textContent = section.subtitle;
         renderGrid(section.items);
-        refreshLiquidGlass();
       }
 
       function renderGrid(items) {
@@ -1559,24 +1495,7 @@
         return cta;
       }
 
-      function refreshLiquidGlass() {
-        requestAnimationFrame(() => {
-          liquidInstances.forEach(instance => {
-            if (instance && typeof instance.updateSizeFromDOM === "function") {
-              instance.updateSizeFromDOM();
-            }
-          });
-        });
-      }
-
-      let resizeTimer = null;
-      window.addEventListener("resize", () => {
-        window.clearTimeout(resizeTimer);
-        resizeTimer = window.setTimeout(refreshLiquidGlass, 120);
-      });
-
       activate("all");
-      requestAnimationFrame(refreshLiquidGlass);
     });
   </script>
 </body>

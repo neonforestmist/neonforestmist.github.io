@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../main.css?v=mobile-nav-sheet-6">
+  <link rel="stylesheet" href="../main.css?v=portfolio-layout-8">
   <script defer src="/nav-scroll.js?v=mobile-nav-sheet-6"></script>
   <link rel="icon" type="image/png" href="/assets/favicon.png" />
   <link rel="shortcut icon" href="/assets/favicon.ico" />
@@ -4487,13 +4487,12 @@
       }
     }
   </style>
-  <link rel="stylesheet" href="../section-shell.css">
+  <link rel="stylesheet" href="../section-shell.css?v=portfolio-layout-9">
+  <script defer src="../section-tabs.js?v=portfolio-layout-7"></script>
 </head>
-<body class="ai-section-page">
+<body class="ai-section-page section-page">
   <div class="menu-bar">
-    <a href="/">
-      <img src="../assets/file.png" alt="Lukas Lozada Perez" class="menu-logo">
-    </a>
+    <a href="/" class="site-wordmark"><span class="site-wordmark-emoji" aria-hidden="true">🍀</span><span class="site-wordmark-text">Lukas Lozada Perez</span></a>
     <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Toggle navigation">
     <label for="menu-toggle" class="menu-hamburger" aria-hidden="true">
       <span></span>
@@ -4534,15 +4533,15 @@
     </div>
   </div>
 
-  <main class="ai-page">
+  <main class="ai-page section-container">
     <section class="ai-shell" data-ai-tabs>
-      <div class="ai-workspace">
-        <aside class="ai-nav" aria-label="AI sections">
-          <h1 class="ai-nav-title">
+      <div class="ai-workspace section-layout">
+        <aside class="ai-nav section-sidebar" aria-label="AI sections">
+          <h2 class="ai-nav-title section-brand">
             <img class="ai-nav-title-icon" src="../assets/ai_chip.png" alt="" aria-hidden="true">
-            <span>AI Section</span>
-          </h1>
-          <div class="ai-tabs" role="tablist" aria-label="AI sections">
+            <span>AI</span>
+          </h2>
+          <div class="ai-tabs section-tabs" role="tablist" aria-label="AI sections">
             <button class="ai-tab is-active" type="button" role="tab" data-ai-tab="models" aria-controls="ai-panel-models" aria-selected="true">
               <span class="ai-tab-icon ai-local-icon ai-icon-models" aria-hidden="true"></span>
               <span>
@@ -4557,24 +4556,10 @@
                 <span class="ai-tab-note">Training collections</span>
               </span>
             </button>
-            <!-- Temporarily disabled: loras navigation
-<button class="ai-tab" type="button" role="tab" data-ai-tab="loras" aria-controls="ai-panel-loras" aria-selected="false">
-              <span class="ai-tab-icon ai-local-icon ai-icon-loras" aria-hidden="true"></span>
-              <span>
-                <span class="ai-tab-name">LoRAs</span>
-                <span class="ai-tab-note">Style adapters</span>
-              </span>
-            </button>
--->
-            <!-- Temporarily disabled: previews navigation
-<button class="ai-tab" type="button" role="tab" data-ai-tab="previews" aria-controls="ai-panel-previews" aria-selected="false">
+            <button class="ai-tab" type="button" role="tab" data-ai-tab="gallery" aria-controls="ai-panel-gallery" aria-selected="false">
               <span class="ai-tab-icon ai-local-icon ai-icon-gallery" aria-hidden="true"></span>
-              <span>
-                <span class="ai-tab-name">Gallery</span>
-                <span class="ai-tab-note">AI Previews</span>
-              </span>
+              <span><span class="ai-tab-name">Gallery</span></span>
             </button>
--->
             <button class="ai-tab" type="button" role="tab" data-ai-tab="other" aria-controls="ai-panel-other" aria-selected="false">
               <span class="ai-tab-icon ai-local-icon ai-icon-misc" aria-hidden="true"></span>
               <span>
@@ -4585,310 +4570,11 @@
           </div>
         </aside>
 
-        <div class="ai-main">
-          <!-- Temporarily disabled: loras section
-<section class="ai-panel" id="ai-panel-loras" data-ai-panel="loras" role="tabpanel" aria-labelledby="ai-title-loras" hidden>
-            <div class="ai-section-head">
-              <h2 class="ai-section-title" id="ai-title-loras">LoRAs</h2>
-              <p class="ai-section-copy">Style adapters and fine-tuned add-ons for image generation.</p>
-            </div>
-
-            <section class="ai-sample-gallery" aria-labelledby="ai-gallery-title">
-              <div class="ai-gallery-head">
-                <div>
-                  <h3 class="ai-gallery-title" id="ai-gallery-title">
-                    <span class="ai-local-icon ai-icon-gallery" aria-hidden="true"></span>
-                    Gallery
-                  </h3>
-                  <p class="ai-gallery-copy">18 preview images from my AI image work.</p>
-                </div>
-                <button class="ai-gallery-open" type="button" data-ai-jump="explore">
-                  Explore
-                </button>
-              </div>
-              <div class="ai-sample-grid" aria-label="LoRA sample gallery preview">
-                <div class="ai-sample-tile" aria-hidden="true">
-                  <img src="../assets/ai/thumbs/watercolor-anime_preview_01.jpg" alt="" loading="lazy" decoding="async">
-                  <span class="ai-sample-label">
-                    Bamboo Valley Mist
-                  </span>
-                </div>
-                <div class="ai-sample-tile" aria-hidden="true">
-                  <img src="../assets/ai/thumbs/watercolor-anime_preview_02.jpg" alt="" loading="lazy" decoding="async">
-                  <span class="ai-sample-label">
-                    Blue Jay on a Branch
-                  </span>
-                </div>
-                <div class="ai-sample-tile" aria-hidden="true">
-                  <img src="../assets/ai/thumbs/pointillism_preview_01.jpg" alt="" loading="lazy" decoding="async">
-                  <span class="ai-sample-label">
-                    Rose Garden Nap
-                  </span>
-                </div>
-                <div class="ai-sample-tile" aria-hidden="true">
-                  <img src="../assets/ai/thumbs/pointillism_preview_02.jpg" alt="" loading="lazy" decoding="async">
-                  <span class="ai-sample-label">
-                    Gemstone Grotto
-                  </span>
-                </div>
-                <div class="ai-sample-tile" aria-hidden="true">
-                  <img src="../assets/ai/thumbs/storybook-anime_preview_01.jpg" alt="" loading="lazy" decoding="async">
-                  <span class="ai-sample-label">
-                    Strawberry Summer
-                  </span>
-                </div>
-                <div class="ai-sample-tile" aria-hidden="true">
-                  <img src="../assets/ai/thumbs/storybook-anime_preview_02.jpg" alt="" loading="lazy" decoding="async">
-                  <span class="ai-sample-label">
-                    Blueberry Jam Afternoon
-                  </span>
-                </div>
-                <div class="ai-sample-tile" aria-hidden="true">
-                  <img src="../assets/ai/thumbs/watercolor-anime_preview_03.jpg" alt="" loading="lazy" decoding="async">
-                  <span class="ai-sample-label">
-                    Butterfly Waltz
-                  </span>
-                </div>
-                <div class="ai-sample-tile" aria-hidden="true">
-                  <img src="../assets/ai/thumbs/pointillism_preview_03.jpg" alt="" loading="lazy" decoding="async">
-                  <span class="ai-sample-label">
-                    Moonlit Lavender Aurora
-                  </span>
-                </div>
-              </div>
-            </section>
--->
-
-            <div class="ai-release-list">
-              <article class="ai-feature" id="watercolor-anime-lora" style="--ai-thumb-bg: #dceae0; --ai-cell-bg: #eef6ee;">
-                <div class="ai-feature-art">
-                  <img src="../assets/ai/banners/qwen-watercolor-anime-lora/qwen-watercolor-anime-lora-banner.png" alt="Watercolor Anime LoRA preview" loading="lazy" decoding="async">
-                </div>
-                <div class="ai-feature-body">
-                  <h3 class="ai-release-title">Qwen Image 2512 Watercolor Anime LoRA</h3>
-                  <p class="ai-release-copy">Soft ink linework, pale paper texture, transparent washes, and quiet storybook-like scene mood.</p>
-                  <div class="ai-actions">
-                    <a class="ai-button is-secondary" href="https://huggingface.co/neonforestmist/qwen-image-2512-watercolor-anime-lora" target="_blank" rel="noopener noreferrer">
-                      <img class="ai-hf-mark" src="../assets/huggingface.png" alt="">
-                      <span>View in Hugging Face</span>
-                    </a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="ai-feature" id="pointillism-lora" style="--ai-thumb-bg: #f1e6cf; --ai-cell-bg: #fbf2dc;">
-                <div class="ai-feature-art">
-                  <img src="../assets/ai/banners/qwen-pointillism-lora/qwen-pointillism-lora-banner.png" alt="Pointillism LoRA preview" loading="lazy" decoding="async">
-                </div>
-                <div class="ai-feature-body">
-                  <h3 class="ai-release-title">Qwen Image 2512 Pointillism LoRA</h3>
-                  <p class="ai-release-copy">Dense paint dots, luminous color mixing, clear silhouettes, and decorative light patterns.</p>
-                  <div class="ai-actions">
-                    <a class="ai-button is-secondary" href="https://huggingface.co/neonforestmist/qwen-image-2512-pointillism-lora" target="_blank" rel="noopener noreferrer">
-                      <img class="ai-hf-mark" src="../assets/huggingface.png" alt="">
-                      <span>View in Hugging Face</span>
-                    </a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="ai-feature" id="storybook-anime-lora" style="--ai-thumb-bg: #e4dfef; --ai-cell-bg: #f3eef8;">
-                <div class="ai-feature-art">
-                  <img src="../assets/ai/banners/qwen-storybook-anime-lora/qwen-storybook-anime-lora-banner.png" alt="Storybook Anime LoRA preview" loading="lazy" decoding="async">
-                </div>
-                <div class="ai-feature-body">
-                  <h3 class="ai-release-title">Qwen Image 2512 Storybook Anime LoRA</h3>
-                  <p class="ai-release-copy">Warm hand-painted backgrounds, cozy scene design, gentle cel-shaded characters, and readable environment detail.</p>
-                  <div class="ai-actions">
-                    <a class="ai-button is-secondary" href="https://huggingface.co/neonforestmist/qwen-image-2512-storybook-anime-lora" target="_blank" rel="noopener noreferrer">
-                      <img class="ai-hf-mark" src="../assets/huggingface.png" alt="">
-                      <span>View in Hugging Face</span>
-                    </a>
-                  </div>
-                </div>
-              </article>
-
-              <article class="ai-feature" id="storybook-anime-flux2-lora" style="--ai-thumb-bg: #dce2e8; --ai-cell-bg: #edf1f4;">
-                <div class="ai-feature-art">
-                  <img src="../assets/ai/thumbs/storybook-anime-flux2_cherry-blossom-dog.jpg" alt="Storybook Anime LoRA v1 cherry blossom dog preview" loading="lazy" decoding="async">
-                </div>
-                <div class="ai-feature-body">
-                  <h3 class="ai-release-title">FLUX Storybook Anime LoRA v1</h3>
-                  <p class="ai-release-copy">A storybook-anime adapter for FLUX.2 Klein 9B, kept here as the earlier FLUX release.</p>
-                  <div class="ai-actions">
-                    <a class="ai-button is-secondary" href="https://huggingface.co/neonforestmist/flux-storybook-anime-lora-v1" target="_blank" rel="noopener noreferrer">
-                      <img class="ai-hf-mark" src="../assets/huggingface.png" alt="">
-                      <span>View in Hugging Face</span>
-                    </a>
-                  </div>
-                </div>
-              </article>
-            </div>
-          </section>
-
-          <!-- Temporarily disabled: explore section
-<section class="ai-panel" id="ai-panel-explore" data-ai-panel="explore" aria-labelledby="ai-title-explore" role="dialog" aria-modal="true" hidden>
-            <h2 class="ai-visually-hidden" id="ai-title-explore">LoRA Gallery</h2>
-            <div class="ai-explore-bar">
-              <button class="ai-viewer-button" type="button" data-gallery-grid aria-label="Gallery index">
-                <span class="ai-local-icon ai-icon-grid" aria-hidden="true"></span>
-              </button>
-              <button class="ai-viewer-button" type="button" data-ai-jump="loras" aria-label="Close Explore">
-                <span class="ai-local-icon ai-icon-close" aria-hidden="true"></span>
-              </button>
-            </div>
-
-            <div class="ai-explore-stage">
-              <div class="ai-explore-mosaic" data-gallery-view="grid">
-                <div class="ai-explore-grid" aria-label="Expanded LoRA sample gallery">
-                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="0" data-gallery-title="Bamboo Valley Mist" data-gallery-style="Watercolor Anime" data-gallery-copy="Qwen Image 2512 Watercolor Anime preview from the Hugging Face gallery." data-gallery-full="../assets/ai/watercolor-anime/preview_01.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-watercolor-anime-lora" aria-label="Open Bamboo Valley Mist">
-                    <img src="../assets/ai/thumbs/watercolor-anime_preview_01.jpg" alt="" loading="lazy" decoding="async">
-                    <span class="ai-explore-caption">Bamboo Valley Mist</span>
-                  </button>
-                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="1" data-gallery-title="Blue Jay on a Branch" data-gallery-style="Watercolor Anime" data-gallery-copy="Qwen Image 2512 Watercolor Anime preview from the Hugging Face gallery." data-gallery-full="../assets/ai/watercolor-anime/preview_02.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-watercolor-anime-lora" aria-label="Open Blue Jay on a Branch">
-                    <img src="../assets/ai/thumbs/watercolor-anime_preview_02.jpg" alt="" loading="lazy" decoding="async">
-                    <span class="ai-explore-caption">Blue Jay on a Branch</span>
-                  </button>
-                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="2" data-gallery-title="Butterfly Waltz" data-gallery-style="Watercolor Anime" data-gallery-copy="Qwen Image 2512 Watercolor Anime preview from the Hugging Face gallery." data-gallery-full="../assets/ai/watercolor-anime/preview_03.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-watercolor-anime-lora" aria-label="Open Butterfly Waltz">
-                    <img src="../assets/ai/thumbs/watercolor-anime_preview_03.jpg" alt="" loading="lazy" decoding="async">
-                    <span class="ai-explore-caption">Butterfly Waltz</span>
-                  </button>
-                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="3" data-gallery-title="Kite Over Green Fields" data-gallery-style="Watercolor Anime" data-gallery-copy="Qwen Image 2512 Watercolor Anime preview from the Hugging Face gallery." data-gallery-full="../assets/ai/watercolor-anime/preview_04.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-watercolor-anime-lora" aria-label="Open Kite Over Green Fields">
-                    <img src="../assets/ai/thumbs/watercolor-anime_preview_04.jpg" alt="" loading="lazy" decoding="async">
-                    <span class="ai-explore-caption">Kite Over Green Fields</span>
-                  </button>
-                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="4" data-gallery-title="Colors on the Palette" data-gallery-style="Watercolor Anime" data-gallery-copy="Qwen Image 2512 Watercolor Anime preview from the Hugging Face gallery." data-gallery-full="../assets/ai/watercolor-anime/preview_05.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-watercolor-anime-lora" aria-label="Open Colors on the Palette">
-                    <img src="../assets/ai/thumbs/watercolor-anime_preview_05.jpg" alt="" loading="lazy" decoding="async">
-                    <span class="ai-explore-caption">Colors on the Palette</span>
-                  </button>
-                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="5" data-gallery-title="Rain Beneath the Red Umbrella" data-gallery-style="Watercolor Anime" data-gallery-copy="Qwen Image 2512 Watercolor Anime preview from the Hugging Face gallery." data-gallery-full="../assets/ai/watercolor-anime/preview_06.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-watercolor-anime-lora" aria-label="Open Rain Beneath the Red Umbrella">
-                    <img src="../assets/ai/thumbs/watercolor-anime_preview_06.jpg" alt="" loading="lazy" decoding="async">
-                    <span class="ai-explore-caption">Rain Beneath the Red Umbrella</span>
-                  </button>
-                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="6" data-gallery-title="Rose Garden Nap" data-gallery-style="Pointillism" data-gallery-copy="Qwen Image 2512 Pointillism preview from the Hugging Face gallery." data-gallery-full="../assets/ai/pointillism/preview_01.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-pointillism-lora" aria-label="Open Rose Garden Nap">
-                    <img src="../assets/ai/thumbs/pointillism_preview_01.jpg" alt="" loading="lazy" decoding="async">
-                    <span class="ai-explore-caption">Rose Garden Nap</span>
-                  </button>
-                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="7" data-gallery-title="Gemstone Grotto" data-gallery-style="Pointillism" data-gallery-copy="Qwen Image 2512 Pointillism preview from the Hugging Face gallery." data-gallery-full="../assets/ai/pointillism/preview_02.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-pointillism-lora" aria-label="Open Gemstone Grotto">
-                    <img src="../assets/ai/thumbs/pointillism_preview_02.jpg" alt="" loading="lazy" decoding="async">
-                    <span class="ai-explore-caption">Gemstone Grotto</span>
-                  </button>
-                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="8" data-gallery-title="Moonlit Lavender Aurora" data-gallery-style="Pointillism" data-gallery-copy="Qwen Image 2512 Pointillism preview from the Hugging Face gallery." data-gallery-full="../assets/ai/pointillism/preview_03.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-pointillism-lora" aria-label="Open Moonlit Lavender Aurora">
-                    <img src="../assets/ai/thumbs/pointillism_preview_03.jpg" alt="" loading="lazy" decoding="async">
-                    <span class="ai-explore-caption">Moonlit Lavender Aurora</span>
-                  </button>
-                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="9" data-gallery-title="Rainbow Over Mountain Lake" data-gallery-style="Pointillism" data-gallery-copy="Qwen Image 2512 Pointillism preview from the Hugging Face gallery." data-gallery-full="../assets/ai/pointillism/preview_04.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-pointillism-lora" aria-label="Open Rainbow Over Mountain Lake">
-                    <img src="../assets/ai/thumbs/pointillism_preview_04.jpg" alt="" loading="lazy" decoding="async">
-                    <span class="ai-explore-caption">Rainbow Over Mountain Lake</span>
-                  </button>
-                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="10" data-gallery-title="Cherries in a Glass Jar" data-gallery-style="Pointillism" data-gallery-copy="Qwen Image 2512 Pointillism preview from the Hugging Face gallery." data-gallery-full="../assets/ai/pointillism/preview_05.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-pointillism-lora" aria-label="Open Cherries in a Glass Jar">
-                    <img src="../assets/ai/thumbs/pointillism_preview_05.jpg" alt="" loading="lazy" decoding="async">
-                    <span class="ai-explore-caption">Cherries in a Glass Jar</span>
-                  </button>
-                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="11" data-gallery-title="Sunlit Avocado" data-gallery-style="Pointillism" data-gallery-copy="Qwen Image 2512 Pointillism preview from the Hugging Face gallery." data-gallery-full="../assets/ai/pointillism/preview_06.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-pointillism-lora" aria-label="Open Sunlit Avocado">
-                    <img src="../assets/ai/thumbs/pointillism_preview_06.jpg" alt="" loading="lazy" decoding="async">
-                    <span class="ai-explore-caption">Sunlit Avocado</span>
-                  </button>
-                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="12" data-gallery-title="Strawberry Summer" data-gallery-style="Storybook Anime" data-gallery-copy="Qwen Image 2512 Storybook Anime preview from the Hugging Face gallery." data-gallery-full="../assets/ai/storybook-anime/preview_01.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-storybook-anime-lora" aria-label="Open Strawberry Summer">
-                    <img src="../assets/ai/thumbs/storybook-anime_preview_01.jpg" alt="" loading="lazy" decoding="async">
-                    <span class="ai-explore-caption">Strawberry Summer</span>
-                  </button>
-                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="13" data-gallery-title="Blueberry Jam Afternoon" data-gallery-style="Storybook Anime" data-gallery-copy="Qwen Image 2512 Storybook Anime preview from the Hugging Face gallery." data-gallery-full="../assets/ai/storybook-anime/preview_02.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-storybook-anime-lora" aria-label="Open Blueberry Jam Afternoon">
-                    <img src="../assets/ai/thumbs/storybook-anime_preview_02.jpg" alt="" loading="lazy" decoding="async">
-                    <span class="ai-explore-caption">Blueberry Jam Afternoon</span>
-                  </button>
-                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="14" data-gallery-title="Dandelion Wish" data-gallery-style="Storybook Anime" data-gallery-copy="Qwen Image 2512 Storybook Anime preview from the Hugging Face gallery." data-gallery-full="../assets/ai/storybook-anime/preview_03.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-storybook-anime-lora" aria-label="Open Dandelion Wish">
-                    <img src="../assets/ai/thumbs/storybook-anime_preview_03.jpg" alt="" loading="lazy" decoding="async">
-                    <span class="ai-explore-caption">Dandelion Wish</span>
-                  </button>
-                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="15" data-gallery-title="Sunlit Bakery" data-gallery-style="Storybook Anime" data-gallery-copy="Qwen Image 2512 Storybook Anime preview from the Hugging Face gallery." data-gallery-full="../assets/ai/storybook-anime/preview_04.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-storybook-anime-lora" aria-label="Open Sunlit Bakery">
-                    <img src="../assets/ai/thumbs/storybook-anime_preview_04.jpg" alt="" loading="lazy" decoding="async">
-                    <span class="ai-explore-caption">Sunlit Bakery</span>
-                  </button>
-                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="16" data-gallery-title="Daisy Field Dash" data-gallery-style="Storybook Anime" data-gallery-copy="Qwen Image 2512 Storybook Anime preview from the Hugging Face gallery." data-gallery-full="../assets/ai/storybook-anime/preview_05.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-storybook-anime-lora" aria-label="Open Daisy Field Dash">
-                    <img src="../assets/ai/thumbs/storybook-anime_preview_05.jpg" alt="" loading="lazy" decoding="async">
-                    <span class="ai-explore-caption">Daisy Field Dash</span>
-                  </button>
-                  <button class="ai-explore-card" type="button" data-gallery-card data-gallery-index="17" data-gallery-title="Quiet Morning Cup" data-gallery-style="Storybook Anime" data-gallery-copy="Qwen Image 2512 Storybook Anime preview from the Hugging Face gallery." data-gallery-full="../assets/ai/storybook-anime/preview_06.png" data-gallery-link="https://huggingface.co/neonforestmist/qwen-image-2512-storybook-anime-lora" aria-label="Open Quiet Morning Cup">
-                    <img src="../assets/ai/thumbs/storybook-anime_preview_06.jpg" alt="" loading="lazy" decoding="async">
-                    <span class="ai-explore-caption">Quiet Morning Cup</span>
-                  </button>
-                </div>
-              </div>
-
-              <div class="ai-explore-detail" data-gallery-view="detail" hidden>
-                <div class="ai-detail-media">
-                  <section class="ai-clover-window" aria-labelledby="clover-window-title">
-                    <header class="ai-clover-window-bar">
-                      <span class="ai-clover-window-controls" aria-hidden="true">
-                        <span class="ai-clover-window-control is-close"></span>
-                        <span class="ai-clover-window-control is-minimize"></span>
-                        <span class="ai-clover-window-control is-maximize"></span>
-                      </span>
-                      <span class="ai-clover-window-title" id="clover-window-title">Clover Image Tiny</span>
-                    </header>
-                    <div class="ai-clover-window-content">
-                      <div class="ai-clover-canvas">
-                        <img src="../assets/ai/watercolor-anime/preview_01.png" alt="Bamboo Valley Mist" data-gallery-detail-image>
-                      </div>
-                      <div class="ai-clover-prompt-panel">
-                        <label class="ai-clover-prompt-label" for="clover-prompt">Prompt</label>
-                        <div class="ai-clover-prompt-row">
-                          <textarea id="clover-prompt" rows="2" placeholder="Describe an image..."></textarea>
-                          <button class="ai-clover-generate" type="button" aria-label="Generate image" title="Generate image">
-                            <span class="ai-local-icon ai-icon-arrow" aria-hidden="true"></span>
-                          </button>
-                        </div>
-                        <div class="ai-clover-prompt-meta" aria-hidden="true">
-                          <span>1024 x 1024</span>
-                          <span>Ready</span>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
--->
-                </div>
-                <div class="ai-detail-info">
-                  <h2 class="ai-explore-title" data-gallery-detail-title>Bamboo Valley Mist</h2>
-                  <div class="ai-detail-meta" aria-label="Selected sample details">
-                    <span data-gallery-detail-style>Watercolor Anime</span>
-                    <span>1024 x 1024</span>
-                  </div>
-                  <div class="ai-explore-actions">
-                    <a class="ai-explore-link" href="https://huggingface.co/neonforestmist/qwen-image-2512-watercolor-anime-lora" target="_blank" rel="noopener noreferrer" data-gallery-detail-link>
-                      <img class="ai-hf-mark" src="../assets/huggingface.png" alt="">
-                      <span data-gallery-detail-link-label>View LoRA in Hugging Face</span>
-                    </a>
-                  </div>
-                </div>
-                <div class="ai-explore-dots" aria-label="Gallery position">
-                  <button class="ai-explore-dot is-active" type="button" data-gallery-dot="0" aria-label="Show Bamboo Valley Mist"></button>
-                  <button class="ai-explore-dot" type="button" data-gallery-dot="1" aria-label="Show Blue Jay on a Branch"></button>
-                  <button class="ai-explore-dot" type="button" data-gallery-dot="2" aria-label="Show Butterfly Waltz"></button>
-                  <button class="ai-explore-dot" type="button" data-gallery-dot="3" aria-label="Show Kite Over Green Fields"></button>
-                  <button class="ai-explore-dot" type="button" data-gallery-dot="4" aria-label="Show Colors on the Palette"></button>
-                  <button class="ai-explore-dot" type="button" data-gallery-dot="5" aria-label="Show Rain Beneath the Red Umbrella"></button>
-                  <button class="ai-explore-dot" type="button" data-gallery-dot="6" aria-label="Show Rose Garden Nap"></button>
-                  <button class="ai-explore-dot" type="button" data-gallery-dot="7" aria-label="Show Gemstone Grotto"></button>
-                  <button class="ai-explore-dot" type="button" data-gallery-dot="8" aria-label="Show Moonlit Lavender Aurora"></button>
-                  <button class="ai-explore-dot" type="button" data-gallery-dot="9" aria-label="Show Rainbow Over Mountain Lake"></button>
-                  <button class="ai-explore-dot" type="button" data-gallery-dot="10" aria-label="Show Cherries in a Glass Jar"></button>
-                  <button class="ai-explore-dot" type="button" data-gallery-dot="11" aria-label="Show Sunlit Avocado"></button>
-                  <button class="ai-explore-dot" type="button" data-gallery-dot="12" aria-label="Show Strawberry Summer"></button>
-                  <button class="ai-explore-dot" type="button" data-gallery-dot="13" aria-label="Show Blueberry Jam Afternoon"></button>
-                  <button class="ai-explore-dot" type="button" data-gallery-dot="14" aria-label="Show Dandelion Wish"></button>
-                  <button class="ai-explore-dot" type="button" data-gallery-dot="15" aria-label="Show Sunlit Bakery"></button>
-                  <button class="ai-explore-dot" type="button" data-gallery-dot="16" aria-label="Show Daisy Field Dash"></button>
-                  <button class="ai-explore-dot" type="button" data-gallery-dot="17" aria-label="Show Quiet Morning Cup"></button>
-                </div>
-              </div>
-            </div>
-          </section>
-
+        <div class="ai-main section-content">
           <section class="ai-panel is-active" id="ai-panel-models" data-ai-panel="models" role="tabpanel" aria-labelledby="ai-title-models">
-            <div class="ai-section-head">
-              <h2 class="ai-section-title" id="ai-title-models">Models</h2>
-              <p class="ai-section-copy">Full model releases and hosted demos are tracked separately from LoRA adapters.</p>
+            <div class="ai-section-head section-header">
+              <h1 class="ai-section-title" id="ai-title-models">Models</h1>
+              <p class="ai-section-copy">Image and language models, with releases and demos.</p>
             </div>
             <div class="ai-release-list">
               <article class="ai-feature" id="clover-image-tiny" style="--ai-thumb-bg: #eef5f1; --ai-cell-bg: #f3f8f5;">
@@ -4897,12 +4583,13 @@
                 </div>
                 <div class="ai-feature-body">
                   <h3 class="ai-release-title">Clover Image Tiny</h3>
-                  <p class="ai-release-copy">A compact image model release for lightweight generation experiments and visual demos.</p>
+                  <p class="ai-release-copy">A compact text-to-image model for local apps and offline generation.</p>
                   <div class="ai-actions">
                     <a class="ai-button is-secondary" href="https://huggingface.co/neonforestmist/Clover-Image-Tiny" target="_blank" rel="noopener noreferrer">
                       <img class="ai-hf-mark" src="../assets/huggingface.png" alt="">
                       <span>View in Hugging Face</span>
                     </a>
+                    <button class="ai-button is-secondary" type="button" data-clover-explore>Explore</button>
                   </div>
                 </div>
               </article>
@@ -4913,7 +4600,7 @@
                 </div>
                 <div class="ai-feature-body">
                   <h3 class="ai-release-title">SmolGPT-Fables</h3>
-                  <p class="ai-release-copy">A 6,032,640-parameter English model trained from scratch for structured Markdown stories, continuations, editorial passes, and bounded image-generation intents.</p>
+                  <p class="ai-release-copy">A small language model family for English storytelling, structured Markdown, and local creative apps.</p>
                   <div class="ai-actions">
                     <a class="ai-button is-secondary" href="https://huggingface.co/neonforestmist/smolgpt-fables" target="_blank" rel="noopener noreferrer">
                       <img class="ai-hf-mark" src="../assets/huggingface.png" alt="">
@@ -4926,46 +4613,92 @@
           </section>
 
           <section class="ai-panel" id="ai-panel-datasets" data-ai-panel="datasets" role="tabpanel" aria-labelledby="ai-title-datasets" hidden>
-            <div class="ai-section-head">
-              <h2 class="ai-section-title" id="ai-title-datasets">Datasets</h2>
-              <p class="ai-section-copy">Training collections, source notes, and license details are grouped here.</p>
+            <div class="ai-section-head section-header">
+              <h1 class="ai-section-title" id="ai-title-datasets">Datasets</h1>
+              <p class="ai-section-copy">Image-caption collections and structured stories for training and experimentation.</p>
             </div>
-            <div class="ai-release-list">
-              <article class="ai-feature" id="smolgpt-markdown-stories" style="--ai-thumb-bg: #dfe9df; --ai-cell-bg: #f0f5ee;">
-                <div class="ai-feature-art">
-                  <img class="ai-model-banner is-two-one" src="../assets/ai/banners/smol-gpt-markdown/smol-gpt-markdown.png" alt="SmolGPT Markdown Stories banner" loading="lazy" decoding="async">
-                </div>
-                <div class="ai-feature-body">
-                  <h3 class="ai-release-title">SmolGPT Markdown Stories</h3>
-                  <p class="ai-release-copy">A deterministic synthetic corpus of 4,800 Markdown artifacts across 800 story families and 25 balanced genres, with stories, canvases, and orchestration episodes.</p>
-                  <div class="ai-actions">
-                    <a class="ai-button is-secondary" href="https://huggingface.co/datasets/neonforestmist/smolgpt-markdown-stories" target="_blank" rel="noopener noreferrer">
-                      Open dataset
-                    </a>
-                  </div>
+            <div class="dataset-grid">
+              <article class="dataset-card">
+                <a class="dataset-preview dataset-preview-banner" href="https://huggingface.co/datasets/neonforestmist/smolgpt-markdown-stories" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+                  <img src="../assets/ai/banners/smol-gpt-markdown/smol-gpt-markdown.png" alt="" loading="lazy" decoding="async" width="1536" height="1024">
+                </a>
+                <div class="dataset-body">
+                  <p class="dataset-kind">Text generation</p>
+                  <h2>SmolGPT-Fables Stories</h2>
+                  <p class="dataset-description">96,000 English Markdown stories across 25 genres, with 1–6 scenes per story. Includes a separate 1,024-row counterfactual-copy curriculum.</p>
+                  <div class="dataset-facts"><span>96,000 stories</span><span>Parquet</span><span>CC BY 4.0</span></div>
+                  <a class="dataset-link ai-button is-secondary" href="https://huggingface.co/datasets/neonforestmist/smolgpt-markdown-stories" target="_blank" rel="noopener noreferrer">
+                    <img class="ai-hf-mark" src="../assets/huggingface.png" alt="">
+                    <span>View in Hugging Face</span>
+                  </a>
                 </div>
               </article>
-
-              <article class="ai-feature" id="gpt-pointillism-style-images-dataset" style="--ai-thumb-bg: #f1e6cf; --ai-cell-bg: #fbf2dc;">
-                <div class="ai-feature-art">
-                  <img src="../assets/ai/banners/qwen-pointillism-lora/qwen-pointillism-lora-banner.png" alt="GPT Pointillism Style Images dataset preview" loading="lazy" decoding="async">
+              <article class="dataset-card">
+                <a class="dataset-preview" href="https://huggingface.co/datasets/neonforestmist/GPT_Storybook_Anime_Style_Images" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+                  <img src="../assets/ai/datasets/storybook-anime.png" alt="" loading="lazy" decoding="async" width="1024" height="1024">
+                </a>
+                <div class="dataset-body">
+                  <p class="dataset-kind">Image + captions</p>
+                  <h2>GPT Storybook Anime Style Images</h2>
+                  <p class="dataset-description">Original anime-inspired characters and cozy scenes with soft linework, gentle lighting, and a warm storybook feel.</p>
+                  <div class="dataset-facts"><span>100 pairs</span><span>English</span><span>Apache-2.0</span></div>
+                  <a class="dataset-link ai-button is-secondary" href="https://huggingface.co/datasets/neonforestmist/GPT_Storybook_Anime_Style_Images" target="_blank" rel="noopener noreferrer">
+                    <img class="ai-hf-mark" src="../assets/huggingface.png" alt="">
+                    <span>View in Hugging Face</span>
+                  </a>
                 </div>
-                <div class="ai-feature-body">
-                  <h3 class="ai-release-title">GPT Pointillism Style Images Dataset</h3>
-                  <p class="ai-release-copy">Pointillism-style image collection for GPT image training, style experiments, and visual reference work.</p>
-                  <div class="ai-actions">
-                    <a class="ai-button is-secondary" href="https://huggingface.co/datasets/neonforestmist/GPT_Pointillism_Style_Images" target="_blank" rel="noopener noreferrer">
-                      Open dataset
-                    </a>
-                  </div>
+              </article>
+              <article class="dataset-card">
+                <a class="dataset-preview" href="https://huggingface.co/datasets/neonforestmist/GPT_Watercolor_Anime_Style_Images" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+                  <img src="../assets/ai/datasets/watercolor-anime.png" alt="" loading="lazy" decoding="async" width="1024" height="1024">
+                </a>
+                <div class="dataset-body">
+                  <p class="dataset-kind">Image + captions</p>
+                  <h2>GPT Watercolor Anime Style Images</h2>
+                  <p class="dataset-description">Transparent watercolor washes, soft ink lines, and traditional anime scenes, paired with descriptive captions.</p>
+                  <div class="dataset-facts"><span>120 pairs</span><span>English</span><span>Apache-2.0</span></div>
+                  <a class="dataset-link ai-button is-secondary" href="https://huggingface.co/datasets/neonforestmist/GPT_Watercolor_Anime_Style_Images" target="_blank" rel="noopener noreferrer">
+                    <img class="ai-hf-mark" src="../assets/huggingface.png" alt="">
+                    <span>View in Hugging Face</span>
+                  </a>
+                </div>
+              </article>
+              <article class="dataset-card">
+                <a class="dataset-preview" href="https://huggingface.co/datasets/neonforestmist/GPT_Monet_Style_Images" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+                  <img src="../assets/ai/datasets/monet.png" alt="" loading="lazy" decoding="async" width="1024" height="1024">
+                </a>
+                <div class="dataset-body">
+                  <p class="dataset-kind">Image + captions</p>
+                  <h2>GPT Monet Style Images</h2>
+                  <p class="dataset-description">Impressionist gardens, reflective water, and quiet interiors with loose brushwork and luminous color.</p>
+                  <div class="dataset-facts"><span>100 pairs</span><span>English</span><span>Apache-2.0</span></div>
+                  <a class="dataset-link ai-button is-secondary" href="https://huggingface.co/datasets/neonforestmist/GPT_Monet_Style_Images" target="_blank" rel="noopener noreferrer">
+                    <img class="ai-hf-mark" src="../assets/huggingface.png" alt="">
+                    <span>View in Hugging Face</span>
+                  </a>
+                </div>
+              </article>
+              <article class="dataset-card">
+                <a class="dataset-preview" href="https://huggingface.co/datasets/neonforestmist/GPT_Pointillism_Style_Images" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+                  <img src="../assets/ai/datasets/pointillism.jpg" alt="" loading="lazy" decoding="async" width="1024" height="1024">
+                </a>
+                <div class="dataset-body">
+                  <p class="dataset-kind">Image + captions</p>
+                  <h2>GPT Pointillism Style Images</h2>
+                  <p class="dataset-description">Colorful stippled textures, painterly light, landscapes, and decorative still-life scenes with matching captions.</p>
+                  <div class="dataset-facts"><span>70 pairs</span><span>English</span><span>Apache-2.0</span></div>
+                  <a class="dataset-link ai-button is-secondary" href="https://huggingface.co/datasets/neonforestmist/GPT_Pointillism_Style_Images" target="_blank" rel="noopener noreferrer">
+                    <img class="ai-hf-mark" src="../assets/huggingface.png" alt="">
+                    <span>View in Hugging Face</span>
+                  </a>
                 </div>
               </article>
             </div>
           </section>
 
           <section class="ai-panel" id="ai-panel-other" data-ai-panel="other" role="tabpanel" aria-labelledby="ai-title-other" hidden>
-            <div class="ai-section-head">
-              <h2 class="ai-section-title" id="ai-title-other">Miscellaneous</h2>
+            <div class="ai-section-head section-header">
+              <h1 class="ai-section-title" id="ai-title-other">Miscellaneous</h1>
               <p class="ai-section-copy">Prompts, workflows, and small experiments that do not fit the main categories.</p>
             </div>
             <div class="ai-empty">
@@ -4976,252 +4709,58 @@
             </div>
           </section>
 
-          <!-- Temporarily disabled: previews section
-<section class="ai-panel" id="ai-panel-previews" data-ai-panel="previews" role="tabpanel" aria-labelledby="ai-title-previews" hidden>
-            <div class="ai-section-head">
-              <h2 class="ai-section-title" id="ai-title-previews">AI Previews</h2>
-              <p class="ai-section-copy">Browse preview collections from my AI image work.</p>
+          <section class="ai-panel" id="ai-panel-gallery" data-ai-panel="gallery" role="tabpanel" aria-labelledby="ai-title-gallery" hidden>
+            <div class="ai-section-head section-header">
+              <h1 class="ai-section-title" id="ai-title-gallery">Gallery</h1>
+              <p class="ai-section-copy">Selected Clover Image Tiny outputs, with their original prompts.</p>
             </div>
-
-            <div class="ai-preview-collections">
-              <article class="ai-preview-collection ai-preview-collection-wide">
-                <img class="ai-preview-collection-banner" src="../assets/ai/banners/clover-image-tiny/clover-image-tiny-banner.png" alt="Clover Image Tiny banner" loading="lazy" decoding="async">
-                <div class="ai-preview-collection-head">
-                  <div>
-                    <h3 class="ai-preview-collection-title">Clover Image Tiny</h3>
-                    <p class="ai-preview-collection-copy">A compact image model for lightweight visual experiments.</p>
+            <div class="ai-release-list">
+              <article class="ai-feature">
+                <div class="ai-feature-art">
+                  <img class="ai-model-banner" src="../assets/ai/banners/clover-image-tiny/clover-image-tiny-banner.png" alt="Clover Image Tiny gallery banner" loading="lazy" decoding="async">
+                </div>
+                <div class="ai-feature-body">
+                  <h2 class="ai-release-title">Clover Image Tiny</h2>
+                  <p class="ai-release-copy">Explore six generated images and the original prompt behind each one.</p>
+                  <div class="ai-actions">
+                    <button class="ai-button clover-explore" type="button" data-clover-explore>Explore</button>
+                    <a class="ai-button is-secondary" href="https://huggingface.co/neonforestmist/Clover-Image-Tiny#examples" target="_blank" rel="noopener noreferrer">
+                      <img class="ai-hf-mark" src="../assets/huggingface.png" alt="">
+                      <span>View in Hugging Face</span>
+                    </a>
                   </div>
-                  <button class="ai-preview-explore" type="button" data-ai-jump="explore">Explore</button>
                 </div>
               </article>
             </div>
           </section>
--->
+
         </div>
 
       </div>
     </section>
   </main>
 
-  <script>
-    const aiTabsRoot = document.querySelector("[data-ai-tabs]");
-
-    if (aiTabsRoot) {
-      const tabs = Array.from(aiTabsRoot.querySelectorAll("[data-ai-tab]"));
-      const panels = Array.from(aiTabsRoot.querySelectorAll("[data-ai-panel]"));
-      const jumpButtons = Array.from(aiTabsRoot.querySelectorAll("[data-ai-jump]"));
-      const explorePanel = aiTabsRoot.querySelector('[data-ai-panel="explore"]');
-      const galleryGridView = explorePanel?.querySelector('[data-gallery-view="grid"]');
-      const galleryDetailView = explorePanel?.querySelector('[data-gallery-view="detail"]');
-      const galleryCards = Array.from(explorePanel?.querySelectorAll("[data-gallery-card]") || []);
-      const galleryDots = Array.from(explorePanel?.querySelectorAll("[data-gallery-dot]") || []);
-      const galleryGridButton = explorePanel?.querySelector("[data-gallery-grid]");
-      const galleryCloseButton = explorePanel?.querySelector('[data-ai-jump="loras"]');
-      const detailImage = explorePanel?.querySelector("[data-gallery-detail-image]");
-      const detailTitle = explorePanel?.querySelector("[data-gallery-detail-title]");
-      const detailStyle = explorePanel?.querySelector("[data-gallery-detail-style]");
-      const detailLink = explorePanel?.querySelector("[data-gallery-detail-link]");
-      const detailLinkLabel = explorePanel?.querySelector("[data-gallery-detail-link-label]");
-      let lastFocusedElement = null;
-      let activeGalleryIndex = 0;
-      let detailTouchStartX = null;
-      let detailTouchStartY = null;
-
-      const showGalleryGrid = () => {
-        if (!galleryGridView || !galleryDetailView) {
-          return;
-        }
-
-        galleryGridView.hidden = false;
-        galleryDetailView.hidden = true;
-      };
-
-      const showGalleryDetail = (index) => {
-        const card = galleryCards[index];
-
-        if (!card || !galleryGridView || !galleryDetailView || !detailImage || !detailTitle || !detailStyle || !detailLink || !detailLinkLabel) {
-          return;
-        }
-
-        const selectedStyle = card.dataset.galleryStyle || "";
-        activeGalleryIndex = index;
-        detailImage.src = card.dataset.galleryFull || "";
-        detailImage.alt = card.getAttribute("aria-label") || card.dataset.galleryTitle || "Selected gallery image";
-        detailTitle.textContent = card.dataset.galleryTitle || "Gallery image";
-        detailStyle.textContent = selectedStyle;
-        detailLink.href = card.dataset.galleryLink || detailLink.href;
-        detailLinkLabel.textContent = "View LoRA in Hugging Face";
-
-        galleryDots.forEach((dot) => {
-          const isActive = Number(dot.dataset.galleryDot) === index;
-          dot.classList.toggle("is-active", isActive);
-          dot.setAttribute("aria-current", isActive ? "true" : "false");
-        });
-
-        galleryGridView.hidden = true;
-        galleryDetailView.hidden = false;
-      };
-
-      const showNextGalleryImage = () => {
-        if (!galleryCards.length) {
-          return;
-        }
-
-        showGalleryDetail((activeGalleryIndex + 1) % galleryCards.length);
-      };
-
-      const showPreviousGalleryImage = () => {
-        if (!galleryCards.length) {
-          return;
-        }
-
-        showGalleryDetail((activeGalleryIndex - 1 + galleryCards.length) % galleryCards.length);
-      };
-
-      const activateTab = (key) => {
-        const isGalleryKey = key === "explore";
-        const activeRailKey = isGalleryKey ? "previews" : key;
-        const panelKey = isGalleryKey ? "explore" : key;
-        const wasExploreOpen = document.body.classList.contains("is-ai-explore-open");
-
-        tabs.forEach((tab) => {
-          const isActive = tab.dataset.aiTab === activeRailKey;
-          tab.classList.toggle("is-active", isActive);
-          tab.setAttribute("aria-selected", String(isActive));
-          tab.setAttribute("tabindex", isActive ? "0" : "-1");
-        });
-
-        panels.forEach((panel) => {
-          const isActive = panel.dataset.aiPanel === panelKey;
-          panel.classList.toggle("is-active", isActive);
-          panel.hidden = !isActive;
-        });
-
-        document.body.classList.toggle("is-ai-explore-open", isGalleryKey);
-
-        if (isGalleryKey) {
-          if (!wasExploreOpen) {
-            lastFocusedElement = document.activeElement;
-          }
-
-          showGalleryGrid();
-          requestAnimationFrame(() => galleryCloseButton?.focus({ preventScroll: true }));
-        }
-
-        if (!isGalleryKey && wasExploreOpen && lastFocusedElement instanceof HTMLElement) {
-          requestAnimationFrame(() => lastFocusedElement.focus({ preventScroll: true }));
-        }
-      };
-
-      galleryCards.forEach((card, index) => {
-        card.addEventListener("click", () => showGalleryDetail(index));
-      });
-
-      galleryDots.forEach((dot) => {
-        dot.addEventListener("click", () => showGalleryDetail(Number(dot.dataset.galleryDot)));
-      });
-
-      galleryGridButton?.addEventListener("click", () => {
-        showGalleryGrid();
-        requestAnimationFrame(() => galleryCards[activeGalleryIndex]?.focus({ preventScroll: true }));
-      });
-
-      galleryDetailView?.addEventListener("touchstart", (event) => {
-        if (event.touches.length !== 1 || galleryDetailView.hidden) {
-          detailTouchStartX = null;
-          detailTouchStartY = null;
-          return;
-        }
-
-        detailTouchStartX = event.touches[0].clientX;
-        detailTouchStartY = event.touches[0].clientY;
-      }, { passive: true });
-
-      galleryDetailView?.addEventListener("touchend", (event) => {
-        if (detailTouchStartX === null || detailTouchStartY === null || galleryDetailView.hidden || !event.changedTouches.length) {
-          return;
-        }
-
-        const touchEndX = event.changedTouches[0].clientX;
-        const touchEndY = event.changedTouches[0].clientY;
-        const distanceX = touchEndX - detailTouchStartX;
-        const distanceY = touchEndY - detailTouchStartY;
-        const isHorizontalSwipe = Math.abs(distanceX) > 48 && Math.abs(distanceX) > Math.abs(distanceY) * 1.2;
-
-        detailTouchStartX = null;
-        detailTouchStartY = null;
-
-        if (!isHorizontalSwipe) {
-          return;
-        }
-
-        if (distanceX < 0) {
-          showNextGalleryImage();
-          return;
-        }
-
-        showPreviousGalleryImage();
-      }, { passive: true });
-
-      tabs.forEach((tab) => {
-        tab.addEventListener("click", () => activateTab(tab.dataset.aiTab));
-        tab.addEventListener("keydown", (event) => {
-          if (!["ArrowDown", "ArrowRight", "ArrowUp", "ArrowLeft", "Home", "End"].includes(event.key)) {
-            return;
-          }
-
-          event.preventDefault();
-
-          const currentIndex = tabs.indexOf(tab);
-          let nextIndex = currentIndex;
-
-          if (event.key === "ArrowDown" || event.key === "ArrowRight") {
-            nextIndex = (currentIndex + 1) % tabs.length;
-          }
-
-          if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
-            nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
-          }
-
-          if (event.key === "Home") {
-            nextIndex = 0;
-          }
-
-          if (event.key === "End") {
-            nextIndex = tabs.length - 1;
-          }
-
-          tabs[nextIndex].focus();
-          activateTab(tabs[nextIndex].dataset.aiTab);
-        });
-      });
-
-      jumpButtons.forEach((button) => {
-        button.addEventListener("click", () => activateTab(button.dataset.aiJump));
-      });
-
-      activateTab("models");
-
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && document.body.classList.contains("is-ai-explore-open")) {
-          activateTab("loras");
-        }
-
-        if (!document.body.classList.contains("is-ai-explore-open") || galleryDetailView?.hidden) {
-          return;
-        }
-
-        if (event.key === "ArrowRight") {
-          event.preventDefault();
-          showNextGalleryImage();
-        }
-
-        if (event.key === "ArrowLeft") {
-          event.preventDefault();
-          showPreviousGalleryImage();
-        }
-      });
-    }
-  </script>
+  <dialog class="clover-viewer" aria-labelledby="clover-viewer-title" aria-describedby="clover-viewer-prompt">
+    <div class="clover-viewer-bar">
+      <span>Clover Image Tiny</span>
+      <form method="dialog"><button type="submit" aria-label="Close image viewer">Close <span aria-hidden="true">×</span></button></form>
+    </div>
+    <img class="clover-viewer-image" src="../assets/ai/clover-image-tiny/moonlit-greenhouse.png" alt="" width="512" height="512">
+    <div class="clover-viewer-details">
+      <div class="clover-viewer-caption">
+        <h2 id="clover-viewer-title" aria-live="polite"></h2>
+        <div class="clover-viewer-controls">
+          <button type="button" data-clover-previous aria-label="Previous image">←</button>
+          <span data-clover-count aria-live="polite"></span>
+          <button type="button" data-clover-next aria-label="Next image">→</button>
+        </div>
+      </div>
+      <div class="clover-prompt-bar">
+        <label for="clover-viewer-prompt">Prompt</label>
+        <textarea id="clover-viewer-prompt" rows="2" readonly></textarea>
+      </div>
+    </div>
+  </dialog>
+  <script defer src="./gallery.js?v=portfolio-layout-10"></script>
 </body>
 </html>
