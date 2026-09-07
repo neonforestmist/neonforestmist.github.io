@@ -104,6 +104,41 @@ p {
         font-size: 1em;
     }
 }
+
+.policy-tabs {
+    display: flex;
+    gap: 4px;
+    padding: 5px;
+    margin: 24px 0;
+    background: #eeeeef;
+    border-radius: 14px;
+}
+.policy-tabs button {
+    flex: 1;
+    min-width: 0;
+    min-height: 44px;
+    padding: 10px 8px;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    color: #555;
+    font: 500 .95rem Helvetica, Arial, sans-serif;
+    cursor: pointer;
+}
+.policy-tabs button[aria-selected="true"] {
+    background: #fff;
+    color: #1a1a1f;
+    box-shadow: 0 1px 5px #00000014;
+}
+.policy-tabs button:focus-visible {
+    outline: 2px solid #315ca8;
+    outline-offset: 2px;
+}
+[data-policy-panel][hidden] { display: none; }
+@media (max-width: 420px) {
+    .policy-tabs { gap: 2px; padding: 4px; }
+    .policy-tabs button { font-size: .8rem; padding: 8px 4px; }
+}
 </style>
 </head>
 <body>
@@ -153,9 +188,13 @@ p {
 
     <main class="container">
         <h1>App Privacy &amp; Support</h1>
-        <p>Apps by Lukas Lozada Perez.</p>
-        <nav aria-label="Privacy policies"><p><a href="#violette">Violette</a> · <a href="#chroma">Chroma</a> · <a href="#super-alan-run">Super Alan Run</a> · <a href="#support">Contact &amp; support</a></p></nav>
-        <div class="divider"></div>
+        <div class="policy-tabs" role="tablist" aria-label="App privacy policies">
+            <button type="button" role="tab" id="tab-violette" aria-controls="panel-violette" aria-selected="true" tabindex="0" data-policy="violette">Violette</button>
+            <button type="button" role="tab" id="tab-chroma" aria-controls="panel-chroma" aria-selected="false" tabindex="-1" data-policy="chroma">Chroma</button>
+            <button type="button" role="tab" id="tab-super-alan-run" aria-controls="panel-super-alan-run" aria-selected="false" tabindex="-1" data-policy="super-alan-run">Super Alan Run</button>
+            <button type="button" role="tab" id="tab-support" aria-controls="panel-support" aria-selected="false" tabindex="-1" data-policy="support">Support</button>
+        </div>
+        <div id="panel-violette" role="tabpanel" aria-labelledby="tab-violette" tabindex="0" data-policy-panel="violette">
         <h2 id="violette">Violette Privacy Policy</h2>
         <p>Last updated: <time datetime="2026-09-07">September 7, 2026</time></p>
         <p>This policy describes Violette, including its optional connected features. Data handling depends on the features and providers you use.</p>
@@ -217,7 +256,8 @@ p {
             <p>You can manage iCloud, tracking, and app permissions in iOS Settings.</p>
             <p>Deleting Violette removes its local app container, but synced app data may restore from iCloud after reinstall. Use Delete All Custom AI Characters and Clear All Chats in Settings before uninstalling when you want those synced records removed.</p>
         </section>
-        <div class="divider"></div>
+        </div>
+        <div id="panel-chroma" role="tabpanel" aria-labelledby="tab-chroma" tabindex="0" data-policy-panel="chroma" hidden>
         <section aria-labelledby="chroma">
             <h2 id="chroma">Chroma Privacy Policy</h2>
             <p>Last updated: <time datetime="2026-09-07">September 7, 2026</time></p>
@@ -231,10 +271,11 @@ p {
             <p>Chroma displays ads through Google Mobile Ads. Google may process IP addresses, device identifiers, approximate location, ad interactions, and diagnostic information to deliver and measure ads and prevent fraud. Ad data handling depends on your permissions and Google’s terms.</p>
             <p>You can manage tracking permission in iOS Settings. Denying tracking permission does not prevent all information needed to serve ads from reaching Google. See the <a href="https://policies.google.com/privacy">Google Privacy Policy</a> for its data handling, retention, and deletion practices.</p>
             <h3>Your controls</h3>
-            <p>Deleting Chroma removes its local app data. Images you saved to Photos and content you shared remain in their respective destinations until you delete them there. Contact support below for questions about Chroma or this policy.</p>
+            <p>Deleting Chroma removes its local app data. Images you saved to Photos and content you shared remain in their respective destinations until you delete them there. Use the Support tab for questions about Chroma or this policy.</p>
         </section>
 
-        <div class="divider"></div>
+        </div>
+        <div id="panel-super-alan-run" role="tabpanel" aria-labelledby="tab-super-alan-run" tabindex="0" data-policy-panel="super-alan-run" hidden>
         <section aria-labelledby="super-alan-run">
             <h2 id="super-alan-run">Super Alan Run Privacy Policy</h2>
             <p>Last updated: <time datetime="2026-09-07">September 7, 2026</time></p>
@@ -247,18 +288,54 @@ p {
             <p>The game requests advertising consent where required and asks for tracking permission. When available, use AD PRIVACY in the game’s Settings to revisit advertising choices. You can also manage tracking permission in iOS Settings.</p>
             <p>Denying tracking permission does not prevent all information needed to serve ads from reaching Google. Google’s retention and deletion practices are described in the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</p>
             <h3>Your controls</h3>
-            <p>Deleting the game removes its local app data. Progress saved in iCloud may return after reinstalling, and Game Center scores and achievements are managed separately by Apple. Manage iCloud and Game Center through your Apple Account settings, and contact support below with privacy questions.</p>
+            <p>Deleting the game removes its local app data. Progress saved in iCloud may return after reinstalling, and Game Center scores and achievements are managed separately by Apple. Manage iCloud and Game Center through your Apple Account settings, and use the Support tab with privacy questions.</p>
         </section>
 
-        <div class="divider"></div>
+        </div>
+        <div id="panel-support" role="tabpanel" aria-labelledby="tab-support" tabindex="0" data-policy-panel="support" hidden>
         <section aria-labelledby="support">
             <h2 id="support">Contact &amp; Support</h2>
             <p>Email <a href="mailto:neonforestmist.support@gmail.com">neonforestmist.support@gmail.com</a> for support or privacy questions about Violette, Chroma, or Super Alan Run.</p>
             <p>For help with Violette or another app, or for a privacy question, include the app name, app version, and a description of the issue.</p>
             <p>Please do not include passwords, API keys, or private chat content.</p>
         </section>
+        </div>
     </main>
 
+<script>
+    const policyTabs = [...document.querySelectorAll('[data-policy]')];
+    const policyPanels = [...document.querySelectorAll('[data-policy-panel]')];
+    function selectPolicy(key, updateURL = false) {
+        const selected = policyTabs.find(tab => tab.dataset.policy === key) || policyTabs[0];
+        policyTabs.forEach(tab => {
+            const active = tab === selected;
+            tab.setAttribute('aria-selected', String(active));
+            tab.tabIndex = active ? 0 : -1;
+        });
+        policyPanels.forEach(panel => {
+            panel.hidden = panel.dataset.policyPanel !== selected.dataset.policy;
+        });
+        if (updateURL) history.pushState(null, '', '#' + selected.dataset.policy);
+    }
+    policyTabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => selectPolicy(tab.dataset.policy, true));
+        tab.addEventListener('keydown', event => {
+            let next;
+            if (event.key === 'ArrowRight') next = (index + 1) % policyTabs.length;
+            else if (event.key === 'ArrowLeft') next = (index - 1 + policyTabs.length) % policyTabs.length;
+            else if (event.key === 'Home') next = 0;
+            else if (event.key === 'End') next = policyTabs.length - 1;
+            else return;
+            event.preventDefault();
+            policyTabs[next].focus();
+            selectPolicy(policyTabs[next].dataset.policy, true);
+        });
+    });
+    function selectFromHash() { selectPolicy(location.hash.slice(1)); }
+    window.addEventListener('hashchange', selectFromHash);
+    window.addEventListener('popstate', selectFromHash);
+    selectFromHash();
+</script>
 </body>
 
 </html>
