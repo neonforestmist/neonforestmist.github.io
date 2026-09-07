@@ -258,7 +258,7 @@
         min-height: 38px;
         padding: 0 12px 0 0;
         border: 2px solid #1d1d1d;
-        border-radius: 8px;
+        border-radius: 0;
         background: #fff;
         color: #1d1d1d;
         text-decoration: none;
@@ -270,6 +270,8 @@
       }
       .hero-pill .hero-pill-icon {
         align-self: stretch;
+        box-sizing: border-box;
+        padding: 0;
         border-right: 2px solid #1d1d1d;
         display: flex;
         align-items: center;
@@ -286,6 +288,8 @@
         width: 30px;
         height: 30px;
         object-fit: contain;
+        object-position: center;
+        flex-shrink: 0;
         display: block;
         margin: 0;
         padding: 0;
