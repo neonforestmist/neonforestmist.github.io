@@ -1270,11 +1270,12 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="../section-shell.css">
 </head>
 <body class="appstore-page">
   <div class="menu-bar">
     <a href="/">
-      <img src="/assets/file.png" alt="The Chroma Swift Media" class="menu-logo">
+      <img src="/assets/file.png" alt="Lukas Lozada Perez" class="menu-logo">
     </a>
     <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Toggle navigation">
     <label for="menu-toggle" class="menu-hamburger" aria-hidden="true">
@@ -1333,6 +1334,7 @@
         </div>
 
         <div class="as-grid" id="as-grid"></div>
+        <p>Privacy policies: <a href="/Privacy/#violette">Violette</a> · <a href="/Privacy/#chroma">Chroma</a> · <a href="/Privacy/#super-alan-run">Super Alan Run</a> · <a href="/Privacy/#support">Contact &amp; support</a></p>
       </section>
     </div>
   </main>
@@ -1372,7 +1374,7 @@
         entertainmentSoon: {
           name: "Violette",
           category: "Entertainment",
-          desc: "An AI chat platform that uses Apple Intelligence to simulate characters for unlimited, offline, private chats.",
+          desc: "Chat with AI characters using on-device Apple Intelligence, with iCloud sync and optional external AI providers.",
           image: "../assets/app_store_icons/violette.png",
           url: "https://apps.apple.com/us/app/violette-chat-with-ai/id6760790799"
         }
@@ -1385,7 +1387,7 @@
           emoji: "📱",
           icon: "../assets/app_store_icons/Apps.svg",
           title: "App Store",
-          subtitle: "Discover our collection of apps.",
+          subtitle: "Discover my collection of apps.",
           items: [apps.soon, apps.entertainmentSoon, apps.chroma]
         },
         {
@@ -1394,7 +1396,7 @@
           emoji: "🎮",
           icon: "../assets/app_store_icons/Games.svg",
           title: "Games",
-          subtitle: "Our series of games made with care.",
+          subtitle: "My series of games made with care.",
           items: [apps.soon]
         },
         {
@@ -1489,13 +1491,6 @@
           b.setAttribute("aria-pressed", isActive ? "true" : "false");
         });
         titleEl.replaceChildren();
-        if (section.emoji) {
-          const emoji = document.createElement("span");
-          emoji.className = "as-title-emoji";
-          emoji.setAttribute("aria-hidden", "true");
-          emoji.textContent = section.emoji;
-          titleEl.appendChild(emoji);
-        }
         const title = document.createElement("span");
         title.textContent = section.title;
         titleEl.appendChild(title);

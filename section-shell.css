@@ -1,0 +1,389 @@
+:root {
+  --shell-ink: #1d1d1f;
+  --shell-muted: #6e6e73;
+  --shell-line: #d9e0e8;
+  --shell-line-soft: #e7ebf0;
+  --shell-active: #0b57d0;
+  --shell-active-bg: rgba(11, 87, 208, 0.13);
+  --shell-hover: #f3f5f7;
+  --shell-active-icon-filter: brightness(0) saturate(100%) invert(37%) sepia(97%) saturate(1958%) hue-rotate(196deg) brightness(96%) contrast(99%);
+  --shell-page: #f5f6f8;
+}
+
+body.appstore-page,
+body.projects-page,
+body.ai-section-page,
+.ai-page {
+  background: var(--shell-page);
+}
+
+.as-layout,
+.projects-layout,
+.ai-workspace {
+  display: grid;
+  grid-template-columns: 264px minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+  max-width: 1280px;
+}
+
+.as-sidebar,
+.projects-sidebar,
+.ai-nav {
+  position: sticky;
+  top: 92px;
+  height: fit-content;
+  min-height: 0;
+  max-height: none;
+  padding: 0;
+  border: 1px solid var(--shell-line);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: none;
+  overflow: hidden;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.as-sidebar-brand,
+.projects-nav-title,
+.ai-nav-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 64px;
+  margin: 0;
+  padding: 18px;
+  border-bottom: 1px solid var(--shell-line-soft);
+  color: var(--shell-muted);
+  font-size: 24px;
+  line-height: 1.1;
+  font-weight: 600;
+}
+
+.as-sidebar-brand-icon,
+.projects-nav-icon,
+.ai-nav-title-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  filter: none !important;
+  image-rendering: pixelated;
+}
+
+.as-nav-group,
+.projects-tabs,
+.ai-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 8px;
+  background: transparent;
+}
+
+.as-liquid-nav,
+.as-nav-btn,
+.projects-tab,
+.ai-tab {
+  width: 100%;
+  min-height: 50px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Neutral interaction states: no per-category colors, no blue text. */
+.as-liquid-nav,
+.as-nav-btn {
+  --as-category-color: var(--shell-ink) !important;
+  --as-category-bg: transparent !important;
+  --as-category-icon-filter: none !important;
+}
+
+.ai-tab {
+  --ai-tab-active-bg: var(--shell-active-bg) !important;
+  --ai-tab-active-fg: var(--shell-active) !important;
+}
+
+.as-liquid-nav .as-nav-icon,
+.as-nav-btn .as-nav-icon {
+  filter: brightness(0) invert(0.12) !important;
+  opacity: 1 !important;
+}
+
+.as-liquid-nav.is-active .as-nav-icon,
+.as-nav-btn.is-active .as-nav-icon {
+  filter: var(--shell-active-icon-filter) !important;
+}
+
+.as-liquid-nav:hover,
+.as-nav-btn:hover,
+.projects-tab:hover,
+.projects-tab:focus-visible,
+.ai-tab:hover,
+.ai-tab:focus-visible {
+  background: var(--shell-hover) !important;
+  color: var(--shell-ink) !important;
+  box-shadow: none;
+  transform: none;
+}
+
+.as-liquid-nav.is-active,
+.as-nav-btn.is-active,
+.projects-tab.is-active,
+.ai-tab.is-active {
+  background: var(--shell-active-bg) !important;
+  color: var(--shell-active) !important;
+  box-shadow: none !important;
+}
+
+.as-liquid-nav:hover .as-nav-label,
+.as-nav-btn:hover,
+.ai-tab:hover .ai-tab-icon,
+.ai-tab:hover .ai-tab-name {
+  color: var(--shell-ink) !important;
+}
+
+.as-liquid-nav.is-active .as-nav-label,
+.as-nav-btn.is-active,
+.ai-tab.is-active .ai-tab-icon,
+.ai-tab.is-active .ai-tab-name {
+  color: var(--shell-active) !important;
+}
+
+.as-header,
+.projects-header,
+.ai-section-head {
+  margin-bottom: 28px;
+}
+
+.as-title,
+.projects-title,
+.ai-section-title {
+  margin: 0 0 6px;
+  color: var(--shell-ink);
+  font-size: 34px;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.as-subtitle,
+.projects-header .tagline,
+.ai-section-copy {
+  margin: 0;
+  color: var(--shell-muted);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.projects-header .divider {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  /* Same structure everywhere: section card (title + tabs), then header, then content. */
+  .as-main {
+    padding-top: 110px !important;
+  }
+
+  .projects-page .board {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 30px auto !important;
+    padding: 0 !important;
+  }
+
+  .ai-page {
+    padding: 50px 16px 78px !important;
+  }
+
+  .as-layout,
+  .projects-layout,
+  .ai-workspace {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: none !important;
+    gap: 24px;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-right: 16px !important;
+    padding-left: 16px !important;
+    margin: 0 auto !important;
+    min-height: 0 !important;
+    align-items: start;
+  }
+
+  .ai-workspace {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  .as-content,
+  .projects-content,
+  .ai-main,
+  .as-header,
+  .as-grid,
+  .as-sidebar,
+  .projects-sidebar,
+  .ai-nav {
+    display: block !important;
+    order: unset !important;
+    width: 100%;
+    min-width: 0;
+    position: static !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+
+  .as-content,
+  .ai-main {
+    padding: 0 !important;
+  }
+
+  .as-sidebar,
+  .projects-sidebar,
+  .ai-nav {
+    padding: 0 !important;
+    border: 1px solid var(--shell-line) !important;
+    border-radius: 12px !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+  }
+
+  .as-sidebar-brand,
+  .as-sidebar-title,
+  .projects-nav-title,
+  .board .projects-nav-title,
+  .ai-nav-title {
+    display: flex !important;
+    align-items: center;
+    gap: 12px;
+    min-height: 64px;
+    margin: 0 !important;
+    padding: 18px;
+    border-bottom: 1px solid var(--shell-line-soft);
+    font-size: 24px !important;
+    line-height: 1.1;
+    font-weight: 600;
+  }
+
+  /* Two-column tab grid inside the card, identical across sections. */
+  .as-nav-group,
+  .projects-tabs,
+  .ai-tabs {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    gap: 3px;
+    margin: 0 !important;
+    padding: 8px !important;
+    overflow: visible !important;
+    border-radius: 0;
+    clip-path: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  /* Unwrap the App Store liquid-glass shell so its buttons join the same grid. */
+  .as-nav-group:has(.as-nav-glass) .as-nav-glass.glass-container {
+    display: contents !important;
+  }
+
+  .as-nav-glass.glass-container::after,
+  .as-nav-glass.glass-container > canvas {
+    display: none !important;
+  }
+
+  .as-nav-fallback-row {
+    display: contents;
+  }
+
+  .as-liquid-nav,
+  .as-liquid-nav[data-key],
+  .as-liquid-nav[data-key="all"],
+  .as-liquid-nav[data-key="games"],
+  .as-liquid-nav[data-key="tools"],
+  .as-liquid-nav[data-key="entertainment"],
+  .as-nav-btn,
+  .projects-tab,
+  .projects-tab[data-project-tab],
+  .ai-tab,
+  .ai-tab[data-ai-tab] {
+    display: grid !important;
+    grid-template-columns: 20px minmax(0, 1fr) !important;
+    align-items: center !important;
+    justify-content: unset !important;
+    gap: 10px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    min-height: 50px;
+    height: auto;
+    padding: 9px 11px !important;
+    text-align: left;
+    border-radius: 8px !important;
+    background: transparent !important;
+  }
+
+  .as-liquid-nav .as-nav-icon,
+  .as-nav-btn .as-nav-icon,
+  .projects-tab-icon,
+  .ai-tab-icon {
+    width: 20px !important;
+    height: 20px !important;
+    object-fit: contain;
+  }
+
+  .as-liquid-nav .as-nav-label,
+  .as-liquid-nav span {
+    display: block !important;
+    min-width: 0;
+    font-size: 15px;
+    line-height: 1.2;
+    font-weight: 700;
+  }
+
+  .projects-tab-note,
+  .ai-tab-note {
+    display: none;
+  }
+
+  .as-header,
+  .projects-header,
+  .ai-section-head {
+    margin: 0 0 18px !important;
+    padding: 0 !important;
+  }
+
+  .as-title,
+  .projects-title,
+  .ai-section-title {
+    font-size: 28px;
+  }
+
+  .as-subtitle,
+  .projects-header .tagline,
+  .ai-section-copy {
+    font-size: 15px;
+  }
+
+  .as-grid,
+  .projects-grid,
+  .spotlight-grid {
+    padding: 0 !important;
+    gap: 16px;
+  }
+
+  .as-card,
+  .as-card.as-material-card {
+    margin: 0 !important;
+    padding: 16px !important;
+  }
+}

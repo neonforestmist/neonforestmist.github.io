@@ -128,25 +128,13 @@
     .project-thumb img.project-screenshot {
       object-position: top center;
     }
-    .project-thumb.project-probatio-placeholder {
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,0.12) 25%, transparent 25%) 0 0 / 22px 22px,
-        linear-gradient(315deg, rgba(255,255,255,0.08) 25%, transparent 25%) 0 0 / 22px 22px,
-        #17232d;
+    .spotlight-grid .project-thumb {
+      background: linear-gradient(180deg, #ffe9a8 0%, #f0c14b 52%, #c9921a 100%);
     }
     .project-thumb.project-probatio-placeholder img.project-probatio-icon {
-      position: static;
-      inset: auto;
-      width: 78px;
-      height: 78px;
       object-fit: contain;
-      border: 0;
-      border-radius: 14px;
-      background: #000000;
-      box-shadow: 4px 4px 0 rgba(0,0,0,0.22);
+      background: #000;
+      padding: 28px;
       image-rendering: pixelated;
     }
     .project-alan-frame {
@@ -197,12 +185,17 @@
       font-weight: 700;
       line-height: 1.1;
     }
-    .project-award img {
+    .project-award > img {
       width: 28px;
       height: 28px;
       flex: 0 0 28px;
       object-fit: contain;
       image-rendering: pixelated;
+    }
+    .project-thumb.project-echosafe-thumb img {
+      object-fit: contain;
+      background: #fff;
+      padding: 18px;
     }
     .project-meta {
       display: flex;
@@ -637,11 +630,12 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="../section-shell.css">
 </head>
-<body>
+<body class="projects-page">
   <div class="menu-bar">
     <a href="/">
-      <img src="../assets/file.png" alt="Logo" class="menu-logo">
+      <img src="../assets/file.png" alt="Lukas Lozada Perez" class="menu-logo">
     </a>
     <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Toggle navigation">
     <label for="menu-toggle" class="menu-hamburger" aria-hidden="true">
@@ -695,13 +689,13 @@
             <img class="projects-tab-icon" src="../assets/star.png" alt="" aria-hidden="true">
             <span class="projects-tab-copy">
               <span class="projects-tab-name">Spotlight</span>
-              <span class="projects-tab-note">Featured work</span>
+              <span class="projects-tab-note">Notable work</span>
             </span>
           </button>
           <button id="projects-tab-projects" class="projects-tab" type="button" role="tab" data-project-tab="projects" aria-controls="projects-panel-projects" aria-selected="false">
             <img class="projects-tab-icon" src="../assets/folder.png" alt="" aria-hidden="true">
             <span class="projects-tab-copy">
-              <span class="projects-tab-name">Projects</span>
+              <span class="projects-tab-name">All</span>
               <span class="projects-tab-note">Open source work</span>
             </span>
           </button>
@@ -721,6 +715,40 @@
         <span>Spotlight</span>
       </h2>
       <div class="spotlight-grid">
+        <article class="project-card" data-tag="python" style="--cell-bg: #dce7f3;">
+          <div class="project-thumb project-echosafe-thumb">
+            <img src="../assets/st-johns.png" alt="St. John's University">
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">EchoSafe</h3>
+            <div class="project-award">
+              <img src="../assets/trophy.png" alt="" aria-hidden="true">
+              <span>1st Place - SJU ACM x Headstarter Hackathon</span>
+            </div>
+            <div class="project-meta">
+              <span class="pill python-tag">
+                <span class="pill-icon">
+                  <img src="../assets/python.png" alt="">
+                </span>
+                <span>Python</span>
+              </span>
+              <span class="pill web-tag">
+                <span class="pill-icon">
+                  <img src="../assets/html.png" alt="">
+                </span>
+                <span>HTML/CSS/JS</span>
+              </span>
+            </div>
+            <p class="project-blurb">An AI-powered platform that fingerprints scam voices and flags known fraudsters for banks in real time.</p>
+            <div class="project-links">
+              <a href="https://github.com/Javo79code/EchoSafe" class="github-link">
+                <img src="../assets/github.png" alt="">
+                <span>Github Repo</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
         <article class="project-card" data-tag="web" style="--cell-bg: #dce7f3;">
           <div class="project-thumb">
             <img src="../assets/project-banners/the-seeker-labyrinth/the-seeker-labyrinth-banner.png" alt="The Seeker Labyrinth artwork showing an isometric night maze and flashlight-wielding characters" width="1774" height="887" fetchpriority="high" decoding="async">
@@ -754,7 +782,7 @@
         </article>
 
         <article class="project-card" data-tag="python" style="--cell-bg: #dce7f3;">
-          <div class="project-thumb project-probatio-placeholder" aria-label="Temporary Probatio Agent project artwork">
+          <div class="project-thumb project-probatio-placeholder">
             <img class="project-probatio-icon" src="../assets/github.png" alt="" aria-hidden="true">
           </div>
           <div class="project-body">

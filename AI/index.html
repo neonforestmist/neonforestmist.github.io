@@ -4095,9 +4095,65 @@
       border-radius: 9px;
     }
 
+    .ai-preview-collection-wide {
+      grid-column: 1 / -1;
+    }
+
+    .ai-preview-collection-banner {
+      display: block;
+      width: 100%;
+      aspect-ratio: 3 / 1;
+      object-fit: cover;
+    }
+
+    .ai-preview-collection-wide .ai-preview-collection-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .ai-preview-explore {
+      display: inline-flex;
+      flex: 0 0 auto;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 0 18px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(238, 244, 252, 0.96);
+      color: var(--ai-action);
+      font: inherit;
+      font-size: 0.92rem;
+      font-weight: 740;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+    }
+
+    .ai-preview-explore:hover,
+    .ai-preview-explore:focus-visible {
+      background: #e5f0ff;
+      color: var(--ai-action-hover);
+      outline: 2px solid rgba(29, 115, 232, 0.34);
+      outline-offset: 2px;
+      transform: translateY(-1px);
+    }
+
     @media (max-width: 720px) {
       .ai-preview-collections {
         grid-template-columns: 1fr;
+      }
+
+      .ai-preview-collection-wide .ai-preview-collection-head {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .ai-preview-explore {
+        width: 100%;
       }
     }
 
@@ -4174,12 +4230,269 @@
         height: 17px;
       }
     }
+
+    /* Clover Image Tiny explore window. */
+    .ai-detail-media {
+      width: 100%;
+      justify-items: center;
+    }
+
+    .ai-clover-window {
+      width: min(100%, 420px);
+      max-height: calc(100dvh - 136px);
+      aspect-ratio: 3 / 5;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 15px;
+      background: #e8e8eb;
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.34), 0 2px 8px rgba(0, 0, 0, 0.25);
+      color: #202124;
+    }
+
+    .ai-clover-window-bar {
+      position: relative;
+      display: flex;
+      flex: 0 0 36px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 12px;
+      border-bottom: 1px solid rgba(35, 36, 40, 0.14);
+      background: linear-gradient(180deg, #f7f7f8 0%, #e3e3e6 100%);
+      color: #4f5055;
+      font-size: 11px;
+      font-weight: 650;
+      letter-spacing: 0.01em;
+      user-select: none;
+    }
+
+    .ai-clover-window-controls {
+      position: absolute;
+      left: 12px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .ai-clover-window-control {
+      width: 11px;
+      height: 11px;
+      display: block;
+      border: 1px solid rgba(0, 0, 0, 0.14);
+      border-radius: 50%;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.48);
+    }
+
+    .ai-clover-window-control.is-close {
+      background: #ff5f57;
+    }
+
+    .ai-clover-window-control.is-minimize {
+      background: #febc2e;
+    }
+
+    .ai-clover-window-control.is-maximize {
+      background: #28c840;
+    }
+
+    .ai-clover-window-title {
+      overflow: hidden;
+      max-width: calc(100% - 100px);
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .ai-clover-window-content {
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
+      min-height: 0;
+      background: #25272a;
+    }
+
+    .ai-clover-canvas {
+      display: grid;
+      flex: 1 1 auto;
+      min-height: 0;
+      place-items: center;
+      padding: 14px;
+      background: #25272a;
+    }
+
+    .ai-clover-canvas img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      max-height: none;
+      object-fit: contain;
+      border-radius: 5px;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12), 0 10px 24px rgba(0, 0, 0, 0.24);
+    }
+
+    .ai-clover-prompt-panel {
+      flex: 0 0 auto;
+      padding: 12px;
+      border-top: 1px solid rgba(35, 36, 40, 0.14);
+      background: #f3f3f5;
+    }
+
+    .ai-clover-prompt-label {
+      display: block;
+      color: #65666b;
+      font-size: 10px;
+      font-weight: 750;
+      letter-spacing: 0.08em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .ai-clover-prompt-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      margin-top: 7px;
+      padding: 7px 7px 7px 10px;
+      border: 1px solid #c5c6ca;
+      border-radius: 9px;
+      background: #ffffff;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .ai-clover-prompt-row:focus-within {
+      border-color: #9aabbc;
+      box-shadow: 0 0 0 3px rgba(52, 111, 166, 0.14);
+    }
+
+    .ai-clover-prompt-row textarea {
+      width: 100%;
+      min-width: 0;
+      min-height: 40px;
+      resize: none;
+      padding: 0;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: #202124;
+      font: inherit;
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .ai-clover-prompt-row textarea::placeholder {
+      color: #96979c;
+      opacity: 1;
+    }
+
+    .ai-clover-generate {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      flex: 0 0 auto;
+      place-items: center;
+      padding: 0;
+      border: 0;
+      border-radius: 8px;
+      background: #26333c;
+      color: #ffffff;
+      cursor: pointer;
+      transition: background 160ms ease, transform 160ms ease;
+    }
+
+    .ai-clover-generate:hover,
+    .ai-clover-generate:focus-visible {
+      background: #b64b19;
+      outline: none;
+      transform: translateY(-1px);
+    }
+
+    .ai-clover-generate:active {
+      transform: translateY(0);
+    }
+
+    .ai-clover-generate .ai-local-icon {
+      width: 16px;
+      height: 16px;
+    }
+
+    .ai-clover-prompt-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 8px;
+      color: #85868b;
+      font-size: 10px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    @media (max-width: 640px) {
+      .ai-clover-window {
+        max-height: calc(100dvh - 148px);
+      }
+
+      .ai-clover-canvas {
+        padding: 10px;
+      }
+
+      .ai-clover-prompt-panel {
+        padding: 10px;
+      }
+    }
+
+    .ai-panel[data-ai-panel="datasets"] .ai-release-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .ai-panel[data-ai-panel="datasets"] .ai-feature {
+      grid-column: auto;
+    }
+
+    .ai-panel[data-ai-panel="datasets"] .ai-feature-art {
+      padding: 6px;
+    }
+
+    .ai-panel[data-ai-panel="datasets"] .ai-feature-art img,
+    .ai-panel[data-ai-panel="datasets"] .ai-feature-art img.ai-model-banner,
+    .ai-panel[data-ai-panel="datasets"] .ai-feature-art img.ai-model-banner.is-two-one {
+      aspect-ratio: 16 / 9;
+    }
+
+    .ai-panel[data-ai-panel="datasets"] .ai-feature-body {
+      padding: 12px 14px 14px;
+    }
+
+    .ai-panel[data-ai-panel="datasets"] .ai-release-title {
+      font-size: 1.02rem;
+    }
+
+    .ai-panel[data-ai-panel="datasets"] .ai-release-copy {
+      margin-top: 6px;
+      font-size: 0.86rem;
+      line-height: 1.35;
+    }
+
+    .ai-panel[data-ai-panel="datasets"] .ai-actions {
+      margin-top: 10px;
+    }
+
+    @media (max-width: 720px) {
+      .ai-panel[data-ai-panel="datasets"] .ai-release-list {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
+  <link rel="stylesheet" href="../section-shell.css">
 </head>
-<body>
+<body class="ai-section-page">
   <div class="menu-bar">
     <a href="/">
-      <img src="../assets/file.png" alt="Logo" class="menu-logo">
+      <img src="../assets/file.png" alt="Lukas Lozada Perez" class="menu-logo">
     </a>
     <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Toggle navigation">
     <label for="menu-toggle" class="menu-hamburger" aria-hidden="true">
@@ -4251,18 +4564,18 @@
                 <span class="ai-tab-note">Style adapters</span>
               </span>
             </button>
-            <button class="ai-tab" type="button" role="tab" data-ai-tab="other" aria-controls="ai-panel-other" aria-selected="false">
-              <span class="ai-tab-icon ai-local-icon ai-icon-misc" aria-hidden="true"></span>
-              <span>
-                <span class="ai-tab-name">Other</span>
-                <span class="ai-tab-note">Miscellaneous</span>
-              </span>
-            </button>
             <button class="ai-tab" type="button" role="tab" data-ai-tab="previews" aria-controls="ai-panel-previews" aria-selected="false">
               <span class="ai-tab-icon ai-local-icon ai-icon-gallery" aria-hidden="true"></span>
               <span>
                 <span class="ai-tab-name">Gallery</span>
                 <span class="ai-tab-note">AI Previews</span>
+              </span>
+            </button>
+            <button class="ai-tab" type="button" role="tab" data-ai-tab="other" aria-controls="ai-panel-other" aria-selected="false">
+              <span class="ai-tab-icon ai-local-icon ai-icon-misc" aria-hidden="true"></span>
+              <span>
+                <span class="ai-tab-name">Other</span>
+                <span class="ai-tab-note">Miscellaneous</span>
               </span>
             </button>
           </div>
@@ -4272,6 +4585,7 @@
           <section class="ai-panel" id="ai-panel-loras" data-ai-panel="loras" role="tabpanel" aria-labelledby="ai-title-loras" hidden>
             <div class="ai-section-head">
               <h2 class="ai-section-title" id="ai-title-loras">LoRAs</h2>
+              <p class="ai-section-copy">Style adapters and fine-tuned add-ons for image generation.</p>
             </div>
 
             <section class="ai-sample-gallery" aria-labelledby="ai-gallery-title">
@@ -4281,7 +4595,7 @@
                     <span class="ai-local-icon ai-icon-gallery" aria-hidden="true"></span>
                     Gallery
                   </h3>
-                  <p class="ai-gallery-copy">18 preview images across Watercolor Anime, Pointillism, and Storybook Anime.</p>
+                  <p class="ai-gallery-copy">18 preview images from my AI image work.</p>
                 </div>
                 <button class="ai-gallery-open" type="button" data-ai-jump="explore">
                   Explore
@@ -4497,7 +4811,34 @@
 
               <div class="ai-explore-detail" data-gallery-view="detail" hidden>
                 <div class="ai-detail-media">
-                  <img src="../assets/ai/watercolor-anime/preview_01.png" alt="Bamboo Valley Mist" data-gallery-detail-image>
+                  <section class="ai-clover-window" aria-labelledby="clover-window-title">
+                    <header class="ai-clover-window-bar">
+                      <span class="ai-clover-window-controls" aria-hidden="true">
+                        <span class="ai-clover-window-control is-close"></span>
+                        <span class="ai-clover-window-control is-minimize"></span>
+                        <span class="ai-clover-window-control is-maximize"></span>
+                      </span>
+                      <span class="ai-clover-window-title" id="clover-window-title">Clover Image Tiny</span>
+                    </header>
+                    <div class="ai-clover-window-content">
+                      <div class="ai-clover-canvas">
+                        <img src="../assets/ai/watercolor-anime/preview_01.png" alt="Bamboo Valley Mist" data-gallery-detail-image>
+                      </div>
+                      <div class="ai-clover-prompt-panel">
+                        <label class="ai-clover-prompt-label" for="clover-prompt">Prompt</label>
+                        <div class="ai-clover-prompt-row">
+                          <textarea id="clover-prompt" rows="2" placeholder="Describe an image..."></textarea>
+                          <button class="ai-clover-generate" type="button" aria-label="Generate image" title="Generate image">
+                            <span class="ai-local-icon ai-icon-arrow" aria-hidden="true"></span>
+                          </button>
+                        </div>
+                        <div class="ai-clover-prompt-meta" aria-hidden="true">
+                          <span>1024 x 1024</span>
+                          <span>Ready</span>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
                 </div>
                 <div class="ai-detail-info">
                   <h2 class="ai-explore-title" data-gallery-detail-title>Bamboo Valley Mist</h2>
@@ -4630,52 +4971,18 @@
           <section class="ai-panel" id="ai-panel-previews" data-ai-panel="previews" role="tabpanel" aria-labelledby="ai-title-previews" hidden>
             <div class="ai-section-head">
               <h2 class="ai-section-title" id="ai-title-previews">AI Previews</h2>
-              <p class="ai-section-copy">Browse preview collections from the watercolor, pointillism, and storybook AI styles.</p>
+              <p class="ai-section-copy">Browse preview collections from my AI image work.</p>
             </div>
 
             <div class="ai-preview-collections">
-              <article class="ai-preview-collection">
+              <article class="ai-preview-collection ai-preview-collection-wide">
+                <img class="ai-preview-collection-banner" src="../assets/ai/banners/clover-image-tiny/clover-image-tiny-banner.png" alt="Clover Image Tiny banner" loading="lazy" decoding="async">
                 <div class="ai-preview-collection-head">
-                  <h3 class="ai-preview-collection-title">Watercolor Anime</h3>
-                  <p class="ai-preview-collection-copy">Soft washes and storybook scenes.</p>
-                </div>
-                <div class="ai-preview-collection-grid" aria-label="Watercolor Anime previews">
-                  <img src="../assets/ai/thumbs/watercolor-anime_preview_01.jpg" alt="" loading="lazy" decoding="async">
-                  <img src="../assets/ai/thumbs/watercolor-anime_preview_02.jpg" alt="" loading="lazy" decoding="async">
-                  <img src="../assets/ai/thumbs/watercolor-anime_preview_03.jpg" alt="" loading="lazy" decoding="async">
-                  <img src="../assets/ai/thumbs/watercolor-anime_preview_04.jpg" alt="" loading="lazy" decoding="async">
-                  <img src="../assets/ai/thumbs/watercolor-anime_preview_05.jpg" alt="" loading="lazy" decoding="async">
-                  <img src="../assets/ai/thumbs/watercolor-anime_preview_06.jpg" alt="" loading="lazy" decoding="async">
-                </div>
-              </article>
-
-              <article class="ai-preview-collection">
-                <div class="ai-preview-collection-head">
-                  <h3 class="ai-preview-collection-title">Pointillism</h3>
-                  <p class="ai-preview-collection-copy">Dense dots and luminous color.</p>
-                </div>
-                <div class="ai-preview-collection-grid" aria-label="Pointillism previews">
-                  <img src="../assets/ai/thumbs/pointillism_preview_01.jpg" alt="" loading="lazy" decoding="async">
-                  <img src="../assets/ai/thumbs/pointillism_preview_02.jpg" alt="" loading="lazy" decoding="async">
-                  <img src="../assets/ai/thumbs/pointillism_preview_03.jpg" alt="" loading="lazy" decoding="async">
-                  <img src="../assets/ai/thumbs/pointillism_preview_04.jpg" alt="" loading="lazy" decoding="async">
-                  <img src="../assets/ai/thumbs/pointillism_preview_05.jpg" alt="" loading="lazy" decoding="async">
-                  <img src="../assets/ai/thumbs/pointillism_preview_06.jpg" alt="" loading="lazy" decoding="async">
-                </div>
-              </article>
-
-              <article class="ai-preview-collection">
-                <div class="ai-preview-collection-head">
-                  <h3 class="ai-preview-collection-title">Storybook Anime</h3>
-                  <p class="ai-preview-collection-copy">Warm painted scenes and gentle characters.</p>
-                </div>
-                <div class="ai-preview-collection-grid" aria-label="Storybook Anime previews">
-                  <img src="../assets/ai/thumbs/storybook-anime_preview_01.jpg" alt="" loading="lazy" decoding="async">
-                  <img src="../assets/ai/thumbs/storybook-anime_preview_02.jpg" alt="" loading="lazy" decoding="async">
-                  <img src="../assets/ai/thumbs/storybook-anime_preview_03.jpg" alt="" loading="lazy" decoding="async">
-                  <img src="../assets/ai/thumbs/storybook-anime_preview_04.jpg" alt="" loading="lazy" decoding="async">
-                  <img src="../assets/ai/thumbs/storybook-anime_preview_05.jpg" alt="" loading="lazy" decoding="async">
-                  <img src="../assets/ai/thumbs/storybook-anime_preview_06.jpg" alt="" loading="lazy" decoding="async">
+                  <div>
+                    <h3 class="ai-preview-collection-title">Clover Image Tiny</h3>
+                    <p class="ai-preview-collection-copy">A compact image model for lightweight visual experiments.</p>
+                  </div>
+                  <button class="ai-preview-explore" type="button" data-ai-jump="explore">Explore</button>
                 </div>
               </article>
             </div>

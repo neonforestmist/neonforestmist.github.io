@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" href="/assets/favicon.png" />
     <link rel="shortcut icon" href="/assets/favicon.ico" />
     <link rel="apple-touch-icon" href="/assets/favicon.png" />
-    <title>The Chroma Swift Media</title>
+    <title>Lukas Lozada Perez</title>
 
     <style>
       * {
@@ -22,6 +22,7 @@
         min-height: 100vh;
         display: flex;
         flex-direction: column;
+        background: #fff;
       }
       .container {
         max-width: 800px;
@@ -123,6 +124,7 @@
         width: 100%;
         margin-top: 0;
         aspect-ratio: 32 / 9;
+        min-height: 100vh;
         flex-shrink: 0;
         font-family: "Avenir Next", "SF Pro Display", "Helvetica Neue", Helvetica, sans-serif;
         display: flex;
@@ -132,92 +134,168 @@
         overflow: hidden;
         color: #f5f8ff;
         text-align: left;
-        background: #eaeaea;
-        isolation: isolate;
-      }
-
-      /* Hex canvas injected by JS */
-      .hex-canvas-el {
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        pointer-events: none;
-        z-index: 0;
+        background: #fff;
       }
 
       .swift-content {
         position: relative;
         z-index: 1;
-        display: grid;
-        grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+        display: flex;
         align-items: center;
-        gap: clamp(26px, 4vw, 72px);
+        justify-content: flex-start;
+        gap: clamp(18px, 3vw, 36px);
         max-width: 1240px;
         width: 100%;
         margin: 0 auto;
       }
       .swift-left {
         margin: 0;
+        min-width: 0;
+        flex: 1 1 auto;
       }
       .swift-right {
         margin: 0;
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
+        flex: 0 0 auto;
+        order: -1;
       }
       .hero-icon-shell {
         position: relative;
-        width: clamp(170px, 23vw, 310px);
+        width: clamp(118px, 15vw, 196px);
         aspect-ratio: 1;
         display: grid;
         place-items: center;
+        border-radius: 50%;
+        background: conic-gradient(
+          from 200deg,
+          #8ec4ea,
+          #7eb6e0,
+          #6dcf9a,
+          #5fbf86,
+          #8ec4ea
+        );
+        box-shadow: 0 10px 24px rgba(126, 184, 232, 0.22);
       }
       .hero-icon-shell::before {
         content: "";
         position: absolute;
-        inset: -14%;
-        border-radius: 34%;
-        background: radial-gradient(
-          circle,
-          rgba(106, 236, 227, 0.24),
-          rgba(193, 136, 255, 0.14) 48%,
-          transparent 74%
-        );
-        filter: blur(18px);
-        z-index: 0;
+        inset: 5%;
+        border-radius: 50%;
+        background: #fff;
+        z-index: 1;
       }
       .hero-icon {
-        width: 100%;
-        max-width: 420px;
-        height: auto;
+        width: 82%;
+        height: 82%;
+        object-fit: cover;
+        border-radius: 50%;
         position: relative;
-        z-index: 1;
-        filter: drop-shadow(0 16px 30px rgba(102, 200, 255, 0.26));
+        z-index: 2;
       }
       .secondary-swift {
         padding: 0;
         max-width: 720px;
       }
-      .gradient-text {
+      .hero-heading {
         margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0.18em 0.28em;
         font-size: clamp(1.7rem, 4.2vw, 3.15rem);
         font-weight: 700;
         letter-spacing: -0.02em;
         line-height: 1.13;
-        display: block;
+        color: #2b3144;
+      }
+      .hero-lead {
+        font: inherit;
+      }
+      .gradient-text {
+        margin: 0;
+        font: inherit;
+        display: inline;
         background: url("/assets/background.png") center center / cover no-repeat;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
         filter: drop-shadow(0 2px 6px rgba(0,0,0,0.18)) drop-shadow(0 1px 2px rgba(0,0,0,0.10));
       }
-      .secondary-swift h2 {
-        margin: 14px 0 0;
-        color: #3a3f52;
-        font-size: clamp(1rem, 1.8vw, 1.24rem);
-        font-weight: 500;
-        line-height: 1.6;
-        max-width: 54ch;
-        text-shadow: 0 1px 4px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.07);
+      .hero-wave {
+        font-size: clamp(1.5rem, 3.8vw, 2.7rem);
+        line-height: 1;
+      }
+      .hero-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px 16px;
+        margin-top: 14px;
+        color: #5a6178;
+        font-size: clamp(0.92rem, 1.5vw, 1.05rem);
+        font-weight: 560;
+      }
+      .hero-meta-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .hero-meta-emoji {
+        font-size: 1.05em;
+        line-height: 1;
+      }
+      .hero-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 16px;
+      }
+      .hero-pill {
+        display: inline-flex;
+        align-items: stretch;
+        gap: 0;
+        min-height: 38px;
+        padding: 0 12px 0 0;
+        border: 2px solid #1d1d1d;
+        border-radius: 8px;
+        background: #fff;
+        color: #1d1d1d;
+        text-decoration: none;
+        font-size: 0.94rem;
+        font-weight: 650;
+        line-height: 1;
+        overflow: hidden;
+        box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.08);
+      }
+      .hero-pill .hero-pill-icon {
+        align-self: stretch;
+        border-right: 2px solid #1d1d1d;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 42px;
+        overflow: hidden;
+        width: 42px;
+        background: #fff;
+      }
+      .hero-pill .hero-pill-icon.hero-pill-icon-dark {
+        background: #16191f;
+      }
+      .hero-pill .hero-pill-icon img {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+        display: block;
+        margin: 0;
+        padding: 0;
+      }
+      .hero-pill span {
+        align-self: center;
+        padding-left: 10px;
+      }
+      .hero-pill:hover {
+        background: #f4f6fa;
       }
       .chroma-icon {
         width: 42px;
@@ -254,41 +332,39 @@
           padding: 100px 18px 36px;
         }
         .swift-content {
-          grid-template-columns: 1fr auto;
           gap: 14px;
-          align-items: start;
+          align-items: center;
         }
         .swift-left {
           margin: 0;
         }
         .hero-icon-shell {
-          width: clamp(90px, 26vw, 150px);
+          width: clamp(72px, 20vw, 108px);
         }
-        .gradient-text {
+        .hero-heading {
           font-size: clamp(1.45rem, 6vw, 2rem);
           line-height: 1.14;
           letter-spacing: -0.015em;
-          background: url("/assets/background.png") center center / cover no-repeat;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          text-shadow: none;
         }
-        .secondary-swift h2 {
-          margin-top: 8px;
-          font-size: clamp(0.85rem, 3.5vw, 1rem);
-          line-height: 1.45;
-          max-width: none;
+        .hero-wave {
+          font-size: clamp(1.3rem, 5.4vw, 1.8rem);
+        }
+        .hero-meta {
+          margin-top: 10px;
+        }
+        .hero-pills {
+          margin-top: 12px;
         }
       }
       @media (max-width: 420px) {
         .swift-content {
           gap: 10px;
+          align-items: center;
         }
         .hero-icon-shell {
-          width: clamp(80px, 24vw, 110px);
+          width: clamp(64px, 18vw, 88px);
         }
-        .gradient-text {
+        .hero-heading {
           font-size: clamp(1.25rem, 7vw, 1.6rem);
         }
       }
@@ -311,7 +387,7 @@
   <body>
     <div class="menu-bar">
       <a href="/">
-        <img src="/assets/file.png" alt="Logo" class="menu-logo">
+        <img src="/assets/file.png" alt="Lukas Lozada Perez" class="menu-logo">
       </a>
       <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Toggle navigation">
       <label for="menu-toggle" class="menu-hamburger" aria-hidden="true">
@@ -356,169 +432,35 @@
     <div class="swift-section">
       <div class="swift-content">
         <div class="secondary-swift swift-left">
-          <h1 class="gradient-text">
-            Welcome to The Chroma Swift Media!
+          <h1 class="hero-heading">
+            <span class="hero-lead">Hi, my name is</span>
+            <span class="gradient-text">Lukas</span>
+            <span class="hero-wave" aria-hidden="true">👋</span>
           </h1>
-          <h2>These are some of our unique apps.</h2>
+          <div class="hero-meta">
+            <span class="hero-meta-item">
+              <span class="hero-meta-emoji" aria-hidden="true">📍</span>
+              Based in New York City
+            </span>
+          </div>
+          <div class="hero-pills">
+            <a class="hero-pill" href="https://www.linkedin.com/in/lukas-lozada-perez/" target="_blank" rel="noopener noreferrer">
+              <span class="hero-pill-icon"><img src="/assets/linkedin.png" alt=""></span>
+              <span>LinkedIn</span>
+            </a>
+            <a class="hero-pill" href="https://github.com/neonforestmist" target="_blank" rel="noopener noreferrer">
+              <span class="hero-pill-icon hero-pill-icon-dark"><img src="/assets/github.png" alt=""></span>
+              <span>GitHub</span>
+            </a>
+          </div>
         </div>
 
         <div class="swift-right">
           <div class="hero-icon-shell">
-            <img src="/assets/icon.png" alt="Big icon" class="hero-icon">
+            <img src="/assets/github-profile.png" alt="Lukas Lozada Perez" class="hero-icon">
           </div>
         </div>
       </div>
     </div>
-
-    <div class="apps-container">
-      <div class="app-row">
-        <div class="app-info">
-          <h2>
-            <img
-              src="/assets/app_store_icons/violette.png"
-              alt="Violette Icon"
-              class="chroma-icon"
-            >
-            Violette - Chat with AI
-          </h2>
-          <p>
-            A Character AI style chat platform that uses Apple Intelligence to power characters for unlimited, offline, private chats. For those who have a device using iOS 26 but isn't Apple Intelligence compatible, or want to use a smarter/different model, you can define an OpenAI Compatible or Gemini API model in Settings > Advanced.
-          </p>
-          <div class="store-badges">
-            <a
-              href="https://apps.apple.com/us/app/violette-chat-with-ai/id6760790799"
-              class="badge app-store-badge"
-            >
-              <img src="/assets/apple.png" class="badge-icon">
-              Download on the App Store
-            </a>
-          </div>
-        </div>
-        <div class="app-image">
-          <img
-            src="/assets/violette_preview.png"
-            alt="Violette preview"
-          >
-        </div>
-      </div>
-
-      <div class="app-row">
-        <div class="app-info">
-          <h2>
-            <img
-              src="/assets/chroma.png"
-              alt="Chroma Icon"
-              class="chroma-icon"
-            >
-            Chroma - A Simple Color Tool
-          </h2>
-          <p>
-            A go-to color tool. Current tools include converters, color RNG, Gradient Maker, and more.
-
-          </p>
-          <div class="store-badges">
-            <a
-              href="https://apps.apple.com/us/app/chroma-all-in-one-color-tool/id6738114281"
-              class="badge app-store-badge"
-            >
-              <img src="/assets/apple.png" class="badge-icon">
-              Download on the App Store
-            </a>
-          </div>
-        </div>
-        <div class="app-image">
-          <img
-            src="/assets/chroma_preview.png"          >
-        </div>
-      </div>
-
-      <div class="app-row">
-        <div class="app-info">
-          <h2>Stay Tuned!</h2>
-          <p>
-            Stay tuned for more unique apps in the future!
-          </p>
-        </div>
-        <div class="app-image">
-          <img
-            src="/assets/stay_tuned.png"
-          >
-        </div>
-      </div>
-    </div>
-
-  <script>
-    (function () {
-      const section = document.querySelector('.swift-section');
-      if (!section) return;
-
-      const canvas = document.createElement('canvas');
-      canvas.className = 'hex-canvas-el';
-      section.insertBefore(canvas, section.firstChild);
-
-      const ctx = canvas.getContext('2d');
-      // Responsive hex size: scales with section width
-      let R, CS, RS, TW, TH;
-      const SPD = 0.28;
-      let ox = 0, oy = 0, dpr = 1;
-
-      function calcHex() {
-        // Scale R from 20 (on ~375px) to 38 (on ~1280px+)
-        const w = section.offsetWidth;
-        R  = Math.max(20, Math.min(38, w * 0.028));
-        CS = R * 1.5;
-        RS = R * Math.sqrt(3);
-        TW = CS * 2;
-        TH = RS;
-      }
-
-      function resize() {
-        dpr = Math.min(window.devicePixelRatio || 1, 2);
-        canvas.width  = section.offsetWidth  * dpr;
-        canvas.height = section.offsetHeight * dpr;
-        calcHex();
-      }
-
-      function drawHex(cx, cy, r, lw, alpha) {
-        ctx.beginPath();
-        for (let i = 0; i < 6; i++) {
-          const a = (Math.PI / 3) * i; // flat-top: starts at 0°, horizontal edge at top
-          i === 0
-            ? ctx.moveTo(cx + r * Math.cos(a), cy + r * Math.sin(a))
-            : ctx.lineTo(cx + r * Math.cos(a), cy + r * Math.sin(a));
-        }
-        ctx.closePath();
-        ctx.lineWidth   = lw;
-        ctx.strokeStyle = `rgba(110, 112, 156, ${alpha})`; // hex color
-        ctx.stroke();
-      }
-
-      function render() {
-        const W = canvas.width / dpr, H = canvas.height / dpr;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.save();
-        ctx.scale(dpr, dpr);
-        ctx.translate(ox % TW, oy % TH);
-        const totalCols = Math.ceil(W / CS) + 4;
-        const totalRows = Math.ceil(H / RS) + 4;
-        for (let col = -2; col < totalCols; col++) {
-          const cx     = col * CS;
-          const yShift = ((col % 2) + 2) % 2 === 1 ? RS / 2 : 0;
-          for (let row = -2; row < totalRows; row++) {
-            const cy = row * RS + yShift;
-            drawHex(cx, cy, R, 2.5, 0.22); // outer
-          }
-        }
-        ctx.restore();
-        ox += SPD;
-        oy += SPD;
-        requestAnimationFrame(render);
-      }
-
-      new ResizeObserver(resize).observe(section);
-      resize();
-      requestAnimationFrame(render);
-    })();
-  </script>
   </body>
 </html>

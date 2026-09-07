@@ -8,12 +8,108 @@
     <link rel="icon" type="image/png" href="/assets/favicon.png" />
     <link rel="shortcut icon" href="/assets/favicon.ico" />
     <link rel="apple-touch-icon" href="/assets/favicon.png" />
-    <title>App Store Privacy</title>
+    <meta name="description" content="Privacy policies and support for Violette, Chroma, and Super Alan Run by Lukas Lozada Perez.">
+    <title>App Privacy &amp; Support | Lukas Lozada Perez</title>
+<style>
+
+/* sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    color: #404040;
+    font-family: "HelveticaNeue-Thin", Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 800px;
+    margin: 80px auto;
+    width: 90%;
+    padding: 20px;
+    text-align: left;
+    flex: 1;
+}
+
+.divider {
+    border-bottom: 2px solid #cccccc;
+    margin: 20px auto;
+    width: 80%;
+}
+
+h1, h2, h3 {
+    margin: 0 0 .5em 0;
+    font-weight: normal;
+}
+
+h1 {
+    color: #1a1a1f;
+    font-size: 2.5em;
+}
+
+h2 {
+    color: #444444;
+    font-size: 1.8em;
+}
+
+h3 {
+    color: #444444;
+    font-size: 1.2em;
+    margin-top: 1.5em;
+}
+
+p {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1em;
+    line-height: 1.65;
+    margin-bottom: 1em;
+}
+
+.container a {
+    color: #315ca8;
+    text-decoration: underline;
+    text-underline-offset: .2em;
+    overflow-wrap: anywhere;
+}
+
+.container a:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+}
+
+[id] {
+    scroll-margin-top: 100px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    h3 {
+        font-size: 1em;
+    }
+}
+</style>
 </head>
 <body>
     <div class="menu-bar">
         <a href="/">
-            <img src="../assets/file.png" alt="Logo" class="menu-logo">
+            <img src="../assets/file.png" alt="Lukas Lozada Perez" class="menu-logo">
         </a>
         <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Toggle navigation">
         <label for="menu-toggle" class="menu-hamburger" aria-hidden="true">
@@ -55,93 +151,114 @@
         </div>
     </div>
 
-    <div class="container">
-        <h1>App Store Privacy</h1>
+    <main class="container">
+        <h1>App Privacy &amp; Support</h1>
+        <p>Apps by Lukas Lozada Perez.</p>
+        <nav aria-label="Privacy policies"><p><a href="#violette">Violette</a> · <a href="#chroma">Chroma</a> · <a href="#super-alan-run">Super Alan Run</a> · <a href="#support">Contact &amp; support</a></p></nav>
         <div class="divider"></div>
-        <h2>App Store Privacy</h2>
-        <h3>
-            We do not collect user data or cookies. Your settings and data are stored securely and safely on your own device; we don't have access to that. Any future updates that may affect data usage will be communicated transparently.
-        </h3>
+        <h2 id="violette">Violette Privacy Policy</h2>
+        <p>Last updated: <time datetime="2026-09-07">September 7, 2026</time></p>
+        <p>This policy describes Violette, including its optional connected features. Data handling depends on the features and providers you use.</p>
+        <section aria-labelledby="violette-data">
+            <h3 id="violette-data">Violette Data</h3>
+            <p>Apple Intelligence chats run on device when available.</p>
+            <p>Violette stores chats, profile details, custom AI characters, app settings, and experiment data so the app can restore your experience.</p>
+            <p>Profile details can include the name, age, bio, and icon details you choose to add.</p>
+            <p>This app-managed data is saved in the app&#x27;s private container and can sync through the app&#x27;s private iCloud storage when iCloud is available.</p>
+        </section>
 
-        <h2>Support</h2>
-        <h3>
-            Find yourself in need of Customer Support? Feel free to write a review in the App Store and we will make sure to get back to you as fast as possible!
-        </h3>
+        <section aria-labelledby="apple-account">
+            <h3 id="apple-account">Apple Account</h3>
+            <p>Violette requires Sign in with Apple and iCloud availability before opening the main app. Violette stores the Apple user identifier returned for this app and the display name Apple provides, when available, so Settings can show the signed-in Apple Account.</p>
+            <p>Violette does not receive your Apple ID password. Apple controls iCloud sign-in, iCloud Drive availability, and Apple Account credential status in iOS Settings.</p>
+            <p>You can remove the app-scoped Sign in with Apple identifier and display name stored by Violette from Settings. This does not sign you out of iCloud or your Apple Account in iOS Settings. If Apple reports that Violette&#x27;s Sign in with Apple credential has been revoked, Violette removes its stored Apple sign-in identity and returns to the sign-in gate.</p>
+        </section>
+
+        <section aria-labelledby="provider-keys">
+            <h3 id="provider-keys">Provider Keys</h3>
+            <p>External provider API keys, model IDs, base URLs, and external-provider activation stay on this device and are not written to iCloud app storage.</p>
+            <p>Provider keys are removed with Violette&#x27;s local app data, and stale keys are purged when the app opens after a fresh reinstall.</p>
+        </section>
+
+        <section aria-labelledby="clipboard">
+            <h3 id="clipboard">Clipboard</h3>
+            <p>When you copy chat or writing text, Violette writes plain text to the system clipboard as local-only content with an automatic expiration where iOS supports it.</p>
+        </section>
+
+        <section aria-labelledby="photos">
+            <h3 id="photos">Photos</h3>
+            <p>Saving generated pixel art asks for add-only Photos permission and writes only the image you choose to save. Violette does not request read access to your photo library.</p>
+        </section>
+
+        <section aria-labelledby="external-ai-providers">
+            <h3 id="external-ai-providers">External AI Providers</h3>
+            <p>If you enable Developer Mode and choose Google, OpenAI-compatible endpoints, or Claude, those providers may receive prompts, relevant chat history, character instructions, and profile details you added, including optional age or bio fields.</p>
+            <p>Violette does not sell this data or use external AI provider responses for advertising profiles. External providers protect, retain, and delete data under their own privacy and API terms.</p>
+            <p>Violette cannot delete copies already retained by an external provider. Use any deletion controls offered by the provider when you want provider-side data removed.</p>
+        </section>
+
+        <section aria-labelledby="advertising">
+            <h3 id="advertising">Advertising</h3>
+            <p>Violette may show ads. The app asks for tracking permission before allowing personalized ad tracking. If permission is denied or restricted, ad requests use non-personalized publisher privacy treatment.</p>
+            <p>Ads are served through Google Mobile Ads. Google may receive device, app, ad interaction, and coarse network information needed to request, deliver, measure, and limit ads.</p>
+            <p>Ad partner retention and deletion are governed by Google&#x27;s advertising and privacy terms.</p>
+            <p>You can use Ad Privacy Options in Violette’s Privacy Policy screen when that option is available, and manage tracking permission in iOS Settings.</p>
+            <p>Learn more in the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</p>
+        </section>
+
+        <section aria-labelledby="remote-images">
+            <h3 id="remote-images">Remote Images</h3>
+            <p>Image links in chats are loaded only after you choose to load a preview, which may contact the remote image host.</p>
+        </section>
+
+        <section aria-labelledby="control">
+            <h3 id="control">Control</h3>
+            <p>You can delete custom AI characters, clear chats, or remove Violette&#x27;s stored app-scoped Sign in with Apple identity from Settings.</p>
+            <p>You can manage iCloud, tracking, and app permissions in iOS Settings.</p>
+            <p>Deleting Violette removes its local app container, but synced app data may restore from iCloud after reinstall. Use Delete All Custom AI Characters and Clear All Chats in Settings before uninstalling when you want those synced records removed.</p>
+        </section>
         <div class="divider"></div>
-    </div>
-    
+        <section aria-labelledby="chroma">
+            <h2 id="chroma">Chroma Privacy Policy</h2>
+            <p>Last updated: <time datetime="2026-09-07">September 7, 2026</time></p>
+            <h3>Color tools and preferences</h3>
+            <p>Chroma processes colors, palettes, gradients, and image effects on your device. App preferences, such as your selected icon and interface settings, are stored locally.</p>
+            <h3>Photos, camera, and clipboard</h3>
+            <p>When you select a photo, Chroma uses it for the image or color tool you opened. The AR color picker uses the camera to sample colors from your surroundings. These tools process images and camera input on your device.</p>
+            <p>Saving an image uses Photos permission to write the result to your library. Sharing opens the system share sheet and sends the content to the app or destination you choose. You can manage Photos and camera permissions in iOS Settings.</p>
+            <p>Copy and paste tools use the system clipboard to copy color values or read a value you choose to paste.</p>
+            <h3>Advertising</h3>
+            <p>Chroma displays ads through Google Mobile Ads. Google may process IP addresses, device identifiers, approximate location, ad interactions, and diagnostic information to deliver and measure ads and prevent fraud. Ad data handling depends on your permissions and Google’s terms.</p>
+            <p>You can manage tracking permission in iOS Settings. Denying tracking permission does not prevent all information needed to serve ads from reaching Google. See the <a href="https://policies.google.com/privacy">Google Privacy Policy</a> for its data handling, retention, and deletion practices.</p>
+            <h3>Your controls</h3>
+            <p>Deleting Chroma removes its local app data. Images you saved to Photos and content you shared remain in their respective destinations until you delete them there. Contact support below for questions about Chroma or this policy.</p>
+        </section>
+
+        <div class="divider"></div>
+        <section aria-labelledby="super-alan-run">
+            <h2 id="super-alan-run">Super Alan Run Privacy Policy</h2>
+            <p>Last updated: <time datetime="2026-09-07">September 7, 2026</time></p>
+            <h3>Game progress and iCloud</h3>
+            <p>Super Alan Run stores game progress, including coins, best distance, upgrades, owned and equipped skins, audio settings, and custom level drafts. This data is stored on your device and can sync through Apple’s iCloud key-value storage.</p>
+            <h3>Game Center</h3>
+            <p>When you sign in to Game Center, the game uses your Game Center identity and display name and submits scores and achievement progress to Apple. Leaderboards and achievements are managed through Game Center. You can manage your Game Center account and privacy settings in iOS Settings.</p>
+            <h3>Advertising</h3>
+            <p>Super Alan Run displays banner and interstitial ads through Google Mobile Ads. Google may process IP addresses, device identifiers, approximate location, ad interactions, and diagnostic information to deliver and measure ads and prevent fraud.</p>
+            <p>The game requests advertising consent where required and asks for tracking permission. When available, use AD PRIVACY in the game’s Settings to revisit advertising choices. You can also manage tracking permission in iOS Settings.</p>
+            <p>Denying tracking permission does not prevent all information needed to serve ads from reaching Google. Google’s retention and deletion practices are described in the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</p>
+            <h3>Your controls</h3>
+            <p>Deleting the game removes its local app data. Progress saved in iCloud may return after reinstalling, and Game Center scores and achievements are managed separately by Apple. Manage iCloud and Game Center through your Apple Account settings, and contact support below with privacy questions.</p>
+        </section>
+
+        <div class="divider"></div>
+        <section aria-labelledby="support">
+            <h2 id="support">Contact &amp; Support</h2>
+            <p>Email <a href="mailto:neonforestmist.support@gmail.com">neonforestmist.support@gmail.com</a> for support or privacy questions about Violette, Chroma, or Super Alan Run.</p>
+            <p>For help with Violette or another app, or for a privacy question, include the app name, app version, and a description of the issue.</p>
+            <p>Please do not include passwords, API keys, or private chat content.</p>
+        </section>
+    </main>
+
 </body>
-<style>
 
-/* sizing */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    color: #404040;
-    font-family: "HelveticaNeue-Thin", Helvetica, Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-.container {
-    max-width: 800px;
-    margin: 80px auto;
-    width: 90%;
-    padding: 20px;
-    text-align: center;
-    flex: 1; 
-}
-
-.divider {
-    border-bottom: 2px solid #cccccc;
-    margin: 20px auto;
-    width: 80%;
-}
-
-h1, h2, h3 {
-    margin: 0 0 .5em 0;
-    font-weight: normal;
-}
-
-h1 {
-    color: #1a1a1f;
-    font-size: 2.5em;
-}
-
-h2 {
-    color: #444444;
-    font-size: 1.8em;
-}
-
-h3 {
-    color: #444444;
-    font-size: 1.1em;
-    line-height: 1.6;
-    margin-bottom: 2em;
-}
-
-@media (max-width: 768px) {
-    .container {
-        width: 95%;
-        padding: 10px;
-    }
-    
-    h1 {
-        font-size: 2em;
-    }
-    
-    h2 {
-        font-size: 1.5em;
-    }
-    
-    h3 {
-        font-size: 1em;
-    }
-}
-</style>
 </html>
