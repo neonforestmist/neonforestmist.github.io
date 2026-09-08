@@ -342,7 +342,7 @@ body:has(.clover-viewer[open]) { overflow: hidden; }
   body.section-page :is(.projects-grid, .spotlight-grid, .ai-panel .ai-release-list) { grid-template-columns: minmax(0, 1fr); }
   body.section-page .as-card.as-material-card { grid-template-columns: 56px minmax(0, 1fr); align-items: start; padding: 16px; gap: 12px; }
   body.section-page .as-card.as-material-card .as-card-icon { width: 56px; height: 56px; }
-  body.section-page .as-card-cta { grid-column: 2; justify-self: start; }
+  body.section-page .as-card-cta { grid-column: 1 / -1; justify-self: center; }
   body.section-page :is(.project-body, .ai-panel .ai-feature-body) { padding: 18px; }
   .clover-collection { flex-direction: column; align-items: start; gap: 10px; }
   .clover-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
