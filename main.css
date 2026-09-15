@@ -29,6 +29,7 @@ main {
 
 /* Menu styles */
 .menu-bar {
+    --site-nav-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -45,7 +46,8 @@ main {
     border-radius: 0;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22), inset 0 -1px 0 rgba(255, 255, 255, 0.1);
     z-index: 1000;
-    font-family: "HelveticaNeue-Thin", "Avenir Next", "Segoe UI", Helvetica, Arial, sans-serif;
+    font-family: var(--site-nav-font);
+    -webkit-font-smoothing: antialiased;
 }
 
 .menu-logo {
@@ -122,14 +124,16 @@ main {
 }
 
 .menu-links a {
-    color: #B7B8FF;
+    color: #d5d6f3;
     text-decoration: none;
     margin-left: 0;
     padding: 8px 10px;
     border-radius: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    font-family: "HelveticaNeue-Thin", "Avenir Next", "Segoe UI", Helvetica, Arial, sans-serif;
+    /* Keep navigation independent of each page's content typography. */
+    font: 500 15px / 1.4 var(--site-nav-font);
+    letter-spacing: normal;
+    text-transform: none;
+    text-shadow: none;
     transition: color 0.18s ease, background 0.18s ease, transform 0.18s ease;
     display: inline-flex;
     align-items: center;
