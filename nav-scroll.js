@@ -34,6 +34,13 @@
     });
   }
 
+  links.setAttribute("role", "navigation");
+  links.setAttribute("aria-label", "Main navigation");
+  links.querySelectorAll("a.active").forEach(link => link.setAttribute("aria-current", "page"));
+  const updateMenuTop = () => menu.style.setProperty("--site-menu-top", `${Math.ceil(menu.getBoundingClientRect().height)}px`);
+  new ResizeObserver(updateMenuTop).observe(menu);
+  updateMenuTop();
+
   toggle.setAttribute("aria-controls", links.id);
   toggle.setAttribute("aria-expanded", "false");
 

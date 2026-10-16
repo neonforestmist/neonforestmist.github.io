@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../main.css?v=portfolio-layout-11">
-    <script defer src="/nav-scroll.js?v=mobile-nav-sheet-6"></script>
+    <link rel="stylesheet" href="../main.css?v=compact-menu-12">
+    <script defer src="/nav-scroll.js?v=compact-menu-7"></script>
     <link rel="icon" type="image/png" href="/assets/favicon.png" />
     <link rel="shortcut icon" href="/assets/favicon.ico" />
     <link rel="apple-touch-icon" href="/assets/favicon.png" />
@@ -131,53 +131,19 @@ p {
     }
 }
 
-.policy-tabs {
-    display: flex;
-    gap: 4px;
-    padding: 5px;
-    margin: 24px 0;
-    background: #eeeeef;
-    border-radius: 14px;
-}
-.policy-tabs button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    gap: 8px;
-    min-width: 0;
-    min-height: 44px;
-    padding: 10px 8px;
-    border: 0;
-    border-radius: 10px;
-    background: transparent;
-    color: #555;
-    font: 500 .95rem Helvetica, Arial, sans-serif;
-    cursor: pointer;
-}
-.policy-tab-icon {
-    width: 24px;
-    height: 24px;
-    flex: 0 0 24px;
-    border-radius: 6px;
-    object-fit: cover;
-}
-.policy-tabs button[aria-selected="true"] {
-    background: #fff;
-    color: #1a1a1f;
-    box-shadow: 0 1px 5px #00000014;
-}
-.policy-tabs button:focus-visible {
-    outline: 2px solid #315ca8;
-    outline-offset: 2px;
+.policy-tabs { margin: 24px 0; width: 100%; }
+.policy-tab-icon { border-radius: 5px; }
+.policy-support-icon {
+    display: inline-block; width: 20px; height: 20px; flex: 0 0 20px;
+    background: currentColor;
+    -webkit-mask: url('../assets/chat-info.svg') center / contain no-repeat;
+    mask: url('../assets/chat-info.svg') center / contain no-repeat;
 }
 [data-policy-panel][hidden] { display: none; }
-@media (max-width: 640px) {
-    .policy-tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .policy-tabs button { gap: 5px; font-size: .8rem; padding: 8px 6px; }
-    .policy-tab-icon { width: 20px; height: 20px; flex-basis: 20px; }
-}
+
 </style>
+    <link rel="stylesheet" href="../section-shell.css?v=privacy-tabs-5">
+    <link rel="stylesheet" href="../collection.css?v=privacy-tabs-11">
 </head>
 <body>
     <div class="menu-bar">
@@ -224,11 +190,11 @@ p {
 
     <main class="container">
         <h1 class="privacy-title"><img class="privacy-title-icon" src="../assets/app_store_icons/app-store-privacy.png" alt="" aria-hidden="true"><span>App Privacy &amp; Support</span></h1>
-        <div class="policy-tabs" role="tablist" aria-label="App privacy policies">
-            <button type="button" role="tab" id="tab-violette" aria-controls="panel-violette" aria-selected="true" tabindex="0" data-policy="violette"><img class="policy-tab-icon" src="../assets/app_store_icons/violette.png" alt="" aria-hidden="true"><span>Violette</span></button>
-            <button type="button" role="tab" id="tab-chroma" aria-controls="panel-chroma" aria-selected="false" tabindex="-1" data-policy="chroma"><img class="policy-tab-icon" src="../assets/app_store_icons/chroma.png" alt="" aria-hidden="true"><span>Chroma</span></button>
-            <button type="button" role="tab" id="tab-super-alan-run" aria-controls="panel-super-alan-run" aria-selected="false" tabindex="-1" data-policy="super-alan-run"><img class="policy-tab-icon" src="../assets/app_store_icons/super-alan-run.png" alt="" aria-hidden="true"><span>Super Alan Run</span></button>
-            <button type="button" role="tab" id="tab-support" aria-controls="panel-support" aria-selected="false" tabindex="-1" data-policy="support"><span>Support</span></button>
+        <div class="policy-tabs collection-tabs collection-tabs--balanced" role="tablist" aria-label="App privacy policies">
+            <button class="collection-tab" type="button" role="tab" id="tab-violette" aria-controls="panel-violette" aria-selected="true" tabindex="0" data-policy="violette"><img class="policy-tab-icon" src="../assets/app_store_icons/violette.png" alt="" aria-hidden="true"><span>Violette</span></button>
+            <button class="collection-tab" type="button" role="tab" id="tab-chroma" aria-controls="panel-chroma" aria-selected="false" tabindex="-1" data-policy="chroma"><img class="policy-tab-icon" src="../assets/app_store_icons/chroma.png" alt="" aria-hidden="true"><span>Chroma</span></button>
+            <button class="collection-tab" type="button" role="tab" id="tab-super-alan-run" aria-controls="panel-super-alan-run" aria-selected="false" tabindex="-1" data-policy="super-alan-run"><img class="policy-tab-icon" src="../assets/app_store_icons/super-alan-run.png" alt="" aria-hidden="true"><span>Super Alan Run</span></button>
+            <button class="collection-tab" type="button" role="tab" id="tab-support" aria-controls="panel-support" aria-selected="false" tabindex="-1" data-policy="support"><span class="policy-support-icon" aria-hidden="true"></span><span>Support</span></button>
         </div>
         <div id="panel-violette" role="tabpanel" aria-labelledby="tab-violette" tabindex="0" data-policy-panel="violette">
         <h2 id="violette">Violette Privacy Policy</h2>

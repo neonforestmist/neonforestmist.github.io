@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6f8">
+  <meta name="description" content="Browse SmolGPT Fables stories by genre and read the complete Markdown archive.">
+  <link rel="icon" type="image/png" href="../../assets/favicon.png">
+  <link rel="stylesheet" href="./styles.css">
+  <script defer src="./library.js"></script>
+  <title>SmolGPT Fables Library</title>
+</head>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-wordmark" href="/" aria-label="Lukas Lozada Perez home"><span aria-hidden="true">🍀</span><span class="site-name">Lukas Lozada Perez</span></a>
+      <a class="header-back" href="../#datasets"><span aria-hidden="true">←</span> Back to Datasets</a>
+    </div>
+  </header>
+
+  <main class="library-shell">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../#datasets">Datasets</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">SmolGPT Fables</span>
+    </nav>
+
+    <section id="library-list" aria-labelledby="library-title">
+      <div class="library-intro">
+        <p class="eyebrow">The story collection</p>
+        <h1 id="library-title">SmolGPT Fables <span>Library</span></h1>
+        <p class="library-deck">Browse the complete Markdown story archive by genre, then read captured outputs from SmolGPT Fables Studio.</p>
+      </div>
+
+      <div class="library-controls">
+        <div class="collection-switch" role="group" aria-label="Story collection">
+          <button type="button" data-source="archive" aria-pressed="true">Story archive</button>
+          <button type="button" data-source="studio" aria-pressed="false">Studio stories</button>
+        </div>
+
+        <div class="genre-control">
+          <div class="control-heading">
+            <h2 id="genre-heading">Genres</h2>
+            <span>Choose a shelf</span>
+          </div>
+          <div id="genre-filters" class="genre-filters" role="group" aria-labelledby="genre-heading">
+            <button type="button" class="genre-pill" data-genre="all" aria-pressed="true">All genres</button>
+          </div>
+        </div>
+      </div>
+
+      <section class="stories-section" aria-labelledby="stories-title">
+        <div class="stories-heading">
+          <div>
+            <p class="eyebrow">Browse the library</p>
+            <h2 id="stories-title">Stories</h2>
+          </div>
+          <p id="library-status" class="library-status" role="status" aria-live="polite">Loading stories…</p>
+        </div>
+        <div id="story-results" class="story-results" role="list" aria-label="Stories"></div>
+        <nav class="pagination" aria-label="Story pages">
+          <button type="button" id="page-prev" disabled><span aria-hidden="true">←</span> Previous</button>
+          <span id="page-label" aria-live="polite">Page 1</span>
+          <button type="button" id="page-next" disabled>Next <span aria-hidden="true">→</span></button>
+          <form id="page-jump" class="page-jump" aria-label="Jump to story page">
+            <label for="page-number">Go to page</label>
+            <input id="page-number" type="number" min="1" value="1" inputmode="numeric" required>
+            <button type="submit">Go</button>
+          </form>
+        </nav>
+      </section>
+    </section>
+
+    <article id="story-reader" class="story-reader" aria-labelledby="story-title" tabindex="-1" hidden>
+      <button type="button" id="story-back" class="reader-back"><span aria-hidden="true">←</span> Back to stories</button>
+      <header class="reader-heading">
+        <p class="eyebrow">SmolGPT Fables Library</p>
+        <h1 id="story-title"></h1>
+        <div id="story-meta" class="story-meta"></div>
+      </header>
+      <div id="reader-view" class="reader-view" role="group" aria-label="Reading view" hidden>
+        <button type="button" data-reader-view="story" aria-pressed="true">Story</button>
+        <button type="button" data-reader-view="markdown" aria-pressed="false">Full Markdown</button>
+      </div>
+      <div class="reader-paper">
+        <div id="story-body" class="story-body"></div>
+      </div>
+      <footer class="reader-footer">
+        <a id="story-source" href="#" target="_blank" rel="noopener noreferrer">View source Markdown <span aria-hidden="true">↗</span></a>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>

@@ -1,6 +1,6 @@
 // Give every section rail the same keyboard navigation, including App Store filters.
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".section-tabs").forEach((rail) => {
+  document.querySelectorAll(".section-tabs, .collection-tabs[role=tablist]").forEach((rail) => {
     const buttons = Array.from(rail.querySelectorAll("button"));
     const sync = () => buttons.forEach((button) => {
       button.tabIndex = button.classList.contains("is-active") ? 0 : -1;

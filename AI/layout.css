@@ -1,0 +1,11 @@
+/* AI-specific content only; layout components live in ../collection.css. */
+body.ai-section-page .section-layout { display: block; }
+.ai-tab-note { display: none; }
+.ai-local-icon {
+  display: inline-block; background: currentColor;
+  -webkit-mask: var(--ai-icon) center / contain no-repeat;
+  mask: var(--ai-icon) center / contain no-repeat;
+}
+.ai-icon-models { --ai-icon: url('../assets/ai/glyphs/cpu.svg'); }
+.ai-icon-datasets { --ai-icon: url('../assets/ai/glyphs/database.svg'); }
+.ai-icon-misc { --ai-icon: url('../assets/ai/glyphs/sparkle.svg'); }

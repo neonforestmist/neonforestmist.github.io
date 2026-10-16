@@ -1,0 +1,35 @@
+{
+  "collection": "https://huggingface.co/collections/neonforestmist/image-lora-library",
+  "previews": [
+    {
+      "path": "assets/ai/storybook-anime/preview_01.png",
+      "model": "https://huggingface.co/neonforestmist/qwen-image-2512-storybook-anime-lora",
+      "source": "https://huggingface.co/neonforestmist/qwen-image-2512-storybook-anime-lora/resolve/main/images/preview_01.png"
+    },
+    {
+      "path": "assets/ai/pointillism/preview_02.png",
+      "model": "https://huggingface.co/neonforestmist/qwen-image-2512-pointillism-lora",
+      "source": "https://huggingface.co/neonforestmist/qwen-image-2512-pointillism-lora/resolve/main/images/preview_02.png"
+    },
+    {
+      "path": "assets/ai/watercolor-anime/preview_02.png",
+      "model": "https://huggingface.co/neonforestmist/qwen-image-2512-watercolor-anime-lora",
+      "source": "https://huggingface.co/neonforestmist/qwen-image-2512-watercolor-anime-lora/resolve/main/images/preview_02.png"
+    },
+    {
+      "path": "assets/ai/monet/preview_05.png",
+      "model": "https://huggingface.co/neonforestmist/qwen-image-2512-monet-lora",
+      "source": "https://huggingface.co/neonforestmist/qwen-image-2512-monet-lora/resolve/main/images/preview_05.png"
+    },
+    {
+      "path": "assets/ai/storybook-anime/preview_03.png",
+      "model": "https://huggingface.co/neonforestmist/qwen-image-2512-storybook-anime-lora",
+      "source": "https://huggingface.co/neonforestmist/qwen-image-2512-storybook-anime-lora/resolve/main/images/preview_03.png"
+    },
+    {
+      "path": "assets/ai/watercolor-anime/preview_06.png",
+      "model": "https://huggingface.co/neonforestmist/qwen-image-2512-watercolor-anime-lora",
+      "source": "https://huggingface.co/neonforestmist/qwen-image-2512-watercolor-anime-lora/resolve/main/images/preview_06.png"
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 1,
+  "dataset": "neonforestmist/smolgpt-markdown-stories",
+  "revision": "7d30e5a274e529967733b4f39565ab24d3171375",
+  "splits": [
+    "train",
+    "validation",
+    "test"
+  ],
+  "fields": [
+    "splitIndex",
+    "rowOffset",
+    "story_id",
+    "title",
+    "scene_count",
+    "words"
+  ],
+  "total": 96000,
+  "splitCounts": {
+    "train": 76800,
+    "validation": 9600,
+    "test": 9600
+  },
+  "genres": [
+    {
+      "id": "adventure",
+      "label": "Adventure",
+      "count": 3840,
+      "file": "adventure.json"
+    },
+    {
+      "id": "climate-fiction",
+      "label": "Climate Fiction",
+      "count": 3840,
+      "file": "climate-fiction.json"
+    },
+    {
+      "id": "comedy",
+      "label": "Comedy",
+      "count": 3840,
+      "file": "comedy.json"
+    },
+    {
+      "id": "coming-of-age",
+      "label": "Coming of Age",
+      "count": 3840,
+      "file": "coming-of-age.json"
+    },
+    {
+      "id": "cozy-fantasy",
+      "label": "Cozy Fantasy",
+      "count": 3840,
+      "file": "cozy-fantasy.json"
+    },
+    {
+      "id": "cyberpunk",
+      "label": "Cyberpunk",
+      "count": 3840,
+      "file": "cyberpunk.json"
+    },
+    {
+      "id": "detective-noir",
+      "label": "Detective Noir",
+      "count": 3840,
+      "file": "detective-noir.json"
+    },
+    {
+      "id": "family-drama",
+      "label": "Family Drama",
+      "count": 3840,
+      "file": "family-drama.json"
+    },
+    {
+      "id": "folklore",
+      "label": "Folklore",
+      "count": 3840,
+      "file": "folklore.json"
+    },
+    {
+      "id": "food-fiction",
+      "label": "Food Fiction",
+      "count": 3840,
+      "file": "food-fiction.json"
+    },
+    {
+      "id": "gothic-horror",
+      "label": "Gothic Horror",
+      "count": 3840,
+      "file": "gothic-horror.json"
+    },
+    {
+      "id": "high-fantasy",
+      "label": "High Fantasy",
+      "count": 3840,
+      "file": "high-fantasy.json"
+    },
+    {
+      "id": "historical-fiction",
+      "label": "Historical Fiction",
+      "count": 3840,
+      "file": "historical-fiction.json"
+    },
+    {
+      "id": "literary-fiction",
+      "label": "Literary Fiction",
+      "count": 3840,
+      "file": "literary-fiction.json"
+    },
+    {
+      "id": "magical-realism",
+      "label": "Magical Realism",
+      "count": 3840,
+      "file": "magical-realism.json"
+    },
+    {
+      "id": "maritime",
+      "label": "Maritime",
+      "count": 3840,
+      "file": "maritime.json"
+    },
+    {
+      "id": "mystery",
+      "label": "Mystery",
+      "count": 3840,
+      "file": "mystery.json"
+    },
+    {
+      "id": "mythic-fiction",
+      "label": "Mythic Fiction",
+      "count": 3840,
+      "file": "mythic-fiction.json"
+    },
+    {
+      "id": "romance",
+      "label": "Romance",
+      "count": 3840,
+      "file": "romance.json"
+    },
+    {
+      "id": "satire",
+      "label": "Satire",
+      "count": 3840,
+      "file": "satire.json"
+    },
+    {
+      "id": "science-fiction",
+      "label": "Science Fiction",
+      "count": 3840,
+      "file": "science-fiction.json"
+    },
+    {
+      "id": "solarpunk",
+      "label": "Solarpunk",
+      "count": 3840,
+      "file": "solarpunk.json"
+    },
+    {
+      "id": "sports-fiction",
+      "label": "Sports Fiction",
+      "count": 3840,
+      "file": "sports-fiction.json"
+    },
+    {
+      "id": "thriller",
+      "label": "Thriller",
+      "count": 3840,
+      "file": "thriller.json"
+    },
+    {
+      "id": "western",
+      "label": "Western",
+      "count": 3840,
+      "file": "western.json"
+    }
+  ]
+}

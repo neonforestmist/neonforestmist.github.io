@@ -1,5 +1,5 @@
 {
-  "retrieved": "2026-09-07",
+  "retrieved": "2026-09-24",
   "catalog_source": "https://huggingface.co/api/datasets?author=neonforestmist&full=true&limit=100",
   "datasets": [
     {
@@ -300,9 +300,89 @@
       ],
       "createdAt": "2026-08-01T20:46:51.000Z",
       "key": ""
+    },
+    {
+      "_id": "6ab3507da6b01d614fd76014",
+      "id": "neonforestmist/GPT_Photoreal_3D_Anime_Style_Images",
+      "author": "neonforestmist",
+      "cardData": {
+        "license": "apache-2.0",
+        "task_categories": [
+          "text-to-image"
+        ],
+        "language": [
+          "en"
+        ],
+        "tags": [
+          "synthetic",
+          "gpt-generated",
+          "image",
+          "text",
+          "photoreal-3d-anime",
+          "photorealistic",
+          "3d-render",
+          "anime-style",
+          "anime",
+          "digital-art",
+          "character-portraits",
+          "environment-scenes",
+          "image-caption-pairs"
+        ],
+        "pretty_name": "GPT Photoreal 3D Anime Style Images",
+        "size_categories": [
+          "n<1K"
+        ]
+      },
+      "disabled": false,
+      "gated": false,
+      "lastModified": "2026-09-23T04:13:19.000Z",
+      "likes": 0,
+      "trendingScore": 0,
+      "private": false,
+      "sha": "d40e4c3c1673464827e2941cbb0ab17a0df97033",
+      "description": "\n\t\n\t\t\n\t\n\t\n\t\tGPT Photoreal 3D Anime Style Images\n\t\n\n\n\t\n\t\t\n\t\n\t\n\t\tDataset Description\n\t\n\nThis is a synthetic GPT-generated Photoreal 3D Anime Style image dataset. It contains 150 image-caption pairs with square, 1024 \u00d7 1024 PNG images.\nThe images cover individual and group portraits, everyday activities, animals, objects, environments, and fantasy scenes. Captions describe anime-inspired forms, photorealistic surface textures, and physically based 3D lighting. Every caption begins with Photoreal\u2026 See the full description on the dataset page: https://huggingface.co/datasets/neonforestmist/GPT_Photoreal_3D_Anime_Style_Images.",
+      "downloads": 157,
+      "tags": [
+        "task_categories:text-to-image",
+        "language:en",
+        "license:apache-2.0",
+        "size_categories:n<1K",
+        "format:imagefolder",
+        "modality:image",
+        "modality:text",
+        "library:datasets",
+        "library:mlcroissant",
+        "region:us",
+        "synthetic",
+        "gpt-generated",
+        "image",
+        "text",
+        "photoreal-3d-anime",
+        "photorealistic",
+        "3d-render",
+        "anime-style",
+        "anime",
+        "digital-art",
+        "character-portraits",
+        "environment-scenes",
+        "image-caption-pairs"
+      ],
+      "createdAt": "2026-09-23T04:07:25.000Z",
+      "key": ""
     }
   ],
   "previews": [
+    {
+      "id": "neonforestmist/GPT_Photoreal_3D_Anime_Style_Images",
+      "title": "GPT Photoreal 3D Anime Style Images",
+      "slug": "photoreal-3d-anime",
+      "count": 150,
+      "description": "Photoreal 3D anime portraits, everyday scenes, and environments with captions describing their surfaces and lighting.",
+      "preview": "../assets/ai/datasets/photoreal-3d-anime.png",
+      "source": "https://huggingface.co/datasets/neonforestmist/GPT_Photoreal_3D_Anime_Style_Images/resolve/d40e4c3c1673464827e2941cbb0ab17a0df97033/images/gpt_photoreal_3d_anime_0001.png",
+      "license": "Apache-2.0",
+      "url": "https://huggingface.co/datasets/neonforestmist/GPT_Photoreal_3D_Anime_Style_Images"
+    },
     {
       "id": "neonforestmist/GPT_Pointillism_Style_Images",
       "title": "GPT Pointillism Style Images",

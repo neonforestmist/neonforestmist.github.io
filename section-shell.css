@@ -314,6 +314,14 @@ body:has(.clover-viewer[open]) { overflow: hidden; }
 .clover-collection-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; }
 .clover-explore { min-height: 44px; padding: 10px 18px; border: 0; border-radius: 999px; background: var(--shell-active); color: #fff; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; }
 .clover-explore:hover { background: #0948ad; }
+body.section-page .ai-panel[data-ai-panel="gallery"] .ai-actions { justify-content: center; }
+body.section-page .ai-panel[data-ai-panel="gallery"] .clover-explore { display: inline-flex; align-items: center; justify-content: center; width: min(100%, 320px); min-height: 48px; border: 2px solid #202124; border-radius: 10px; background: #fff; color: #202124; box-shadow: 2px 2px 0 rgb(0 0 0 / 8%); font-size: 16px; font-weight: 700; text-decoration: none; }
+body.section-page .ai-panel[data-ai-panel="gallery"] .clover-explore:hover { background: #f7f7f7; }
+body.section-page .ai-panel[data-ai-panel="gallery"] .clover-explore:focus-visible { outline: 3px solid var(--shell-active); outline-offset: 3px; }
+body.section-page .ai-panel[data-ai-panel="gallery"] .ai-feature.is-text-only .ai-feature-body { justify-content: center; padding: 30px; }
+body.section-page .ai-panel[data-ai-panel="gallery"] .ai-feature.is-text-only .ai-release-title { font-size: clamp(24px, 2.4vw, 32px); letter-spacing: -0.035em; }
+body.section-page .ai-panel[data-ai-panel="gallery"] .ai-library-count { margin: 0 0 26px; color: #405780; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+body.section-page .ai-panel[data-ai-panel="gallery"] .ai-library-count span { padding: 0 6px; color: #a8b0bb; }
 
 @media (max-width: 1100px) {
   body.section-page .section-content :is(.projects-grid, .spotlight-grid) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -366,26 +374,70 @@ body:has(.clover-viewer[open]) { overflow: hidden; }
   body.section-page *, body.section-page *::before, body.section-page *::after { scroll-behavior: auto; transition: none; animation: none; }
 }
 
-/* Dataset catalog: every collection uses the same preview, body, and action layout. */
-.dataset-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
-.dataset-card { display: flex; flex-direction: column; min-width: 0; overflow: hidden; border: 1px solid var(--shell-line); border-radius: var(--shell-radius); background: #fff; box-shadow: 0 2px 6px rgb(20 30 50 / 3%); }
-.dataset-preview { display: block; padding: 8px; border-bottom: 1px solid var(--shell-line-soft); background: var(--shell-hover); }
-.dataset-preview img { display: block; width: 100%; height: 230px; object-fit: cover; border: 1px solid var(--shell-line); border-radius: 8px; }
-.dataset-body { display: flex; flex-direction: column; align-items: start; flex: 1; min-width: 0; padding: 20px; }
-.dataset-kind { margin: 0 0 8px; color: var(--shell-muted); font-size: 13px; line-height: 1.5; font-weight: 600; }
-.dataset-body h2 { margin: 0 0 10px; color: var(--shell-ink); font-size: 20px; line-height: 1.3; letter-spacing: -0.02em; }
-.dataset-description { margin: 0 0 18px; color: var(--shell-muted); font-size: 16px; line-height: 1.5; }
-.dataset-facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 20px; }
-.dataset-facts span { padding: 5px 9px; border-radius: 6px; background: var(--shell-hover); color: #4b5565; font-size: 13px; line-height: 1.4; }
-.dataset-link { display: inline-flex; gap: 10px; align-items: center; min-height: 44px; margin-top: auto; color: var(--shell-active); font-size: 14px; font-weight: 600; text-decoration: none; }
+/* Compact dataset rows keep the catalog easy to scan without large image panels. */
+.dataset-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.dataset-card { display: flex; min-width: 0; overflow: hidden; border: 1px solid var(--shell-line); border-radius: 14px; background: #fff; box-shadow: 0 2px 6px rgb(20 30 50 / 3%); }
+.dataset-preview { position: relative; display: block; flex: 0 0 168px; min-height: 178px; overflow: hidden; border-right: 1px solid var(--shell-line-soft); background: var(--shell-hover); }
+.dataset-preview img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; }
+.dataset-body { display: flex; flex-direction: column; align-items: start; flex: 1; min-width: 0; padding: 16px 18px; }
+.dataset-kind { margin: 0 0 4px; color: var(--shell-muted); font-size: 12px; line-height: 1.3; font-weight: 600; }
+.dataset-body h2 { margin: 0 0 6px; color: var(--shell-ink); font-size: 18px; line-height: 1.25; letter-spacing: -0.02em; }
+.dataset-description { margin: 0 0 10px; color: var(--shell-muted); font-size: 14px; line-height: 1.4; }
+.dataset-facts { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; }
+.dataset-facts span { padding: 3px 7px; border-radius: 6px; background: var(--shell-hover); color: #4b5565; font-size: 12px; line-height: 1.3; }
+.dataset-link { display: inline-flex; gap: 10px; align-items: center; min-height: 44px; margin-top: auto; color: var(--shell-active); font-size: 13px; font-weight: 600; text-decoration: none; }
 .dataset-link.ai-button:hover { text-decoration: none; }
-@media (max-width: 900px) { .dataset-grid { gap: 16px; } }
+.ai-panel[data-ai-panel="other"] .dataset-grid { max-width: 620px; }
 @media (max-width: 600px) {
-  .dataset-grid { grid-template-columns: minmax(0, 1fr); }
-  .dataset-body { padding: 18px; }
-  .dataset-preview img { height: 220px; }
+  .dataset-grid { gap: 10px; }
+  .dataset-preview { flex-basis: 104px; min-height: 150px; }
+  .dataset-body { padding: 12px; }
+  .dataset-body h2 { font-size: 16px; }
+  .dataset-description { font-size: 13px; }
+  .dataset-facts { margin-bottom: 10px; }
 }
 
 @media (max-width: 360px) {
   .clover-prompt-bar textarea { min-height: 4.5em; }
 }
+
+/* Image-led dataset collection; full specifications live on Hugging Face. */
+#ai-panel-datasets .dataset-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+#ai-panel-datasets .dataset-card {
+  flex-direction: column;
+}
+#ai-panel-datasets .dataset-preview {
+  flex: none;
+  width: 100%;
+  min-height: 0;
+  aspect-ratio: 16 / 10;
+  border-right: 0;
+  border-bottom: 1px solid var(--shell-line-soft);
+}
+#ai-panel-datasets .dataset-body {
+  padding: 20px;
+}
+#ai-panel-datasets .dataset-body h2 {
+  font-size: 19px;
+  line-height: 1.3;
+}
+#ai-panel-datasets .dataset-description {
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+#ai-panel-datasets .dataset-link {
+  font-size: 13px;
+}
+@media (max-width: 1200px) {
+  #ai-panel-datasets .dataset-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  #ai-panel-datasets .dataset-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+}
+
+/* Outline the App Store selection using a darker shade of its blue fill. */
+body.appstore-page .section-tabs > button { border: 2px solid transparent; }
+body.appstore-page .section-tabs > button.is-active { border-color: #7897cd; }
