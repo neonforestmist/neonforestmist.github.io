@@ -1,0 +1,22 @@
+[
+  {
+    "path": "assets/ai/datasets/storybook-anime-collection-preview.png",
+    "source": "https://huggingface.co/datasets/neonforestmist/GPT_Storybook_Anime_Style_Images/resolve/main/images/gpt_storybook_anime_0010.png"
+  },
+  {
+    "path": "assets/ai/datasets/monet-collection-preview.png",
+    "source": "https://huggingface.co/datasets/neonforestmist/GPT_Monet_Style_Images/resolve/main/images/gpt_monet_0010.png"
+  },
+  {
+    "path": "assets/ai/datasets/pointillism-collection-preview.png",
+    "source": "https://huggingface.co/datasets/neonforestmist/GPT_Pointillism_Style_Images/resolve/main/images/gpt_pointillism_0010.png"
+  },
+  {
+    "path": "assets/ai/datasets/glass-art-collection-preview.png",
+    "source": "https://huggingface.co/datasets/neonforestmist/GPT_Glass_Art_Style_Images/resolve/main/images/gpt_glass_art_0010.png"
+  },
+  {
+    "path": "assets/ai/datasets/photoreal-collection-preview.png",
+    "source": "https://huggingface.co/datasets/neonforestmist/GPT_Photoreal_3D_Anime_Style_Images/resolve/main/images/gpt_photoreal_3d_anime_0010.png"
+  }
+]

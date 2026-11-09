@@ -9,3 +9,19 @@ body.ai-section-page .section-layout { display: block; }
 .ai-icon-models { --ai-icon: url('../assets/ai/glyphs/cpu.svg'); }
 .ai-icon-datasets { --ai-icon: url('../assets/ai/glyphs/database.svg'); }
 .ai-icon-misc { --ai-icon: url('../assets/ai/glyphs/sparkle.svg'); }
+
+/* Two dataset families, with all image styles collected in one card. */
+.dataset-gallery { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 4px; height: 230px; padding: 10px; background: #e4e7eb; }
+.dataset-gallery a { grid-column: span 2; min-width: 0; overflow: hidden; }
+.dataset-grid .collection-art { height: 230px; }
+.dataset-gallery img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.dataset-gallery a:focus-visible { outline: 3px solid #0b57d0; outline-offset: -3px; }
+.dataset-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; width: 100%; }
+.dataset-links .collection-link { min-width: 0; padding-inline: 8px; }
+.dataset-links .collection-link span { overflow-wrap: anywhere; }
+@media (max-width: 700px) {
+  body.section-page .dataset-grid.collection-grid--pair { grid-template-columns: minmax(0, 1fr); }
+  .dataset-gallery { height: 230px; }
+}
+
+.dataset-collection-link { align-self: center; margin: auto 0 16px; text-align: center; }

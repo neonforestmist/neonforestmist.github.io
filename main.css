@@ -50,6 +50,7 @@ main {
     -webkit-font-smoothing: antialiased;
 }
 
+
 .menu-logo {
     height: 40px;
     width: auto;
@@ -138,11 +139,14 @@ main {
     display: inline-flex;
     align-items: center;
     gap: 6px;
+    min-height: 40px;
+    text-align: left;
 }
 
 .nav-icon {
     width: 17px;
     height: 17px;
+    flex: 0 0 17px;
     fill: currentColor;
 }
 
@@ -367,7 +371,7 @@ main {
     min-height: 44px;
     flex: 0 1 auto;
     color: #d8e7ff;
-    font-family: "Avenir Next", "Segoe UI", Helvetica, Arial, sans-serif;
+    font-family: var(--site-nav-font);
     font-size: clamp(18px, 2vw, 23px);
     font-weight: 700;
     letter-spacing: -0.035em;

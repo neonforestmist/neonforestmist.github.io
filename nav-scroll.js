@@ -26,9 +26,10 @@
       return path || "/";
     };
     const currentPath = normalizePath(window.location.pathname);
+    const activeSection = currentPath === "/Privacy" ? "/AppStore" : currentPath;
 
     links.querySelectorAll("a[href]").forEach((link) => {
-      if (normalizePath(link.href) === currentPath) {
+      if (normalizePath(link.href) === activeSection) {
         link.classList.add("active");
       }
     });
